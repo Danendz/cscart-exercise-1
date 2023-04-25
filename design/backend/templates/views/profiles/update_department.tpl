@@ -13,9 +13,9 @@
 
         <div id="content_general">
             <div class="control-group">
-                <label for="elm_banner_name" class="control-label cm-required">{__("name")}</label>
+                <label for="elm_department_name" class="control-label cm-required">{__("name")}</label>
                 <div class="controls">
-                    <input type="text" name="department_data[department]" id="elm_banner_name"
+                    <input type="text" name="department_data[department]" id="elm_department_name"
                         value="{$department_data.department}" size="25" class="input-large" />
                 </div>
             </div>
@@ -35,28 +35,32 @@
         </div>
 
         <div class="control-group" id="banner_text">
-            <label class="control-label" for="elm_banner_description">{__("description")}:</label>
+            <label class="control-label" for="elm_department_description">{__("description")}:</label>
             <div class="controls">
-                <textarea id="elm_banner_description" name="department_data[description]" cols="35" rows="8"
+                <textarea id="elm_department_description" name="department_data[description]" cols="35" rows="8"
                     class="cm-wysiwyg input-large">{$department_data.description}</textarea>
             </div>
         </div>
 
-        <div class="control-group">
-            <label class="control-label" for="elm_banner_timestamp_{$id}">{__("creation_date")}</label>
+        {if $department_data}
+        <div class="control-group" id="banner_text">
+            <label class="control-label">{__("creation_date")}:</label>
             <div class="controls">
-                {include file="common/calendar.tpl" date_id="elm_banner_timestamp_`$id`" date_name="department_data[timestamp]" date_val=$department_data.timestamp|default:$smarty.const.TIME start_year=$settings.Company.company_start_year}
+                <p>
+                    {$department.timestamp|date_format:"`$settings.Appearance.date_format`"}
+                </p>
             </div>
         </div>
+        {/if}
 		<div class="control-group">
-	        <label class="control-label">{__("supervisor")}</label>
+	        <label for="elm_department_supervisor" class="control-label">{__("supervisor")}</label>
 	        <div class="controls">
 	            {include 
                 file="pickers/users/picker.tpl" 
-                but_text=__("add_recipients_from_users") 
-                data_id="return_users" 
+                but_text=__("add_department_supervisor") 
+                data_id="elm_department_supervisor" 
                 but_meta="btn" 
-                input_name="department_data[user_id]" 
+                input_name="department_data[supervisor_id]" 
                 item_ids=$department_data.supervisor_id
                 placement="right"
                 display="radio"
@@ -67,17 +71,16 @@
 	        </div>
 		</div>
 		<div class="control-group">
-	        <label class="control-label">{__("employee")}</label>
+	        <label for="elm_department_employee" class="control-label">{__("employees")}</label>
 	        <div class="controls">
 	            {include 
                 file="pickers/users/picker.tpl" 
-                but_text=__("add_recipients_from_users") 
-                data_id="return_users" 
+                but_text=__("add_department_employee") 
+                data_id="elm_department_employee"
                 but_meta="btn" 
-                input_name="department_data[user_id]" 
-                item_ids=$department_data.employee_id
+                input_name="department_data[employee_ids]" 
+                item_ids=$department_data.employee_ids
                 placement="right"
-                user_info=$employee_info
                 }
 
 	        </div>
