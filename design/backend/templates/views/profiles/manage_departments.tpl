@@ -1,5 +1,7 @@
 {** departments section **}
 
+{$image_width = $settings.Thumbnails.product_admin_mini_icon_width}
+{$image_height = $settings.Thumbnails.product_admin_mini_icon_height}
 {capture name="mainbox"}
 
 	<form action="{""|fn_url}" method="post" id="departments_form" name="banners_form" enctype="multipart/form-data">
@@ -29,6 +31,8 @@
 									<input type="checkbox" class="bulkedit-toggler hide"
 										data-ca-bulkedit-disable="[data-ca-bulkedit-default-object=true]"
 										data-ca-bulkedit-enable="[data-ca-bulkedit-expanded-object=true]" />
+								</th>
+								<th width="15%">
 								</th>
 								<th><a class="cm-ajax" href="{"`$c_url`&sort_by=name&sort_order=`$search.sort_order_rev`"|fn_url}"
 										data-ca-target-id={$rev}>{__("name")}{if $search.sort_by === "name"}{$c_icon nofilter}{else}{$c_dummy nofilter}{/if}</a>
@@ -62,12 +66,24 @@
 									<input type="checkbox" name="departments_ids[]" value="{$department.department_id}"
 										class="cm-item {$no_hide_input} cm-item-status-{$department.status|lower} hide" />
 								</td>
+                <td data-th="{__("image")}" width="{$image_width + 18px}" class="products-list__image">
+                  {include
+										file="common/image.tpl"
+                    image=$department.main_pair.icon
+										image_id=$department.main_pair.image_id
+										image_width=$image_width
+										image_height=$image_height
+                    href="profiles.update_department?department_id=`$department.department_id`"|fn_url
+                    image_css_class="products-list__image--img"
+                    link_css_class="products-list__image--link"
+                  }
+                </td>
 								<td class="{$no_hide_input}" data-th="{__("name")}">
 									<a class="row-status"
 										href="{"profiles.update_department?department_id=`$department.department_id`"|fn_url}">{$department.department}</a>
 								</td>
 								<td width="15%" data-th="{__("creation_date")}">
-									{$department.timestamp|date_format:"`$settings.Appearance.date_format`, `$settings.Appearance.time_format`"}
+									{$department.timestamp|date_format:"`$settings.Appearance.date_format`"}
 								</td>
 								<td width="6%" class="mobile-hide">
 									{capture name="tools_list"}
@@ -85,7 +101,7 @@
 									</div>
 								</td>
 								<td width="10%" class="right" data-th="{__("status")}">
-									{include file="common/select_popup.tpl" id=$department.department_id status=$department.status hidden=true object_id_name="banner_id" table="departments" popup_additional_class="`$no_hide_input` dropleft"}
+									{include file="common/select_popup.tpl" id=$department.department_id status=$department.status hidden=true object_id_name="department_id" table="departments" popup_additional_class="`$no_hide_input` dropleft"}
 								</td>
 							</tr>
 						{/foreach}
@@ -112,7 +128,6 @@
 						</li>
 				{/capture}
 				{dropdown content=$smarty.capture.tools_list}
-	      {include file="buttons/save.tpl" but_name="dispatch[profiles.update_departments]" but_role="action" but_target_form="departments_form" but_meta="cm-submit"}
 			{/capture}
 		{/if}
 		{capture name="adv_buttons"}
@@ -121,6 +136,13 @@
 
 	</form>
 
+{/capture}
+
+{capture name="sidebar"}
+    {hook name="profiles:manage_sidebar"}
+    {include file="common/saved_search.tpl" dispatch="profiles.manage_departments" view_type="profiles"}
+    {include file="views/profiles/components/departments_search_form.tpl" dispatch="profiles.manage_departments"}
+    {/hook}
 {/capture}
 
 {hook name="departments:manage_mainbox_params"}
@@ -135,6 +157,7 @@
 	select_languages=$select_languages 
 	buttons=$smarty.capture.buttons
 	content_id="pagination_contents_departments"
+	sidebar=$smarty.capture.sidebar
 	}
 
 {** ad section **}
