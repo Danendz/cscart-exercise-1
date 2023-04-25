@@ -1,4 +1,5 @@
 <?php
+
 /***************************************************************************
  *                                                                          *
  *   (c) 2004 Vladimir V. Kalynyak, Alexey V. Vinokurov, Ilya M. Shalnev    *
@@ -435,7 +436,6 @@ function fn_compare_shipping_billing($profile_fields)
         // If field is set in shipping section and disabled in billing, so - different
         if (empty($profile_fields[$from_section][$v['matching_id']]) && $v['required'] == 'Y') {
             return false;
-
         } elseif (!empty($profile_fields[$from_section][$v['matching_id']]) && $v['required'] == 'Y' && $profile_fields[$from_section][$v['matching_id']]['required'] != 'Y') {
             return false;
         }
@@ -508,13 +508,13 @@ function fn_get_usergroups($params = array(), $lang_code = CART_LANGUAGE)
 
     $usergroups += db_get_hash_array(
         "SELECT ?p"
-        . " FROM ?:usergroups as a"
-        . " LEFT JOIN ?:usergroup_descriptions as b"
+            . " FROM ?:usergroups as a"
+            . " LEFT JOIN ?:usergroup_descriptions as b"
             . " ON b.usergroup_id = a.usergroup_id"
             . " AND b.lang_code = ?s"
-        . " ?p"
-        . " WHERE 1 ?p"
-        . " ?p ?p ?p",
+            . " ?p"
+            . " WHERE 1 ?p"
+            . " ?p ?p ?p",
         'usergroup_id',
         $field_list,
         $lang_code,
@@ -528,7 +528,7 @@ function fn_get_usergroups($params = array(), $lang_code = CART_LANGUAGE)
     if (!empty($params['with_privileges']) && !empty($usergroups)) {
         $privileges = db_get_hash_multi_array(
             'SELECT usergroup_id, privilege FROM ?:usergroup_privileges WHERE usergroup_id IN (?n)',
-            array('usergroup_id','privilege','privilege'),
+            array('usergroup_id', 'privilege', 'privilege'),
             array_keys($usergroups)
         );
 
@@ -541,7 +541,8 @@ function fn_get_usergroups($params = array(), $lang_code = CART_LANGUAGE)
         }
     }
 
-    if (!empty($params['include_default'])
+    if (
+        !empty($params['include_default'])
         && (empty($params['type']) || $params['type'] == 'C')      // All default usergroups have type = C
         && (empty($params['status']) || in_array('A', (array) $params['status']))  // and status = A
     ) {
@@ -616,8 +617,8 @@ function fn_get_simple_usergroups($type, $get_default = false, $lang_code = CART
     }
 
     $where = SiteArea::isStorefront(AREA)
-             ? db_quote(' a.status = ?s', ObjectStatuses::ACTIVE)
-             : db_quote(' a.status IN (?a)', [ObjectStatuses::ACTIVE, ObjectStatuses::HIDDEN]);
+        ? db_quote(' a.status = ?s', ObjectStatuses::ACTIVE)
+        : db_quote(' a.status IN (?a)', [ObjectStatuses::ACTIVE, ObjectStatuses::HIDDEN]);
 
     if ($type === UsergroupTypes::TYPE_CUSTOMER || SiteArea::isStorefront(AREA)) {
         $where .= db_quote(' AND a.type = ?s', UsergroupTypes::TYPE_CUSTOMER);
@@ -773,7 +774,6 @@ function fn_convert_profile_dates_to_timestamps(&$user_data, $profile_fields)
                 if ($v['field_type'] == ProfileFieldTypes::DATE) {
                     $user_data[$v['field_name']] = fn_parse_date($user_data[$v['field_name']]);
                 }
-
             } elseif (!empty($user_data['fields'][$v['field_id']])) {
 
                 if ($v['field_type'] == ProfileFieldTypes::DATE) {
@@ -873,7 +873,7 @@ function fn_fill_user_fields(&$user_data)
  */
 function fn_get_profile_fields($location = ProfileFieldLocations::CUSTOMER_FIELDS, $_auth = [], $lang_code = CART_LANGUAGE, array $params = [])
 {
-    $auth = & Tygh::$app['session']['auth'];
+    $auth = &Tygh::$app['session']['auth'];
     $select = '';
 
     $default_params = [
@@ -1010,7 +1010,7 @@ function fn_get_profile_fields($location = ProfileFieldLocations::CUSTOMER_FIELD
                     // If this field is enabled in billing section
                     if (!empty($matches[$v['field_id']])) {
                         $_id = $matches[$v['field_id']];
-                    // Otherwise, get it from database
+                        // Otherwise, get it from database
                     } else {
                         $_id = db_get_field("SELECT field_id FROM ?:profile_fields WHERE matching_id = ?i", $v['field_id']);
                     }
@@ -1068,8 +1068,8 @@ function fn_get_profile_field($field_id, $lang_code = DESCR_SL)
 {
     $profile_field = db_get_row(
         'SELECT * FROM ?:profile_fields AS pf'
-        . ' LEFT JOIN ?:profile_field_descriptions AS pfd ON pf.field_id = pfd.object_id'
-        . ' WHERE pf.field_id = ?i AND pfd.lang_code = ?s AND pfd.object_type = ?s',
+            . ' LEFT JOIN ?:profile_field_descriptions AS pfd ON pf.field_id = pfd.object_id'
+            . ' WHERE pf.field_id = ?i AND pfd.lang_code = ?s AND pfd.object_type = ?s',
         $field_id,
         $lang_code,
         'F'
@@ -1152,9 +1152,9 @@ function fn_store_user_profile_fields(array $profile_data, $object_id, $object_t
 
     $fields = db_get_hash_array(
         'SELECT profile_fields_data.* FROM ?:profile_fields_data AS profile_fields_data'
-        . ' LEFT JOIN ?:profile_fields AS profile_fields'
+            . ' LEFT JOIN ?:profile_fields AS profile_fields'
             . ' ON profile_fields_data.field_id = profile_fields.field_id'
-        . ' WHERE profile_fields_data.object_id = ?i'
+            . ' WHERE profile_fields_data.object_id = ?i'
             . ' AND profile_fields_data.object_type = ?s'
             . ' AND profile_fields.field_type = ?s',
         'field_id',
@@ -1177,7 +1177,7 @@ function fn_store_user_profile_fields(array $profile_data, $object_id, $object_t
 
     $matching_fields = db_get_hash_array(
         'SELECT field_id, matching_id FROM ?:profile_fields'
-        . ' WHERE matching_id IN (?n) AND field_type = ?s AND section = ?s',
+            . ' WHERE matching_id IN (?n) AND field_type = ?s AND section = ?s',
         'matching_id',
         array_keys($fields),
         ProfileFieldTypes::FILE,
@@ -1187,9 +1187,9 @@ function fn_store_user_profile_fields(array $profile_data, $object_id, $object_t
     if (empty($matching_fields) && !empty($fields)) {
         db_query(
             'DELETE profile_fields_data FROM ?:profile_fields_data profile_fields_data'
-            . ' LEFT JOIN ?:profile_fields AS profile_fields'
+                . ' LEFT JOIN ?:profile_fields AS profile_fields'
                 . ' ON profile_fields_data.field_id = profile_fields.field_id'
-            . ' WHERE profile_fields_data.field_id IN (?n)'
+                . ' WHERE profile_fields_data.field_id IN (?n)'
                 . ' AND profile_fields_data.object_id = ?i '
                 . ' AND profile_fields_data.object_type = ?s'
                 . ' AND profile_fields.field_type = ?s'
@@ -1433,9 +1433,9 @@ function fn_define_usergroups($user_data = array(), $area = AREA)
 
         $_active_usergroups = db_get_fields(
             'SELECT lnk.usergroup_id FROM ?:usergroup_links as lnk'
-            . ' INNER JOIN ?:usergroups ON ?:usergroups.usergroup_id = lnk.usergroup_id'
+                . ' INNER JOIN ?:usergroups ON ?:usergroups.usergroup_id = lnk.usergroup_id'
                 . ' AND ?:usergroups.status != ?s AND ?:usergroups.type IN (?a)'
-            . ' WHERE lnk.user_id = ?i AND lnk.status = ?s',
+                . ' WHERE lnk.user_id = ?i AND lnk.status = ?s',
             ObjectStatuses::DISABLED,
             $usergroup_types,
             $user_data['user_id'],
@@ -1497,7 +1497,7 @@ function fn_define_usergroups($user_data = array(), $area = AREA)
 //
 function fn_save_user_additional_data($type, $data, $user_id = 0)
 {
-    $auth = & Tygh::$app['session']['auth'];
+    $auth = &Tygh::$app['session']['auth'];
 
     if (empty($user_id) && !empty($auth['user_id'])) {
         $user_id = $auth['user_id'];
@@ -1515,7 +1515,7 @@ function fn_save_user_additional_data($type, $data, $user_id = 0)
 //
 function fn_get_user_additional_data($type, $user_id = 0)
 {
-    $auth = & Tygh::$app['session']['auth'];
+    $auth = &Tygh::$app['session']['auth'];
 
     if (empty($user_id) && !empty($auth['user_id'])) {
         $user_id = $auth['user_id'];
@@ -1863,7 +1863,7 @@ function fn_get_users($params, &$auth, $items_per_page = 0, $custom_view = '')
 
 function fn_get_user_types()
 {
-    $types = array (
+    $types = array(
         'C' => 'add_customer',
         'A' => 'add_administrator',
     );
@@ -1890,14 +1890,14 @@ function fn_get_user_edp($params, $items_per_page = 0)
      */
     fn_set_hook('get_user_edp_pre', $params, $items_per_page);
 
-    $default_params = array (
+    $default_params = array(
         'page' => 1,
         'items_per_page' => $items_per_page
     );
 
     $params = array_merge($default_params, $params);
 
-    $fields = array (
+    $fields = array(
         '?:order_details.product_id',
         '?:order_details.order_id',
         '?:order_details.extra',
@@ -1923,12 +1923,12 @@ function fn_get_user_edp($params, $items_per_page = 0)
     } elseif (!empty($params['items_per_page'])) {
         $params['total_items'] = count(db_get_fields(
             "SELECT COUNT(*)"
-            . " FROM ?:order_details"
-            . " INNER JOIN ?:orders ON ?:orders.order_id = ?:order_details.order_id AND ?:orders.is_parent_order != 'Y' $orders_company_condition"
-            . " INNER JOIN ?:product_file_ekeys ON ?:product_file_ekeys.product_id = ?:order_details.product_id AND ?:product_file_ekeys.order_id = ?:order_details.order_id"
-            . " INNER JOIN ?:product_files ON ?:product_files.product_id = ?:order_details.product_id"
-            . " WHERE ?:orders.user_id = ?i AND ?:product_files.status = 'A'" . $where
-            . " GROUP BY ?:order_details.product_id, ?:order_details.order_id",
+                . " FROM ?:order_details"
+                . " INNER JOIN ?:orders ON ?:orders.order_id = ?:order_details.order_id AND ?:orders.is_parent_order != 'Y' $orders_company_condition"
+                . " INNER JOIN ?:product_file_ekeys ON ?:product_file_ekeys.product_id = ?:order_details.product_id AND ?:product_file_ekeys.order_id = ?:order_details.order_id"
+                . " INNER JOIN ?:product_files ON ?:product_files.product_id = ?:order_details.product_id"
+                . " WHERE ?:orders.user_id = ?i AND ?:product_files.status = 'A'" . $where
+                . " GROUP BY ?:order_details.product_id, ?:order_details.order_id",
             $params['user_id']
         ));
         $limit = db_paginate($params['page'], $params['items_per_page'], $params['total_items']);
@@ -1946,22 +1946,23 @@ function fn_get_user_edp($params, $items_per_page = 0)
 
     $products = db_get_array(
         "SELECT " . implode(', ', $fields)
-        . " FROM ?:order_details"
-        . " INNER JOIN ?:product_files ON ?:product_files.product_id = ?:order_details.product_id"
-        . " INNER JOIN ?:orders ON ?:orders.order_id = ?:order_details.order_id AND ?:orders.is_parent_order != 'Y' $orders_company_condition"
-        . " INNER JOIN ?:product_file_ekeys ON ?:product_file_ekeys.product_id = ?:order_details.product_id AND ?:product_file_ekeys.order_id = ?:order_details.order_id"
-        . " LEFT JOIN ?:products ON ?:products.product_id = ?:order_details.product_id"
-        . " LEFT JOIN ?:product_descriptions ON ?:product_descriptions.product_id = ?:order_details.product_id AND ?:product_descriptions.lang_code = ?s"
-        . " LEFT JOIN ?:product_file_folders ON ?:product_file_folders.product_id = ?:order_details.product_id"
-        . " WHERE ?:orders.user_id = ?i AND ?:orders.is_parent_order != 'Y' AND ?:product_files.status = 'A' AND (?:product_file_folders.status = 'A' OR ?:product_files.folder_id IS NULL)" . $where
-        . " GROUP BY ?:order_details.order_id, ?:order_details.product_id"
-        . " ORDER BY ?:orders.order_id DESC $limit",
-        CART_LANGUAGE, $params['user_id']
+            . " FROM ?:order_details"
+            . " INNER JOIN ?:product_files ON ?:product_files.product_id = ?:order_details.product_id"
+            . " INNER JOIN ?:orders ON ?:orders.order_id = ?:order_details.order_id AND ?:orders.is_parent_order != 'Y' $orders_company_condition"
+            . " INNER JOIN ?:product_file_ekeys ON ?:product_file_ekeys.product_id = ?:order_details.product_id AND ?:product_file_ekeys.order_id = ?:order_details.order_id"
+            . " LEFT JOIN ?:products ON ?:products.product_id = ?:order_details.product_id"
+            . " LEFT JOIN ?:product_descriptions ON ?:product_descriptions.product_id = ?:order_details.product_id AND ?:product_descriptions.lang_code = ?s"
+            . " LEFT JOIN ?:product_file_folders ON ?:product_file_folders.product_id = ?:order_details.product_id"
+            . " WHERE ?:orders.user_id = ?i AND ?:orders.is_parent_order != 'Y' AND ?:product_files.status = 'A' AND (?:product_file_folders.status = 'A' OR ?:product_files.folder_id IS NULL)" . $where
+            . " GROUP BY ?:order_details.order_id, ?:order_details.product_id"
+            . " ORDER BY ?:orders.order_id DESC $limit",
+        CART_LANGUAGE,
+        $params['user_id']
     );
 
     if (!empty($products)) {
         foreach ($products as $k => $v) {
-            $_params = array (
+            $_params = array(
                 'product_id' => $v['product_id'],
                 'order_id' => $v['order_id']
             );
@@ -1989,7 +1990,7 @@ function fn_is_restricted_admin($params)
         return false;
     }
 
-    $auth = & Tygh::$app['session']['auth'];
+    $auth = &Tygh::$app['session']['auth'];
 
     $not_own_profile = false;
     $is_restricted = false;
@@ -2176,12 +2177,12 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
     if (!empty($user_id)) {
         $current_user_data = db_get_row(
             'SELECT user_id, company_id, is_root, status, user_type, email, user_login, lang_code, password, salt, helpdesk_user_id'
-            . ' FROM ?:users WHERE user_id = ?i',
+                . ' FROM ?:users WHERE user_id = ?i',
             $user_id
         );
 
         if (empty($current_user_data)) {
-            fn_set_notification('E', __('error'), __('object_not_found', array('[object]' => __('user'))),'','404');
+            fn_set_notification('E', __('error'), __('object_not_found', array('[object]' => __('user'))), '', '404');
 
             return false;
         }
@@ -2237,15 +2238,13 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
         $action = 'update';
     } else {
         $current_user_data = array(
-            'status' => (
-                !SiteArea::isAdmin(AREA)
+            'status' => (!SiteArea::isAdmin(AREA)
                 && YesNo::toBool(Registry::get('settings.General.approve_user_profiles'))
             )
                 ? ObjectStatuses::DISABLED
-                : (
-                    !empty($user_data['status'])
-                        ? $user_data['status']
-                        : ObjectStatuses::ACTIVE
+                : (!empty($user_data['status'])
+                    ? $user_data['status']
+                    : ObjectStatuses::ACTIVE
                 ),
             'user_type' => UserTypes::CUSTOMER, // FIXME?
         );
@@ -2284,10 +2283,8 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
     if (
         Registry::get('runtime.company_id')
         && !fn_allowed_for('ULTIMATE')
-        && (
-            !fn_check_user_type_admin_area($user_data['user_type'])
-            || (
-                isset($current_user_data['company_id'])
+        && (!fn_check_user_type_admin_area($user_data['user_type'])
+            || (isset($current_user_data['company_id'])
                 && $current_user_data['company_id'] != Registry::get('runtime.company_id')
             )
         )
@@ -2318,7 +2315,6 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
             $user_data['password1'] = !empty($user_data['password1']) ? trim($user_data['password1']) : '';
             $original_password = $user_data['password1'];
             $user_data['password2'] = !empty($user_data['password2']) ? trim($user_data['password2']) : '';
-
         }
 
         // if the passwords are not set and this is not a forced password check
@@ -2407,7 +2403,6 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
             }
             unset(Tygh::$app['session']['auth']['forced_password_change']);
             fn_delete_notification('password_expire');
-
         }
     }
 
@@ -2438,7 +2433,8 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
     // check if it is a root admin
     $is_root_admin_exists = (bool) db_get_field(
         "SELECT user_id FROM ?:users WHERE company_id = ?i AND is_root = 'Y' AND user_id != ?i",
-        $user_data['company_id'], !empty($user_id) ? $user_id : 0
+        $user_data['company_id'],
+        !empty($user_id) ? $user_id : 0
     );
 
     if (!$is_root_admin_exists && $user_data['user_type'] !== UserTypes::CUSTOMER) {
@@ -2476,7 +2472,7 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
             $user_data['password_change_timestamp'] = 1;
         }
 
-        $user_id = db_query("INSERT INTO ?:users ?e" , $user_data);
+        $user_id = db_query("INSERT INTO ?:users ?e", $user_data);
 
         fn_log_event('users', 'create', array(
             'user_id' => $user_id,
@@ -2520,10 +2516,10 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
 
     $user_data['usergroups'] = db_get_hash_array(
         'SELECT lnk.link_id, lnk.usergroup_id, lnk.status, a.type, b.usergroup'
-        . ' FROM ?:usergroup_links as lnk'
-        . ' INNER JOIN ?:usergroups as a ON a.usergroup_id = lnk.usergroup_id AND a.status != ?s'
-        . ' LEFT JOIN ?:usergroup_descriptions as b ON b.usergroup_id = a.usergroup_id AND b.lang_code = ?s'
-        . ' WHERE a.status = ?s AND lnk.user_id = ?i AND lnk.status != ?s AND lnk.status != ?s',
+            . ' FROM ?:usergroup_links as lnk'
+            . ' INNER JOIN ?:usergroups as a ON a.usergroup_id = lnk.usergroup_id AND a.status != ?s'
+            . ' LEFT JOIN ?:usergroup_descriptions as b ON b.usergroup_id = a.usergroup_id AND b.lang_code = ?s'
+            . ' WHERE a.status = ?s AND lnk.user_id = ?i AND lnk.status != ?s AND lnk.status != ?s',
         'usergroup_id',
         ObjectStatuses::DISABLED,
         $lang_code,
@@ -2549,7 +2545,6 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
             && $user_data['status'] === ObjectStatuses::ACTIVE
         ) {
             $event_dispatcher->dispatch('profile.activated.' . strtolower($user_data['user_type']), ['user_data' => $user_data]);
-
         } elseif (
             $action === 'update'
             && $current_user_data['status'] === ObjectStatuses::ACTIVE
@@ -2608,7 +2603,6 @@ function fn_update_user($user_id, $user_data, &$auth, $ship_to_another, $notify_
                         'storefront_id' => $storefront_id,
                     ]
                 );
-
             } else {
                 fn_set_notification(NotificationSeverity::NOTICE, __('information'), __('text_profile_is_created'));
             }
@@ -2676,8 +2670,9 @@ function fn_clean_usergroup_links($user_id, $current_user_type, $new_user_type)
         $usergroup_links = db_get_fields(
             "SELECT ?:usergroup_links.link_id "
                 . "FROM ?:usergroups JOIN ?:usergroup_links ON ?:usergroups.usergroup_id = ?:usergroup_links.usergroup_id "
-            ."WHERE ?:usergroup_links.user_id = ?i AND ?:usergroup_links.status = 'A' AND ?:usergroups.type = ?s",
-            $user_id, in_array($new_user_type, array('A', 'V')) ? 'C' : 'A'
+                . "WHERE ?:usergroup_links.user_id = ?i AND ?:usergroup_links.status = 'A' AND ?:usergroups.type = ?s",
+            $user_id,
+            in_array($new_user_type, array('A', 'V')) ? 'C' : 'A'
         );
 
         if (!empty($usergroup_links)) {
@@ -2781,7 +2776,9 @@ function fn_delete_user_profile($user_id, $profile_id, $allow_delete_main = fals
 
     $can_delete = db_get_field(
         'SELECT profile_id FROM ?:user_profiles WHERE user_id = ?i AND profile_id = ?i ?p',
-        $user_id, $profile_id, $profile_condition
+        $user_id,
+        $profile_id,
+        $profile_condition
     );
 
     if (!empty($can_delete)) {
@@ -2938,8 +2935,8 @@ function fn_filter_hidden_profile_fields(&$user_data, $location)
     if (!isset($filtered[$location])) {
         $filtered[$location] = db_get_array(
             'SELECT ?:profile_fields.field_name, ?:profile_fields.is_default'
-            . ' FROM ?:profile_fields'
-            . ' ?p',
+                . ' FROM ?:profile_fields'
+                . ' ?p',
             $condition
         );
     }
@@ -2973,7 +2970,8 @@ function fn_check_profile_fields_population($user_data, $section, $profile_field
     }
 
     foreach ($profile_fields[$section] as $field) {
-        if ($field['required'] == 'Y'
+        if (
+            $field['required'] == 'Y'
             && (
                 ($field['is_default'] == 'Y' && empty($user_data[$field['field_name']]))
                 || ($field['is_default'] == 'N' && empty($user_data['fields'][$field['field_id']]))
@@ -3073,9 +3071,9 @@ function fn_get_user_usergroups($user_id)
 {
     return db_get_hash_array(
         'SELECT lnk.link_id, lnk.usergroup_id, lnk.status, ?:usergroups.type'
-        . ' FROM ?:usergroup_links as lnk'
-        . ' INNER JOIN ?:usergroups ON ?:usergroups.usergroup_id = lnk.usergroup_id AND ?:usergroups.status != ?s'
-        . ' WHERE lnk.user_id = ?i',
+            . ' FROM ?:usergroup_links as lnk'
+            . ' INNER JOIN ?:usergroups ON ?:usergroups.usergroup_id = lnk.usergroup_id AND ?:usergroups.status != ?s'
+            . ' WHERE lnk.user_id = ?i',
         'usergroup_id',
         ObjectStatuses::DISABLED,
         $user_id
@@ -3102,11 +3100,11 @@ function fn_get_user_usergroup_links($user_id, $criteria = array())
 
     return db_get_hash_array(
         'SELECT lnk.link_id, lnk.usergroup_id, lnk.status'
-        . ' FROM ?:usergroup_links as lnk'
-        . ' INNER JOIN ?:usergroups'
-        . ' ON ?:usergroups.usergroup_id = lnk.usergroup_id'
-        . ' AND ?:usergroups.status != ?s'
-        . ' WHERE lnk.user_id = ?i ?p',
+            . ' FROM ?:usergroup_links as lnk'
+            . ' INNER JOIN ?:usergroups'
+            . ' ON ?:usergroups.usergroup_id = lnk.usergroup_id'
+            . ' AND ?:usergroups.status != ?s'
+            . ' WHERE lnk.user_id = ?i ?p',
         'usergroup_id',
         ObjectStatuses::DISABLED,
         $user_id,
@@ -3251,9 +3249,11 @@ function fn_check_usergroup_available_for_user($user_id, $usergroup_id)
 
     $is_allowed_usergroup = db_get_field(
         'SELECT usergroups.usergroup_id FROM ?:users AS users'
-        . ' LEFT JOIN ?:usergroups AS usergroups ON usergroups.usergroup_id = ?i'
-        . ' WHERE users.user_id = ?i AND (?p)',
-        $usergroup_id, $user_id, implode(' OR ', $conditions)
+            . ' LEFT JOIN ?:usergroups AS usergroups ON usergroups.usergroup_id = ?i'
+            . ' WHERE users.user_id = ?i AND (?p)',
+        $usergroup_id,
+        $user_id,
+        implode(' OR ', $conditions)
     );
 
     $result = !empty($is_allowed_usergroup);
@@ -3347,11 +3347,11 @@ function fn_check_rights_delete_user($user_data, $auth)
     }
 
     /**
-    * Hook for changing the result of check
-    *
-    * @param array $user_data Array with user data
-    * @param bool $result Result of check
-    */
+     * Hook for changing the result of check
+     *
+     * @param array $user_data Array with user data
+     * @param bool $result Result of check
+     */
     fn_set_hook('check_rights_delete_user', $user_data, $auth, $result);
 
     return $result;
@@ -3385,7 +3385,7 @@ function fn_delete_user($user_id)
     }
 
     // Log user deletion
-    fn_log_event('users', 'delete', array (
+    fn_log_event('users', 'delete', array(
         'user_id' => $user_id,
     ));
 
@@ -3431,7 +3431,7 @@ function fn_delete_user($user_id)
 function fn_login_user($user_id = 0, $regenerate_session_id = false)
 {
     $udata = array();
-    $auth = & Tygh::$app['session']['auth'];
+    $auth = &Tygh::$app['session']['auth'];
     $condition = '';
     $result = LOGIN_STATUS_USER_NOT_FOUND;
 
@@ -3448,7 +3448,7 @@ function fn_login_user($user_id = 0, $regenerate_session_id = false)
     if (!empty($user_id)) {
         if ($regenerate_session_id) {
             Tygh::$app['session']->regenerateID();
-            $auth = & Tygh::$app['session']['auth'];
+            $auth = &Tygh::$app['session']['auth'];
         }
 
         if (fn_allowed_for('ULTIMATE')) {
@@ -3713,7 +3713,7 @@ function fn_get_profile_field_value($profile, $field)
         $value = !empty($profile[$data_id]) ? $profile[$data_id] : '';
     } else {
         $data_id = $field['field_id'];
-        $value =!empty($profile['fields'][$data_id]) ? $profile['fields'][$data_id] : '';
+        $value = !empty($profile['fields'][$data_id]) ? $profile['fields'][$data_id] : '';
     }
 
     if (!empty($value)) {
@@ -3803,7 +3803,7 @@ function fn_auth_routines($request, $auth)
     $status = true;
 
     $user_login = (!empty($request['user_login'])) ? trim($request['user_login']) : '';
-    $password = (!empty($request['password'])) ? $request['password']: '';
+    $password = (!empty($request['password'])) ? $request['password'] : '';
     $field = 'email';
 
     $condition = '';
@@ -3975,8 +3975,7 @@ function fn_update_profile_field($field_data, $field_id, $lang_code = DESCR_SL)
 
             if (
                 $field_data['profile_type'] === ProfileTypes::CODE_SELLER
-                && (
-                    !isset($field_data['skip_checking_company_fields']) || $field_data['skip_checking_company_fields'] !== true
+                && (!isset($field_data['skip_checking_company_fields']) || $field_data['skip_checking_company_fields'] !== true
                 )
             ) {
                 $companies_table_fields = fn_get_table_fields('companies');
@@ -3997,7 +3996,7 @@ function fn_update_profile_field($field_data, $field_id, $lang_code = DESCR_SL)
         $field_id = db_query("INSERT INTO ?:profile_fields ?e", $field_data);
 
         // Insert descriptions
-        $_data = array (
+        $_data = array(
             'object_id' => $field_id,
             'object_type' => 'F',
             'description' => $field_data['description'],
@@ -4022,7 +4021,6 @@ function fn_update_profile_field($field_data, $field_id, $lang_code = DESCR_SL)
                 db_query('UPDATE ?:profile_fields SET matching_id = ?i WHERE field_id = ?i', $s_field_id, $field_id);
             }
         }
-
     } else {
         if (
             isset($current_field_data['field_type'])
@@ -4061,7 +4059,7 @@ function fn_update_profile_field($field_data, $field_id, $lang_code = DESCR_SL)
                         fn_delete_field_values($field_id, $val_ids);
                     }
                 } else {
-                   if (isset($field_data['add_values'])) {
+                    if (isset($field_data['add_values'])) {
                         fn_delete_field_values($field_id);
                     }
                 }
@@ -4181,7 +4179,6 @@ function fn_recover_password_generate_key($user_email, $notify = true, $company_
             } else {
                 $result = ['company_id' => $u_data['company_id'], 'key' => $ekey, 'user_type' => $u_data['user_type']];
             }
-
         } else {
             fn_set_notification(NotificationSeverity::ERROR, __('error'), __('error_login_not_exists'));
             $result = false;
@@ -4263,11 +4260,9 @@ function fn_check_editable_permissions($auth, $user_data)
 
     if ($auth['is_root'] == 'Y' && $auth['user_type'] == 'A') {
         $has_permissions = true;
-
     } elseif (isset($user_data['is_root'])) {
         if ($user_data['is_root'] == 'Y' && $auth['is_root'] != 'Y' && $user_data['user_type'] == 'A') {
             $has_permissions = false;
-
         } elseif ($auth['user_type'] == 'V' && $user_data['is_root'] == 'Y') {
             if ($auth['user_id'] != $user_data['user_id']) {
                 $has_permissions = false;
@@ -4385,7 +4380,7 @@ function fn_add_field_values($values = array(), $field_id = 0)
         $value_id = db_query("INSERT INTO ?:profile_field_values ?e", $_v);
 
         // Insert descriptions
-        $_data = array (
+        $_data = array(
             'object_id' => $value_id,
             'object_type' => 'V',
             'description' => $_v['description'],
@@ -4433,7 +4428,7 @@ function fn_delete_profile_field($field_id, $no_match = false)
 
 function fn_profile_fields_areas()
 {
-    $areas = array ();
+    $areas = array();
     $profiles_schema = fn_get_schema('profiles', 'profile_types');
 
     foreach ($profiles_schema as $profile_type => $data) {
@@ -4766,7 +4761,7 @@ function fn_user_verify_otp($user_id, $password)
     }
 
     $ekey = reset($ekeys);
-    $ekey['data']['attempts'] = isset($ekey['data']['attempts']) ? (int) $ekey['data']['attempts'] + 1: 1;
+    $ekey['data']['attempts'] = isset($ekey['data']['attempts']) ? (int) $ekey['data']['attempts'] + 1 : 1;
 
     if ($ekey['data']['attempts'] >= USER_ONE_TIME_PASSWORD_ATTEMPTS) {
         fn_user_delete_otp($user_id);
@@ -4883,7 +4878,6 @@ function fn_validate_profile_fields($object_type, $object_id, array $fields)
             if (empty($value)) {
                 fn_set_notification('E', __('error'), __('text_cannot_create_file_check_file'));
             }
-
         } elseif ($field_type === ProfileFieldTypes::DATE) {
             $value = empty($value) ? '' : fn_parse_date($value);
         }
@@ -4974,9 +4968,9 @@ function fn_get_profile_fields_data($object_type, $object_id, array $field_ids =
 
     $fields = db_get_hash_array(
         'SELECT profile_fields_data.field_id, profile_fields_data.value, profile_fields.field_type'
-        . ' FROM ?:profile_fields_data AS profile_fields_data'
-        . ' LEFT JOIN ?:profile_fields AS profile_fields ON profile_fields_data.field_id = profile_fields.field_id'
-        . ' WHERE object_id = ?i AND object_type = ?s ?p',
+            . ' FROM ?:profile_fields_data AS profile_fields_data'
+            . ' LEFT JOIN ?:profile_fields AS profile_fields ON profile_fields_data.field_id = profile_fields.field_id'
+            . ' WHERE object_id = ?i AND object_type = ?s ?p',
         'field_id',
         $object_id,
         $object_type,
@@ -5071,9 +5065,9 @@ function fn_delete_profile_field_file($object_type, $object_id, $file_name)
 
     $is_file_in_use = db_get_field(
         'SELECT profile_fields_data.field_id FROM ?:profile_fields_data as profile_fields_data'
-        . ' LEFT JOIN ?:profile_fields as profile_fields'
+            . ' LEFT JOIN ?:profile_fields as profile_fields'
             . ' ON profile_fields.field_id = profile_fields_data.field_id'
-        . ' WHERE profile_fields_data.value = ?s'
+            . ' WHERE profile_fields_data.value = ?s'
             . ' AND profile_fields_data.object_type = ?s'
             . ' AND profile_fields_data.object_id = ?i'
             . ' AND profile_fields.field_type = ?s',
@@ -5359,4 +5353,187 @@ function fn_copy_shipping_fields_in_billing(array $user_data)
     }
 
     return $user_data;
+}
+function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART_LANGUAGE)
+{
+
+    // Set default values to input params
+    $default_params = array(
+        'page' => 1,
+        'items_per_page' => $items_per_page
+    );
+
+    $params = array_merge($default_params, $params);
+
+    if (AREA == 'C') {
+        $params['status'] = 'A';
+    }
+
+    $sortings = array(
+        'timestamp' => '?:departments.timestamp',
+        'name' => '?:department_descriptions.department',
+        'status' => '?:departments.status',
+    );
+
+    $condition = $limit = $join = '';
+
+    if (!empty($params['limit'])) {
+        $limit = db_quote(' LIMIT 0, ?i', $params['limit']);
+    }
+
+    $sorting = db_sort($params, $sortings, 'name', 'asc');
+
+    if (!empty($params['item_ids'])) {
+        $condition .= db_quote(' AND ?:departments.department_id IN (?n)', explode(',', $params['item_ids']));
+    }
+
+    if (!empty($params['department_id'])) {
+        $condition .= db_quote(' AND ?:departments.department_id = ?i', $params['department_id']);
+    }
+
+    if (!empty($params['status'])) {
+        $condition .= db_quote(' AND ?:departments.status = ?s', $params['status']);
+    }
+
+    if (!empty($params["department_name"])) {
+        $condition .= db_quote(' AND ?:department_descriptions.department LIKE ?s', '%' . $params['department_name'] . '%');
+    }
+
+    if (!empty($params["supervisor_id"])) {
+        $condition .= db_quote(' AND ?:departments.supervisor_id = ?s', $params['supervisor_id']);
+    }
+
+    $fields = array(
+        '?:departments.*',
+        '?:department_descriptions.department',
+        '?:department_descriptions.description',
+    );
+
+    $join .= db_quote(' LEFT JOIN ?:department_descriptions ON ?:department_descriptions.department_id = ?:departments.department_id AND ?:department_descriptions.lang_code = ?s', $lang_code);
+
+    if (!empty($params['items_per_page'])) {
+        $params['total_items'] = db_get_field("SELECT COUNT(*) FROM ?:departments $join WHERE 1 $condition");
+        $limit = db_paginate($params['page'], $params['items_per_page'], $params['total_items']);
+    }
+
+    $departments = db_get_hash_array(
+        "SELECT ?p FROM ?:departments " .
+            $join .
+            "WHERE 1 ?p ?p ?p",
+        'department_id',
+        implode(', ', $fields),
+        $condition,
+        $sorting,
+        $limit
+    );
+
+    $department_image_ids = array_keys($departments);
+    $images = fn_get_image_pairs($department_image_ids, 'department', 'M', true, false, $lang_code);
+
+    foreach ($departments as $department_id => $department) {
+        $departments[$department_id]['main_pair'] = !empty($images[$department_id]) ? reset($images[$department_id]) : array();
+    }
+
+    return array($departments, $params);
+}
+
+function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
+{
+    $department = [];
+    if (!empty($department_id)) {
+        list($departments) = fn_get_departments([
+            "department_id" => $department_id
+        ], 1, $lang_code);
+        if (!empty($departments)) {
+            $department = reset($departments);
+            $department_links = fn_department_get_links($department["department_id"]);
+            $department["employee_ids"] = !empty($department_links['employee_ids'])
+                ? $department_links['employee_ids']
+                : [];
+            $department["supervisor_id"] = !empty($department_links["supervisor_id"])
+                ? $department_links["supervisor_id"]
+                : 0;
+        }
+    }
+    return $department;
+}
+
+function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
+{
+    if (!empty($department_id)) {
+        $data['upd_timestamp'] = time();
+        db_query("UPDATE ?:departments SET ?u WHERE department_id = ?i", $data, $department_id);
+        db_query("UPDATE ?:department_descriptions SET ?u WHERE department_id = ?i AND lang_code = ?s", $data, $department_id, $lang_code);
+    } else {
+        $data['timestamp'] = time();
+        $department_id = $data['department_id'] = db_replace_into('departments', $data);
+        foreach (Languages::getAll() as $data['lang_code'] => $v) {
+            db_query("REPLACE INTO ?:department_descriptions ?e", $data);
+        }
+    }
+
+    if (!empty($department_id)) {
+        fn_attach_image_pairs('department', 'department', $department_id, $lang_code);
+    }
+
+    $employee_ids = !empty($data["employee_ids"]) ? $data["employee_ids"] : [];
+    $supervisor_id = !empty($data["supervisor_id"]) ? $data['supervisor_id'] : 1;
+
+    fn_department_delete_links($department_id);
+    fn_department_add_links($department_id, $employee_ids, $supervisor_id);
+    return $department_id;
+}
+
+function fn_delete_department($department_id)
+{
+    if (!empty($department_id)) {
+        $res = db_query('DELETE FROM ?:departments WHERE department_id = ?i', $department_id);
+        db_query('DELETE FROM ?:department_descriptions WHERE department_id = ?i', $department_id);
+        fn_department_delete_links($department_id);
+    }
+    return $res;
+}
+
+function fn_department_delete_links($department_id)
+{
+    if (!empty($department_id)) {
+        $res = db_query('DELETE FROM ?:department_links WHERE department_id = ?i', $department_id);
+    }
+    return $res;
+}
+
+function fn_department_add_links($department_id, $employee_ids, $supervisor_id)
+{
+    if (!empty($employee_ids)) {
+        $employee_ids = explode(",", $employee_ids);
+        foreach ($employee_ids as $employee_id) {
+            db_query('REPLACE INTO ?:department_links ?e', [
+                'department_id' => $department_id,
+                'employee_id' => $employee_id,
+                'supervisor_id' => $supervisor_id
+            ]);
+        }
+    }
+}
+
+function fn_department_get_links($department_id)
+{
+    // fn_print_die(db_get_array(
+    //     "SELECT supervisor_id, employee_id FROM ?:department_links WHERE department_id = ?i",
+    //     $department_id
+    // ));
+    if (empty($department_id)) {
+        return [];
+    }
+    $department_links = [];
+    $department_links["supervisor_id"] = db_get_field(
+        "SELECT supervisor_id FROM ?:department_links WHERE department_id = ?i",
+        $department_id
+    );
+    $department_links["employee_ids"] = db_get_fields(
+        "SELECT employee_id FROM ?:department_links WHERE department_id = ?i",
+        $department_id
+    );
+
+    return $department_links;
 }
