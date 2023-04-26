@@ -49,6 +49,7 @@ cmsmagaz*
 .buildpath
 .idea
 .vscode
+.editorconfig
 .project
 .projectile
 nbproject
