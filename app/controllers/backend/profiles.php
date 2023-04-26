@@ -28,6 +28,12 @@ defined('BOOTSTRAP') or die('Access denied');
 $auth = &Tygh::$app['session']['auth'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // Define trusted variables that shouldn't be stripped
+    fn_trusted_vars(
+        'department_data'
+    );
+
     if ($mode === 'm_delete') {
         if (!empty($_REQUEST['user_ids'])) {
             foreach ($_REQUEST['user_ids'] as $v) {
