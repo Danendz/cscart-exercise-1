@@ -5384,23 +5384,38 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
     $sorting = db_sort($params, $sortings, 'name', 'asc');
 
     if (!empty($params['item_ids'])) {
-        $condition .= db_quote(' AND ?:departments.department_id IN (?n)', explode(',', $params['item_ids']));
+        $condition .= db_quote(
+            ' AND ?:departments.department_id IN (?n)',
+            explode(',', $params['item_ids'])
+        );
     }
 
     if (!empty($params['department_id'])) {
-        $condition .= db_quote(' AND ?:departments.department_id = ?i', $params['department_id']);
+        $condition .= db_quote(
+            ' AND ?:departments.department_id = ?i',
+            $params['department_id']
+        );
     }
 
     if (!empty($params['status'])) {
-        $condition .= db_quote(' AND ?:departments.status = ?s', $params['status']);
+        $condition .= db_quote(
+            ' AND ?:departments.status = ?s',
+            $params['status']
+        );
     }
 
-    if (!empty($params["department_name"])) {
-        $condition .= db_quote(' AND ?:department_descriptions.department LIKE ?s', '%' . $params['department_name'] . '%');
+    if (!empty($params['department_name'])) {
+        $condition .= db_quote(
+            ' AND ?:department_descriptions.department LIKE ?s',
+            '%' . $params['department_name'] . '%'
+        );
     }
 
-    if (!empty($params["supervisor_id"])) {
-        $condition .= db_quote(' AND ?:departments.supervisor_id = ?s', $params['supervisor_id']);
+    if (!empty($params['supervisor_id'])) {
+        $condition .= db_quote(
+            ' AND ?:departments.supervisor_id = ?s',
+            $params['supervisor_id']
+        );
     }
 
     $fields = array(
@@ -5409,7 +5424,10 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
         '?:department_descriptions.description',
     );
 
-    $join .= db_quote(' LEFT JOIN ?:department_descriptions ON ?:department_descriptions.department_id = ?:departments.department_id AND ?:department_descriptions.lang_code = ?s', $lang_code);
+    $join .= db_quote(
+        ' LEFT JOIN ?:department_descriptions ON ?:department_descriptions.department_id = ?:departments.department_id AND ?:department_descriptions.lang_code = ?s',
+        $lang_code
+    );
 
     if (!empty($params['items_per_page'])) {
         $params['total_items'] = db_get_field("SELECT COUNT(*) FROM ?:departments $join WHERE 1 $condition");
@@ -5417,9 +5435,9 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
     }
 
     $departments = db_get_hash_array(
-        "SELECT ?p FROM ?:departments " .
+        'SELECT ?p FROM ?:departments ' .
             $join .
-            "WHERE 1 ?p ?p ?p",
+            'WHERE 1 ?p ?p ?p',
         'department_id',
         implode(', ', $fields),
         $condition,
@@ -5431,7 +5449,9 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
     $images = fn_get_image_pairs($department_image_ids, 'department', 'M', true, false, $lang_code);
 
     foreach ($departments as $department_id => $department) {
-        $departments[$department_id]['main_pair'] = !empty($images[$department_id]) ? reset($images[$department_id]) : array();
+        $departments[$department_id]['main_pair'] = !empty($images[$department_id])
+            ? reset($images[$department_id])
+            : array();
     }
 
     return array($departments, $params);
@@ -5442,17 +5462,11 @@ function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
     $department = [];
     if (!empty($department_id)) {
         list($departments) = fn_get_departments([
-            "department_id" => $department_id
+            'department_id' => $department_id
         ], 1, $lang_code);
         if (!empty($departments)) {
             $department = reset($departments);
-            $department_links = fn_department_get_links($department["department_id"]);
-            $department["employee_ids"] = !empty($department_links['employee_ids'])
-                ? $department_links['employee_ids']
-                : [];
-            $department["supervisor_id"] = !empty($department_links["supervisor_id"])
-                ? $department_links["supervisor_id"]
-                : 0;
+            $department['employee_ids'] = fn_department_get_links($department['department_id']);
         }
     }
     return $department;
@@ -5461,14 +5475,23 @@ function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
 function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
 {
     if (!empty($department_id)) {
-        $data['upd_timestamp'] = time();
-        db_query("UPDATE ?:departments SET ?u WHERE department_id = ?i", $data, $department_id);
-        db_query("UPDATE ?:department_descriptions SET ?u WHERE department_id = ?i AND lang_code = ?s", $data, $department_id, $lang_code);
+        db_query(
+            'UPDATE ?:departments SET ?u WHERE department_id = ?i',
+            $data,
+            $department_id
+        );
+
+        db_query(
+            'UPDATE ?:department_descriptions SET ?u WHERE department_id = ?i AND lang_code = ?s',
+            $data,
+            $department_id,
+            $lang_code
+        );
     } else {
         $data['timestamp'] = time();
         $department_id = $data['department_id'] = db_replace_into('departments', $data);
         foreach (Languages::getAll() as $data['lang_code'] => $v) {
-            db_query("REPLACE INTO ?:department_descriptions ?e", $data);
+            db_query('REPLACE INTO ?:department_descriptions ?e', $data);
         }
     }
 
@@ -5476,19 +5499,26 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
         fn_attach_image_pairs('department', 'department', $department_id, $lang_code);
     }
 
-    $employee_ids = !empty($data["employee_ids"]) ? $data["employee_ids"] : [];
-    $supervisor_id = !empty($data["supervisor_id"]) ? $data['supervisor_id'] : 1;
+    $employee_ids = !empty($data['employee_ids']) ? $data['employee_ids'] : [];
 
     fn_department_delete_links($department_id);
-    fn_department_add_links($department_id, $employee_ids, $supervisor_id);
+    fn_department_add_links($department_id, $employee_ids);
     return $department_id;
 }
 
 function fn_delete_department($department_id)
 {
     if (!empty($department_id)) {
-        $res = db_query('DELETE FROM ?:departments WHERE department_id = ?i', $department_id);
-        db_query('DELETE FROM ?:department_descriptions WHERE department_id = ?i', $department_id);
+        $res = db_query(
+            'DELETE FROM ?:departments WHERE department_id = ?i',
+            $department_id
+        );
+
+        db_query(
+            'DELETE FROM ?:department_descriptions WHERE department_id = ?i',
+            $department_id
+        );
+
         fn_department_delete_links($department_id);
     }
     return $res;
@@ -5497,20 +5527,22 @@ function fn_delete_department($department_id)
 function fn_department_delete_links($department_id)
 {
     if (!empty($department_id)) {
-        $res = db_query('DELETE FROM ?:department_links WHERE department_id = ?i', $department_id);
+        $res = db_query(
+            'DELETE FROM ?:department_links WHERE department_id = ?i',
+            $department_id
+        );
     }
     return $res;
 }
 
-function fn_department_add_links($department_id, $employee_ids, $supervisor_id)
+function fn_department_add_links($department_id, $employee_ids)
 {
     if (!empty($employee_ids)) {
-        $employee_ids = explode(",", $employee_ids);
+        $employee_ids = explode(',', $employee_ids);
         foreach ($employee_ids as $employee_id) {
             db_query('REPLACE INTO ?:department_links ?e', [
                 'department_id' => $department_id,
                 'employee_id' => $employee_id,
-                'supervisor_id' => $supervisor_id
             ]);
         }
     }
@@ -5518,22 +5550,8 @@ function fn_department_add_links($department_id, $employee_ids, $supervisor_id)
 
 function fn_department_get_links($department_id)
 {
-    // fn_print_die(db_get_array(
-    //     "SELECT supervisor_id, employee_id FROM ?:department_links WHERE department_id = ?i",
-    //     $department_id
-    // ));
-    if (empty($department_id)) {
-        return [];
-    }
-    $department_links = [];
-    $department_links["supervisor_id"] = db_get_field(
-        "SELECT supervisor_id FROM ?:department_links WHERE department_id = ?i",
+    return !empty($department_id) ? db_get_fields(
+        'SELECT employee_id FROM ?:department_links WHERE department_id = ?i',
         $department_id
-    );
-    $department_links["employee_ids"] = db_get_fields(
-        "SELECT employee_id FROM ?:department_links WHERE department_id = ?i",
-        $department_id
-    );
-
-    return $department_links;
+    ) : [];
 }
