@@ -6,7 +6,7 @@
 
 {capture name="mainbox"}
 
-    <form action="{""|fn_url}" method="post" class="form-horizontal form-edit" name="banners_form"
+    <form action="{""|fn_url}" method="post" class="form-horizontal form-edit" name="departments_form"
         enctype="multipart/form-data">
         <input type="hidden" class="cm-no-hide-input" name="fake" value="1" />
         <input type="hidden" class="cm-no-hide-input" name="department_id" value="{$id}" />
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="control-group id=" banner_graphic">
+            <div class="control-group">
             <label class="control-label">{__("image")}</label>
             <div class="controls">
                 {include file="common/attach_images.tpl"
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="control-group" id="banner_text">
+        <div class="control-group" id="department_text">
             <label class="control-label" for="elm_department_description">{__("description")}:</label>
             <div class="controls">
                 <textarea id="elm_department_description" name="department_data[description]" cols="35" rows="8"
@@ -43,7 +43,7 @@
         </div>
 
         {if $department_data}
-        <div class="control-group" id="banner_text">
+        <div class="control-group">
             <label class="control-label">{__("creation_date")}:</label>
             <div class="controls">
                 <p>
@@ -86,7 +86,7 @@
 	        </div>
 		</div>
         
-        {include file="common/select_status.tpl" input_name="department_data[status]" id="elm_banner_status" obj_id=$id obj=$department_data hidden=false}
+        {include file="common/select_status.tpl" input_name="department_data[status]" id="elm_department_status" obj_id=$id obj=$department_data hidden=false}
         <!--content_general-->
     </div>
 
@@ -95,7 +95,7 @@
 
     {capture name="buttons"}
 	    {if !$id}
-		    {include file="buttons/save_cancel.tpl" but_role="submit-link" but_target_form="banners_form" but_name="dispatch[profiles.update_department]"}
+		    {include file="buttons/save_cancel.tpl" but_role="submit-link" but_target_form="departments_form" but_name="dispatch[profiles.update_department]"}
 	    {else}
 		    {capture name="tools_list"}
 			    <li>
@@ -103,7 +103,7 @@
 			    </li>
 		    {/capture}
 	        {dropdown content=$smarty.capture.tools_list}
-		    {include file="buttons/save_cancel.tpl" but_name="dispatch[profiles.update_department]" but_role="submit-link" but_target_form="banners_form" hide_first_button=$hide_first_button hide_second_button=$hide_second_button save=$id}
+		    {include file="buttons/save_cancel.tpl" but_name="dispatch[profiles.update_department]" but_role="submit-link" but_target_form="departments_form" hide_first_button=$hide_first_button hide_second_button=$hide_second_button save=$id}
 	    {/if}
     {/capture}
 
@@ -114,4 +114,4 @@
 {include file="common/mainbox.tpl"
     title=($id) ? "Изменить: {$department_data.department}" : __("new_department") content=$smarty.capture.mainbox buttons=$smarty.capture.buttons select_languages=true}
 
-{** banner section **}
+{** department section **}

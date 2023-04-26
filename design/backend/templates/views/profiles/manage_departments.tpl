@@ -4,7 +4,7 @@
 {$image_height = $settings.Thumbnails.product_admin_mini_icon_height}
 {capture name="mainbox"}
 
-	<form action="{""|fn_url}" method="post" id="departments_form" name="banners_form" enctype="multipart/form-data">
+	<form action="{""|fn_url}" method="post" id="departments_form" name="departments_form" enctype="multipart/form-data">
 		<input type="hidden" name="fake" value="1" />
 		{include file="common/pagination.tpl" save_current_page=true save_current_url=true div_id="pagination_contents_departments"}
 
@@ -13,7 +13,7 @@
 		{$rev=$smarty.request.content_id|default:"pagination_contents_departments"}
 		{include_ext file="common/icon.tpl" class="icon-`$search.sort_order_rev`" assign=c_icon}
 		{include_ext file="common/icon.tpl" class="icon-dummy" assign=c_dummy}
-		{$banner_statuses=""|fn_get_default_statuses:true}
+		{$department_statuses=""|fn_get_default_statuses:true}
 		{$has_permission = fn_check_permissions("departments", "update_status", "admin", "POST")}
 
 		{if $departments}
@@ -26,7 +26,7 @@
             >
 							<tr>
 								<th width="6%" class="left mobile-hide">
-									{include file="common/check_items.tpl" is_check_disabled=!$has_permission check_statuses=($has_permission) ? $banner_statuses : '' }
+									{include file="common/check_items.tpl" is_check_disabled=!$has_permission check_statuses=($has_permission) ? $department_statuses : '' }
 
 									<input type="checkbox" class="bulkedit-toggler hide"
 										data-ca-bulkedit-disable="[data-ca-bulkedit-default-object=true]"
