@@ -5354,6 +5354,16 @@ function fn_copy_shipping_fields_in_billing(array $user_data)
 
     return $user_data;
 }
+
+/**
+ * Get all departments matching parameters
+ * 
+ * @param int $department_id Id of the department
+ *
+ * @param string $lang_code Language code of department descriptions
+ * 
+ * @return array Department data
+ */
 function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART_LANGUAGE)
 {
 
@@ -5457,6 +5467,15 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
     return array($departments, $params);
 }
 
+/**
+ * Get department by id
+ * 
+ * @param int $department_id Id of the department
+ *
+ * @param string $lang_code Language code of department descriptions
+ * 
+ * @return array Department data
+ */
 function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
 {
     $department = [];
@@ -5472,6 +5491,17 @@ function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
     return $department;
 }
 
+/**
+ * Update department/Add department
+ * 
+ * @param array $data New department data
+ *
+ * @param int $department_id Id of the department
+ *
+ * @param string $lang_code Language code of department descriptions
+ * 
+ * @return int Department id
+ */
 function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
 {
     if (!empty($department_id)) {
@@ -5506,10 +5536,17 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
     return $department_id;
 }
 
+/**
+ * Remove department by id
+ *
+ * @param int $department_id Id of the department
+ *
+ * @return void
+ */
 function fn_delete_department($department_id)
 {
     if (!empty($department_id)) {
-        $res = db_query(
+        db_query(
             'DELETE FROM ?:departments WHERE department_id = ?i',
             $department_id
         );
@@ -5521,9 +5558,15 @@ function fn_delete_department($department_id)
 
         fn_department_delete_links($department_id);
     }
-    return $res;
 }
 
+/**
+ * Remove department links by id
+ *
+ * @param int $department_id Id of the department
+ *
+ * @return void 
+ */
 function fn_department_delete_links($department_id)
 {
     if (!empty($department_id)) {
@@ -5535,6 +5578,15 @@ function fn_department_delete_links($department_id)
     return $res;
 }
 
+/**
+ * Add department links by id
+ *
+ * @param int $department_id Id of the department
+ * 
+ * @param string $employee_ids Employee ids of the current department
+ *
+ * @return void 
+ */
 function fn_department_add_links($department_id, $employee_ids)
 {
     if (!empty($employee_ids)) {
@@ -5548,6 +5600,13 @@ function fn_department_add_links($department_id, $employee_ids)
     }
 }
 
+/**
+ * Fetching department links by id
+ *
+ * @param int $department_id Id of the department
+ *
+ * @return array Department links
+ */
 function fn_department_get_links($department_id)
 {
     return !empty($department_id) ? db_get_fields(
