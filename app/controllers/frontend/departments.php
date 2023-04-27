@@ -23,7 +23,6 @@ if (!defined('BOOTSTRAP')) {
 
 if ($mode === 'view') {
 
-    // Save current url to session for 'Continue shopping' button
     Tygh::$app['session']['continue_url'] = 'departments.view';
 
     $params = $_REQUEST;
@@ -31,11 +30,7 @@ if ($mode === 'view') {
     $params['user_id'] = Tygh::$app['session']['auth']['user_id'];
     $params['status'] = ObjectStatuses::ACTIVE;
 
-    if ($items_per_page = fn_change_session_param(Tygh::$app['session'], $_REQUEST, 'items_per_page')) {
-        $params['items_per_page'] = $items_per_page;
-    }
-
-    list($departments, $search) = fn_get_departments($params, Registry::get('settings.Appearance.products_per_page'), CART_LANGUAGE);
+    list($departments, $search) = fn_get_departments($params, Registry::get('settings.Appearance.columns_in_products_list'), CART_LANGUAGE);
 
     Tygh::$app['view']->assign('departments', $departments);
     Tygh::$app['view']->assign('search', $search);
@@ -62,17 +57,7 @@ if ($mode === 'view') {
         ? $department_data['employee_ids']
         : -1;
 
-    if ($items_per_page = fn_change_session_param(Tygh::$app['session']['search_params'], $_REQUEST, 'items_per_page')) {
-        $params['items_per_page'] = $items_per_page;
-    }
-
-    if ($sort_by = fn_change_session_param(Tygh::$app['session']['search_params'], $_REQUEST, 'sort_by')) {
-        $params['sort_by'] = $sort_by;
-    }
-
-    if ($sort_order = fn_change_session_param(Tygh::$app['session']['search_params'], $_REQUEST, 'sort_order')) {
-        $params['sort_order'] = $sort_order;
-    }
+    $params['items_per_page'] = Registry::get('settings.Appearance.columns_in_products_list');
 
     list($users, $search) = fn_get_users($params, Tygh::$app["session"]['auth']);
     Tygh::$app['view']->assign('users', $users);
