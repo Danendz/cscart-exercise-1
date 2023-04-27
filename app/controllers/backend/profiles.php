@@ -255,12 +255,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($mode === 'update_department') {
         $department_id = !empty($_REQUEST['department_id']) ? $_REQUEST['department_id'] : 0;
         $data = !empty($_REQUEST['department_data']) ? $_REQUEST['department_data'] : [];
-        $department_id = fn_update_department($data, $department_id);
-
+        $res = fn_update_department($data, $department_id);
         $url = 'profiles.';
-        $url .= empty($department_id)
-            ? 'add_department'
-            : "update_department&department_id=$department_id";
+
+        if ($res === false) {
+            $url .= empty($department_id)
+                ? 'add_department'
+                : "update_department&department_id=$department_id";
+        } else {
+            $url .= "manage_departments";
+        }
 
         return [CONTROLLER_STATUS_OK, $url];
     }

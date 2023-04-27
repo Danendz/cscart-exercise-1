@@ -5500,10 +5500,21 @@ function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
  *
  * @param string $lang_code Language code of department descriptions
  * 
- * @return int Department id
+ * @return mixed department_id or false
  */
 function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
 {
+
+    array_walk($data, 'fn_trim_helper');
+
+    $is_department_empty = isset($data['department']) && empty($data['department']);
+    $is_supervisor_empty = isset($data['supervisor']) && empty($data['supervisor']);
+
+    if ($is_department_empty || $is_supervisor_empty) {
+        fn_set_notification("E", __("error"), __("text_fill_the_mandatory_fields"));
+        return false;
+    }
+
     if (!empty($department_id)) {
         db_query(
             'UPDATE ?:departments SET ?u WHERE department_id = ?i',
