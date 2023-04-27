@@ -10,11 +10,11 @@
           }
     </div>
     <div class="ty-feature__description ty-wysiwyg-content">
-				{if !$department_data.description}
-					<p>{__("no_description")}</p>
-				{else}
-        	{$department_data.description nofilter}
-				{/if}
+		{if !$department_data.description}
+			<p>{__("no_description")}</p>
+		{else}
+        {$department_data.description nofilter}
+		{/if}
     </div>
 </div>
 
