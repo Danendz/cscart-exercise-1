@@ -53,7 +53,7 @@
         </div>
         {/if}
 		<div class="control-group">
-	        <label for="elm_department_supervisor" class="control-label">{__("supervisor")}</label>
+	        <label for="elm_department_supervisor" class="control-label cm-required">{__("supervisor")}</label>
 	        <div class="controls">
 	            {include 
                 file="pickers/users/picker.tpl" 
