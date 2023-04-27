@@ -857,8 +857,7 @@ if ($mode === 'update_department' || $mode === 'add_department') {
         : 0;
 
     $department_data = fn_get_department_data($department_id, DESCR_SL);
-
-    if (empty($department_data) && $mode == 'update') {
+    if (empty($department_data) && $mode == 'update_department') {
         return [CONTROLLER_STATUS_NO_PAGE];
     }
 
