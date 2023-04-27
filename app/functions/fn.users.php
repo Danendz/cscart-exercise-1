@@ -5532,7 +5532,7 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
     $employee_ids = !empty($data['employee_ids']) ? $data['employee_ids'] : [];
 
     fn_department_delete_links($department_id);
-    fn_department_add_links($department_id, $employee_ids);
+    fn_department_add_links($department_id, $data['supervisor_id'], $employee_ids);
     return $department_id;
 }
 
@@ -5587,15 +5587,17 @@ function fn_department_delete_links($department_id)
  *
  * @return void 
  */
-function fn_department_add_links($department_id, $employee_ids)
+function fn_department_add_links($department_id, $supervisor_id, $employee_ids)
 {
     if (!empty($employee_ids)) {
         $employee_ids = explode(',', $employee_ids);
         foreach ($employee_ids as $employee_id) {
-            db_query('REPLACE INTO ?:department_links ?e', [
-                'department_id' => $department_id,
-                'employee_id' => $employee_id,
-            ]);
+            if ($employee_id !== $supervisor_id) {
+                db_query('REPLACE INTO ?:department_links ?e', [
+                    'department_id' => $department_id,
+                    'employee_id' => $employee_id,
+                ]);
+            }
         }
     }
 }
