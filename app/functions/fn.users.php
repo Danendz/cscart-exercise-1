@@ -5581,12 +5581,11 @@ function fn_delete_department($department_id)
 function fn_department_delete_links($department_id)
 {
     if (!empty($department_id)) {
-        $res = db_query(
+        db_query(
             'DELETE FROM ?:department_links WHERE department_id = ?i',
             $department_id
         );
     }
-    return $res;
 }
 
 /**
