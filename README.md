@@ -93,7 +93,7 @@ sudo cp readme/hosts /etc/ ; \
 sudo cp readme/apache2.conf /etc/apache2 ; \
 sudo cp readme/cscartex.devel.conf /etc/apache2/sites-available ; \
 sudo cp readme/admin.devel.conf /etc/apache2/sites-available ; \
-sudo cp -r readme/admin.devel ~/apache_htdocs/public_html/ ; \
+unzip readme/admin.devel.zip -d ~/apache_htdocs/public_html/ ; \
 sudo sed -i "s/export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=$USER/g" /etc/apache2/envvars ; \
 sudo sed -i "s/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=$USER/g" /etc/apache2/envvars ; \
 sudo a2ensite cscartex.devel.conf admin.devel.conf ; \
