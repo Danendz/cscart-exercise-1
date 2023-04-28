@@ -28,5 +28,5 @@
 {capture name="mainbox_title"}
 	{(__("department_name"))}: {$department_data.department nofilter}
 	<br />
-	{(__("supervisor"))}: {$supervisor_info.lastname} {$supervisor_info.firstname}
+	{(__("supervisor"))}: {$supervisor_info.firstname} {$supervisor_info.lastname}
 {/capture}

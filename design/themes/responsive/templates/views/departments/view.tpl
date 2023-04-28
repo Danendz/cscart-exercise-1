@@ -52,7 +52,7 @@
 	                          </div>
 	                          <div class="ty-grid-list__item-name">
 	                            <p>
-                                    {$supervisor_info.lastname} {$supervisor_info.firstname}
+                                    {$supervisor_info.firstname} {$supervisor_info.lastname}
 	                            </p>    
 	                          </div>
                           </div>

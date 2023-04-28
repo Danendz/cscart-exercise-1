@@ -1,5 +1,4 @@
 {if $users}
-	{$supervisor_info = $department_data.supervisor_id|fn_get_user_info}
     {script src="js/tygh/exceptions.js"}
 
     {if !$no_pagination}
