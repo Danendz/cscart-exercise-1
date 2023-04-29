@@ -253,8 +253,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($mode === 'update_department') {
-        $department_id = !empty($_REQUEST['department_id']) ? $_REQUEST['department_id'] : 0;
-        $data = !empty($_REQUEST['department_data']) ? $_REQUEST['department_data'] : [];
+        $department_id = !empty($_REQUEST['department_id'])
+            ? $_REQUEST['department_id']
+            : 0;
+
+        $data = !empty($_REQUEST['department_data'])
+            ? $_REQUEST['department_data']
+            : [];
+
         $res = fn_update_department($data, $department_id);
         $url = 'profiles.';
 
@@ -868,7 +874,11 @@ if ($mode === 'update_department' || $mode === 'add_department') {
             : fn_get_user_short_info(1)
     ]);
 } else if ($mode === 'manage_departments') {
-    list($departments, $search) = fn_get_departments($_REQUEST, Registry::get('settings.Appearance.admin_elements_per_page'), DESCR_SL);
+    list($departments, $search) = fn_get_departments(
+        $_REQUEST,
+        Registry::get('settings.Appearance.admin_elements_per_page'),
+        DESCR_SL
+    );
 
     Tygh::$app['view']->assign('departments', $departments);
     Tygh::$app['view']->assign('search', $search);

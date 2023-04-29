@@ -15,7 +15,6 @@
 
 use Tygh\Enum\ObjectStatuses;
 use Tygh\Registry;
-use Tygh\BlockManager\ProductTabs;
 
 if (!defined('BOOTSTRAP')) {
     die('Access denied');
@@ -30,7 +29,11 @@ if ($mode === 'view') {
     $params['user_id'] = Tygh::$app['session']['auth']['user_id'];
     $params['status'] = ObjectStatuses::ACTIVE;
 
-    list($departments, $search) = fn_get_departments($params, Registry::get('settings.Appearance.columns_in_products_list'), CART_LANGUAGE);
+    list($departments, $search) = fn_get_departments(
+        $params,
+        Registry::get('settings.Appearance.columns_in_products_list'),
+        CART_LANGUAGE
+    );
 
     Tygh::$app['view']->assign('departments', $departments);
     Tygh::$app['view']->assign('search', $search);
@@ -39,7 +42,10 @@ if ($mode === 'view') {
     fn_add_breadcrumb(__('departments'));
 } elseif ($mode === 'department') {
 
-    $department_id = !empty($_REQUEST['department_id']) ? $_REQUEST['department_id'] : 0;
+    $department_id = !empty($_REQUEST['department_id'])
+        ? $_REQUEST['department_id']
+        : 0;
+
     $department_data = fn_get_department_data($department_id, CART_LANGUAGE);
 
     if (empty($department_data) || $department_data['status'] !== ObjectStatuses::ACTIVE) {

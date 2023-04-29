@@ -5441,7 +5441,11 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
 
     if (!empty($params['items_per_page'])) {
         $params['total_items'] = db_get_field("SELECT COUNT(*) FROM ?:departments $join WHERE 1 $condition");
-        $limit = db_paginate($params['page'], $params['items_per_page'], $params['total_items']);
+        $limit = db_paginate(
+            $params['page'],
+            $params['items_per_page'],
+            $params['total_items']
+        );
     }
 
     $departments = db_get_hash_array(
@@ -5456,7 +5460,14 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
     );
 
     $department_image_ids = array_keys($departments);
-    $images = fn_get_image_pairs($department_image_ids, 'department', 'M', true, false, $lang_code);
+    $images = fn_get_image_pairs(
+        $department_image_ids,
+        'department',
+        'M',
+        true,
+        false,
+        $lang_code
+    );
 
     foreach ($departments as $department_id => $department) {
         $departments[$department_id]['main_pair'] = !empty($images[$department_id])
@@ -5483,6 +5494,7 @@ function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
         list($departments) = fn_get_departments([
             'department_id' => $department_id
         ], 1, $lang_code);
+
         if (!empty($departments)) {
             $department = reset($departments);
             $department['employee_ids'] = fn_department_get_links($department['department_id']);
@@ -5511,7 +5523,11 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
     $is_supervisor_empty = isset($data['supervisor']) && empty($data['supervisor']);
 
     if ($is_department_empty || $is_supervisor_empty) {
-        fn_set_notification("E", __("error"), __("text_fill_the_mandatory_fields"));
+        fn_set_notification(
+            "E",
+            __("error"),
+            __("text_fill_the_mandatory_fields")
+        );
         return false;
     }
 
@@ -5537,13 +5553,22 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
     }
 
     if (!empty($department_id)) {
-        fn_attach_image_pairs('department', 'department', $department_id, $lang_code);
+        fn_attach_image_pairs(
+            'department',
+            'department',
+            $department_id,
+            $lang_code
+        );
     }
 
     $employee_ids = !empty($data['employee_ids']) ? $data['employee_ids'] : [];
 
     fn_department_delete_links($department_id);
-    fn_department_add_links($department_id, $data['supervisor_id'], $employee_ids);
+    fn_department_add_links(
+        $department_id,
+        $data['supervisor_id'],
+        $employee_ids
+    );
     return $department_id;
 }
 
