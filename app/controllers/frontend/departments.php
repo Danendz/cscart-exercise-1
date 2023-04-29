@@ -30,13 +30,16 @@ if ($mode === 'view') {
 
     list($departments, $search) = fn_get_departments(
         $params,
-        Registry::get('settings.Appearance.columns_in_products_list'),
+        Registry::get('settings.Appearance.products_per_page'),
         CART_LANGUAGE
     );
 
     Tygh::$app['view']->assign('departments', $departments);
     Tygh::$app['view']->assign('search', $search);
-    Tygh::$app['view']->assign('columns', 3);
+    Tygh::$app['view']->assign(
+        'columns',
+        Registry::get('settings.Appearance.columns_in_products_list')
+    );
 
     fn_add_breadcrumb(__('departments'));
 } elseif ($mode === 'department') {
@@ -62,7 +65,7 @@ if ($mode === 'view') {
         ? $department_data['employee_ids']
         : -1;
 
-    $params['items_per_page'] = Registry::get('settings.Appearance.columns_in_products_list');
+    $params['items_per_page'] = Registry::get('settings.Appearance.products_per_page');
 
     list($users, $search) = fn_get_users($params, Tygh::$app["session"]['auth']);
     Tygh::$app['view']->assign('users', $users);
