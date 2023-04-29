@@ -5416,7 +5416,7 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
 
     if (!empty($params['department_name'])) {
         $condition .= db_quote(
-            ' AND ?:department_descriptions.department LIKE ?s',
+            ' AND ?:department_descriptions.department LIKE ?l',
             '%' . $params['department_name'] . '%'
         );
     }
@@ -5562,11 +5562,6 @@ function fn_delete_department($department_id)
             $department_id
         );
 
-        db_query(
-            'DELETE FROM ?:department_descriptions WHERE department_id = ?i',
-            $department_id
-        );
-
         fn_department_delete_links($department_id);
     }
 }
@@ -5601,14 +5596,16 @@ function fn_department_add_links($department_id, $supervisor_id, $employee_ids)
 {
     if (!empty($employee_ids)) {
         $employee_ids = explode(',', $employee_ids);
+        $department_links = [];
         foreach ($employee_ids as $employee_id) {
             if ($employee_id !== $supervisor_id) {
-                db_query('REPLACE INTO ?:department_links ?e', [
+                $department_links[] = [
                     'department_id' => $department_id,
-                    'employee_id' => $employee_id,
-                ]);
+                    'employee_id' => $employee_id
+                ];
             }
         }
+        db_query('REPLACE INTO ?:department_links ?m', $department_links);
     }
 }
 
