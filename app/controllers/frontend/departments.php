@@ -26,7 +26,6 @@ if ($mode === 'view') {
 
     $params = $_REQUEST;
 
-    $params['user_id'] = Tygh::$app['session']['auth']['user_id'];
     $params['status'] = ObjectStatuses::ACTIVE;
 
     list($departments, $search) = fn_get_departments(
