@@ -5547,7 +5547,7 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
     } else {
         $data['timestamp'] = time();
         $department_id = $data['department_id'] = db_replace_into('departments', $data);
-        foreach (Languages::getAll() as $data['lang_code'] => $v) {
+        foreach (Languages::getAll() as $data['lang_code'] => $_v) {
             db_query('REPLACE INTO ?:department_descriptions ?e', $data);
         }
     }
