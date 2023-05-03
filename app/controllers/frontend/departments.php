@@ -61,7 +61,7 @@ if ($mode === 'view') {
 
     $params['items_per_page'] = Registry::get('settings.Appearance.products_per_page');
 
-    list($users, $search) = fn_get_users($params, Tygh::$app["session"]['auth']);
+    [$users, $search] = fn_get_users($params, Tygh::$app["session"]['auth']);
 
     Tygh::$app['view']->assign('users', $users);
     Tygh::$app['view']->assign('search', $search);

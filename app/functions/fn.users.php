@@ -5368,10 +5368,10 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
 {
 
     // Set default values to input params
-    $default_params = array(
+    $default_params = [
         'page' => 1,
         'items_per_page' => $items_per_page
-    );
+    ];
 
     $params = array_merge($default_params, $params);
 
@@ -5379,11 +5379,11 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
         $params['status'] = 'A';
     }
 
-    $sortings = array(
+    $sortings = [
         'timestamp' => '?:departments.timestamp',
         'name' => '?:department_descriptions.department',
         'status' => '?:departments.status',
-    );
+    ];
 
     $condition = $limit = $join = '';
 
@@ -5472,7 +5472,7 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
     foreach ($departments as $department_id => $_department) {
         $departments[$department_id]['main_pair'] = !empty($images[$department_id])
             ? reset($images[$department_id])
-            : array();
+            : [];
     }
 
     return array($departments, $params);
@@ -5491,7 +5491,7 @@ function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
 {
     $department = [];
     if (!empty($department_id)) {
-        list($departments) = fn_get_departments([
+        [$departments] = fn_get_departments([
             'department_id' => $department_id
         ], 1, $lang_code);
 
@@ -5546,7 +5546,11 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
         );
     } else {
         $data['timestamp'] = time();
-        $department_id = $data['department_id'] = db_replace_into('departments', $data);
+        $department_id = $data['department_id'] = db_replace_into(
+            'departments',
+            $data
+        );
+
         foreach (Languages::getAll() as $data['lang_code'] => $_v) {
             db_query('REPLACE INTO ?:department_descriptions ?e', $data);
         }
