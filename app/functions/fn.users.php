@@ -5469,7 +5469,7 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
         $lang_code
     );
 
-    foreach ($departments as $department_id => $department) {
+    foreach ($departments as $department_id => $_department) {
         $departments[$department_id]['main_pair'] = !empty($images[$department_id])
             ? reset($images[$department_id])
             : array();

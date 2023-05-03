@@ -873,7 +873,7 @@ if ($mode === 'update_department' || $mode === 'add_department') {
             ? fn_get_user_short_info($department_data['supervisor_id'])
             : fn_get_user_short_info(1)
     ]);
-} else if ($mode === 'manage_departments') {
+} elseif ($mode === 'manage_departments') {
     list($departments, $search) = fn_get_departments(
         $_REQUEST,
         Registry::get('settings.Appearance.admin_elements_per_page'),
