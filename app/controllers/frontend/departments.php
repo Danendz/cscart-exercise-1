@@ -25,7 +25,11 @@ if ($mode === 'view') {
     Tygh::$app['session']['continue_url'] = 'departments.view';
 
     $params = $_REQUEST;
-
+    [$departments, $search] = fn_get_departments(
+        $params,
+        Registry::get('settings.Appearance.products_per_page'),
+        CART_LANGUAGE
+    );
     $params['status'] = ObjectStatuses::ACTIVE;
     $params['items_per_page'] = Registry::get('settings.Appearance.products_per_page');
 
