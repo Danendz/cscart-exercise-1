@@ -269,7 +269,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ? 'add_department'
                 : "update_department&department_id=$department_id";
         } else {
-            $url .= "manage_departments";
+            $url .= 'manage_departments';
         }
 
         return [CONTROLLER_STATUS_OK, $url];
@@ -863,7 +863,7 @@ if ($mode === 'update_department' || $mode === 'add_department') {
         : 0;
 
     $department_data = fn_get_department_data($department_id, DESCR_SL);
-    if (empty($department_data) && $mode == 'update_department') {
+    if (empty($department_data) && $mode === 'update_department') {
         return [CONTROLLER_STATUS_NO_PAGE];
     }
 

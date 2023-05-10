@@ -5357,11 +5357,11 @@ function fn_copy_shipping_fields_in_billing(array $user_data)
 
 /**
  * Get all departments matching parameters
- * 
+ *
  * @param int $department_id Id of the department
  *
  * @param string $lang_code Language code of department descriptions
- * 
+ *
  * @return array Department data
  */
 function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART_LANGUAGE)
@@ -5375,9 +5375,10 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
 
     $params = array_merge($default_params, $params);
 
-    if (AREA == 'C') {
+    if (AREA === 'C') {
         $params['status'] = 'A';
     }
+
 
     $sortings = [
         'timestamp' => '?:departments.timestamp',
@@ -5428,19 +5429,23 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
         );
     }
 
-    $fields = array(
+    $fields = [
         '?:departments.*',
         '?:department_descriptions.department',
         '?:department_descriptions.description',
-    );
+    ];
 
     $join .= db_quote(
-        ' LEFT JOIN ?:department_descriptions ON ?:department_descriptions.department_id = ?:departments.department_id AND ?:department_descriptions.lang_code = ?s',
+        ' LEFT JOIN ?:department_descriptions' .
+            ' ON ?:department_descriptions.department_id = ?:departments.department_id' .
+            ' AND ?:department_descriptions.lang_code = ?s',
         $lang_code
     );
 
     if (!empty($params['items_per_page'])) {
-        $params['total_items'] = db_get_field("SELECT COUNT(*) FROM ?:departments $join WHERE 1 $condition");
+        $params['total_items'] = db_get_field(
+            "SELECT COUNT(*) FROM ?:departments $join WHERE 1 $condition"
+        );
         $limit = db_paginate(
             $params['page'],
             $params['items_per_page'],
@@ -5480,11 +5485,11 @@ function fn_get_departments($params = [], $items_per_page = 0, $lang_code = CART
 
 /**
  * Get department by id
- * 
+ *
  * @param int $department_id Id of the department
  *
  * @param string $lang_code Language code of department descriptions
- * 
+ *
  * @return array Department data
  */
 function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
@@ -5505,13 +5510,13 @@ function fn_get_department_data($department_id = 0, $lang_code = CART_LANGUAGE)
 
 /**
  * Update department/Add department
- * 
+ *
  * @param array $data New department data
  *
  * @param int $department_id Id of the department
  *
  * @param string $lang_code Language code of department descriptions
- * 
+ *
  * @return mixed department_id or false
  */
 function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
@@ -5524,9 +5529,9 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
 
     if ($is_department_empty || $is_supervisor_empty) {
         fn_set_notification(
-            "E",
-            __("error"),
-            __("text_fill_the_mandatory_fields")
+            'E',
+            __('error'),
+            __('text_fill_the_mandatory_fields')
         );
         return false;
     }
@@ -5539,7 +5544,8 @@ function fn_update_department($data, $department_id, $lang_code = DESCR_SL)
         );
 
         db_query(
-            'UPDATE ?:department_descriptions SET ?u WHERE department_id = ?i AND lang_code = ?s',
+            'UPDATE ?:department_descriptions SET ?u WHERE department_id = ?i ' .
+                'AND lang_code = ?s',
             $data,
             $department_id,
             $lang_code
@@ -5600,7 +5606,7 @@ function fn_delete_department($department_id)
  *
  * @param int $department_id Id of the department
  *
- * @return void 
+ * @return void
  */
 function fn_department_delete_links($department_id)
 {
@@ -5616,10 +5622,10 @@ function fn_department_delete_links($department_id)
  * Add department links by id
  *
  * @param int $department_id Id of the department
- * 
+ *
  * @param string $employee_ids Employee ids of the current department
  *
- * @return void 
+ * @return void
  */
 function fn_department_add_links($department_id, $supervisor_id, $employee_ids)
 {

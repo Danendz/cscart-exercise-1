@@ -21,7 +21,6 @@ if (!defined('BOOTSTRAP')) {
 }
 
 if ($mode === 'view') {
-
     Tygh::$app['session']['continue_url'] = 'departments.view';
 
     $params = $_REQUEST;
@@ -42,7 +41,6 @@ if ($mode === 'view') {
 
     fn_add_breadcrumb(__('departments'));
 } elseif ($mode === 'department') {
-
     $department_id = !empty($_REQUEST['department_id'])
         ? $_REQUEST['department_id']
         : 0;
@@ -65,7 +63,7 @@ if ($mode === 'view') {
 
     $params['items_per_page'] = Registry::get('settings.Appearance.products_per_page');
 
-    [$users, $search] = fn_get_users($params, Tygh::$app["session"]['auth']);
+    [$users, $search] = fn_get_users($params, Tygh::$app['session']['auth']);
 
     Tygh::$app['view']->assign('users', $users);
     Tygh::$app['view']->assign('search', $search);
