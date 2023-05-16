@@ -1,0 +1,89 @@
+msgid ""
+msgstr "Project-Id-Version: tygh\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+
+msgctxt "Addons::name::sd_departments"
+msgid "Simtech Developments: Departments"
+msgstr "Симтек Девелопментс: Отделы"
+
+msgctxt "Addons::description::sd_departments"
+msgid "Employee departments"
+msgstr "Отделы сотрудников"
+
+msgctxt "Languages::sd_departments_departments"
+msgid "Departments"
+msgstr "Отделы"
+
+msgctxt "Languages::sd_departments_name"
+msgid "Name"
+msgstr "Название"
+
+msgctxt "Languages::sd_departments_add_department"
+msgid "Add department"
+msgstr "Добавить отдел"
+
+msgctxt "Languages::sd_departments_add_department"
+msgid "Add department"
+msgstr "Добавить отдел"
+
+msgctxt "Languages::sd_departments_department_name"
+msgid "Department name"
+msgstr "Название отдела"
+
+msgctxt "Languages::sd_departments_supervisor"
+msgid "Supervisor"
+msgstr "Руководитель"
+
+msgctxt "Languages::sd_departments_new_department"
+msgid "New department"
+msgstr "Новый отдел"
+
+msgctxt "Languages::sd_departments_employees"
+msgid "Employees"
+msgstr "Сотрудники"
+
+msgctxt "Languages::sd_departments_add_employee"
+msgid "Add employee"
+msgstr "Добавить сотрудника"
+
+msgctxt "Languages::sd_departments_add_supervisor"
+msgid "Add supervisor"
+msgstr "Добавить руководителя"
+
+msgctxt "Languages::sd_departments_no_description"
+msgid "No description"
+msgstr "Нет описания"
+
+msgctxt "Languages::sd_departments_no_employee"
+msgid "No employee"
+msgstr "Нет сотрудников"
+
+msgctxt "Languages::sd_departments_text_no_departments"
+msgid "There is no departments here"
+msgstr "Упс! Мы не нашли отделов. Попробуйте создать новый!"
+
+msgctxt "Languages::sd_departments_success_delete_one"
+msgid "Department has been successfully deleted"
+msgstr "Отдел был успешно удален"
+
+msgctxt "Languages::sd_departments_success_delete_multiple"
+msgid "Departments has been successfully deleted"
+msgstr "Отделы были успешно удалены"
+
+msgctxt "SettingsOptions::sd_departments::department_columns"
+msgid "Number of departments in a row"
+msgstr "Количество отделов в ряду"
+
+msgctxt "SettingsOptions::sd_departments::department_per_page"
+msgid "Number of departments per page"
+msgstr "Количество отделов на страницу"
+
+msgctxt "SettingsOptions::sd_departments::employee_columns"
+msgid "Number of employees in a row"
+msgstr "Количество сотрудников в ряду"
+
+msgctxt "SettingsOptions::sd_departments::employee_per_page"
+msgid "Number of employees per page"
+msgstr "Количество сотрудников на страницу"
