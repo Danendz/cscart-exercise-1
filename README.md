@@ -7,6 +7,7 @@
 - Адрес phpMyAdmin - `http://admin.devel/`
 - Адрес cscart - `http://cscartex.devel/`
 - Путь до папки с cscart - `~/apache_htdocs/public_html/cscartex.devel`
+- Путь до папки с бекапом бд `~/cscartex.devel/var/backups/`
 
 ### Требуемые зависимости:
 1. Apache2

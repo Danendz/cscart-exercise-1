@@ -5,6 +5,7 @@ images/*
 !images/.gitkeep
 users/*
 var/*
+!var/backups/
 !var/database/.gitkeep
 !var/themes_repository
 !var/resources
@@ -58,6 +59,7 @@ Thumbs.db
 # Logs and databases #
 ######################
 *.log
+!var/tools/autotests/*.log
 
 # OS generated files #
 ######################
