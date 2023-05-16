@@ -1,0 +1,89 @@
+msgid ""
+msgstr "Project-Id-Version: tygh\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+
+msgctxt "Addons::name::sd_departments"
+msgid "Simtech Developments: Departments"
+msgstr "Simtech Developments: Departments"
+
+msgctxt "Addons::description::sd_departments"
+msgid "Employee departments"
+msgstr "Employee departments"
+
+msgctxt "Languages::sd_departments_departments"
+msgid "Departments"
+msgstr "Departments"
+
+msgctxt "Languages::sd_departments_name"
+msgid "Name"
+msgstr "Name"
+
+msgctxt "Languages::sd_departments_add_department"
+msgid "Add department"
+msgstr "Add department"
+
+msgctxt "Languages::sd_departments_add_department"
+msgid "Add department"
+msgstr "Add department"
+
+msgctxt "Languages::sd_departments_department_name"
+msgid "Department name"
+msgstr "Department name"
+
+msgctxt "Languages::sd_departments_supervisor"
+msgid "Supervisor"
+msgstr "Supervisor"
+
+msgctxt "Languages::sd_departments_new_department"
+msgid "New department"
+msgstr "New department"
+
+msgctxt "Languages::sd_departments_employees"
+msgid "Employees"
+msgstr "Employees"
+
+msgctxt "Languages::sd_departments_add_employee"
+msgid "Add employee"
+msgstr "Add employee"
+
+msgctxt "Languages::sd_departments_add_supervisor"
+msgid "Add supervisor"
+msgstr "Add supervisor"
+
+msgctxt "Languages::sd_departments_no_description"
+msgid "No description"
+msgstr "No description"
+
+msgctxt "Languages::sd_departments_no_employee"
+msgid "No employee"
+msgstr "No employee"
+
+msgctxt "Languages::sd_departments_text_no_departments"
+msgid "There is no departments here"
+msgstr "There is no departments here"
+
+msgctxt "Languages::sd_departments_success_delete_one"
+msgid "Department has been successfully deleted"
+msgstr "Department has been successfully deleted"
+
+msgctxt "Languages::sd_departments_success_delete_multiple"
+msgid "Departments has been successfully deleted"
+msgstr "Departments has been successfully deleted"
+
+msgctxt "SettingsOptions::sd_departments::department_columns"
+msgid "Number of departments in a row"
+msgstr "Number of departments in a row"
+
+msgctxt "SettingsOptions::sd_departments::department_items_per_page"
+msgid "Number of departments per page"
+msgstr "Number of departments per page"
+
+msgctxt "SettingsOptions::sd_departments::employee_columns"
+msgid "Number of employees in a row"
+msgstr "Number of employees in a row"
+
+msgctxt "SettingsOptions::sd_departments::employee_items_per_page"
+msgid "Number of employees per page"
+msgstr "Number of employees per page"
