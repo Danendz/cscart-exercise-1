@@ -5,6 +5,7 @@ images/*
 !images/.gitkeep
 users/*
 var/*
+!var/backups
 !var/database/.gitkeep
 !var/themes_repository
 !var/resources
@@ -49,6 +50,7 @@ cmsmagaz*
 .buildpath
 .idea
 .vscode
+.editorconfig
 .project
 .projectile
 nbproject

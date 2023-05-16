@@ -1,16 +1,17 @@
 <?php
+
 /***************************************************************************
-*                                                                          *
-*   (c) 2004 Vladimir V. Kalynyak, Alexey V. Vinokurov, Ilya M. Shalnev    *
-*                                                                          *
-* This  is  commercial  software,  only  users  who have purchased a valid *
-* license  and  accept  to the terms of the  License Agreement can install *
-* and use this program.                                                    *
-*                                                                          *
-****************************************************************************
-* PLEASE READ THE FULL TEXT  OF THE SOFTWARE  LICENSE   AGREEMENT  IN  THE *
-* "copyright.txt" FILE PROVIDED WITH THIS DISTRIBUTION PACKAGE.            *
-****************************************************************************/
+ *                                                                          *
+ *   (c) 2004 Vladimir V. Kalynyak, Alexey V. Vinokurov, Ilya M. Shalnev    *
+ *                                                                          *
+ * This  is  commercial  software,  only  users  who have purchased a valid *
+ * license  and  accept  to the terms of the  License Agreement can install *
+ * and use this program.                                                    *
+ *                                                                          *
+ ****************************************************************************
+ * PLEASE READ THE FULL TEXT  OF THE SOFTWARE  LICENSE   AGREEMENT  IN  THE *
+ * "copyright.txt" FILE PROVIDED WITH THIS DISTRIBUTION PACKAGE.            *
+ ****************************************************************************/
 
 use Tygh\Api;
 use Tygh\Enum\NotificationSeverity;
@@ -24,9 +25,15 @@ use Tygh\Tygh;
 
 defined('BOOTSTRAP') or die('Access denied');
 
-$auth = & Tygh::$app['session']['auth'];
+$auth = &Tygh::$app['session']['auth'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    // Define trusted variables that shouldn't be stripped
+    fn_trusted_vars(
+        'department_data'
+    );
+
     if ($mode === 'm_delete') {
         if (!empty($_REQUEST['user_ids'])) {
             foreach ($_REQUEST['user_ids'] as $v) {
@@ -34,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        return array(CONTROLLER_STATUS_OK, 'profiles.manage' . (isset($_REQUEST['user_type']) ? '?user_type=' . $_REQUEST['user_type'] : '' ));
+        return array(CONTROLLER_STATUS_OK, 'profiles.manage' . (isset($_REQUEST['user_type']) ? '?user_type=' . $_REQUEST['user_type'] : ''));
     }
 
     if ($mode === 'export_range') {
@@ -148,7 +155,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         fn_delete_user($_REQUEST['user_id']);
 
         return array(CONTROLLER_STATUS_REDIRECT, 'profiles.manage?user_type=' . $user_type);
-
     }
 
     if ($mode == 'delete_profile') {
@@ -162,7 +168,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         fn_delete_user_profile($user_id, $_REQUEST['profile_id']);
 
         return array(CONTROLLER_STATUS_OK, 'profiles.update?user_id=' . $user_id);
-
     }
 
     if ($mode === 'update_status') {
@@ -191,14 +196,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         if (empty($user_ids)) {
             fn_set_notification(NotificationSeverity::ERROR, __('error'), __('error_status_not_changed'));
-            return [CONTROLLER_STATUS_OK, 'profiles.manage' . (isset($_REQUEST['user_type']) ? '?user_type=' . $_REQUEST['user_type'] : '' )];
+            return [CONTROLLER_STATUS_OK, 'profiles.manage' . (isset($_REQUEST['user_type']) ? '?user_type=' . $_REQUEST['user_type'] : '')];
         }
         $new_status = ($mode === 'm_activate') ? ObjectStatuses::ACTIVE : ObjectStatuses::DISABLED;
         $notify = isset($_REQUEST['notify_user']) ? $_REQUEST['notify_user'] : YesNo::NO;
         foreach ($user_ids as $user_id) {
             fn_change_user_status((int) $user_id, $new_status, YesNo::toBool($notify));
         }
-        return [CONTROLLER_STATUS_OK, 'profiles.manage' . (isset($_REQUEST['user_type']) ? '?user_type=' . $_REQUEST['user_type'] : '' )];
+        return [CONTROLLER_STATUS_OK, 'profiles.manage' . (isset($_REQUEST['user_type']) ? '?user_type=' . $_REQUEST['user_type'] : '')];
     }
 
     if ($mode === 'manage') {
@@ -246,6 +251,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         return [CONTROLLER_STATUS_REDIRECT, $url];
     }
+
+    if ($mode === 'update_department') {
+        $department_id = !empty($_REQUEST['department_id'])
+            ? $_REQUEST['department_id']
+            : 0;
+
+        $data = !empty($_REQUEST['department_data'])
+            ? $_REQUEST['department_data']
+            : [];
+
+        $res = fn_update_department($data, $department_id);
+        $url = 'profiles.';
+
+        if ($res === false) {
+            $url .= empty($department_id)
+                ? 'add_department'
+                : "update_department&department_id=$department_id";
+        } else {
+            $url .= 'manage_departments';
+        }
+
+        return [CONTROLLER_STATUS_OK, $url];
+    }
+
+    if ($mode === 'delete_department') {
+        $department_id = !empty($_REQUEST['department_id'])
+            ? $_REQUEST['department_id']
+            : 0;
+
+        fn_delete_department($department_id);
+
+        return [CONTROLLER_STATUS_OK, 'profiles.manage_departments'];
+    }
+
+    if ($mode === 'delete_departments') {
+        if (!empty($_REQUEST['departments_ids'])) {
+            foreach ($_REQUEST['departments_ids'] as $department_id) {
+                fn_delete_department($department_id);
+            }
+        }
+
+        return [CONTROLLER_STATUS_OK, 'profiles.manage_departments'];
+    }
 }
 
 if ($mode === 'manage') {
@@ -255,10 +303,8 @@ if ($mode === 'manage') {
     if (
         Registry::get('runtime.company_id')
         && !empty($_REQUEST['user_type'])
-        && (
-            $_REQUEST['user_type'] == 'P'
-            || (
-                $_REQUEST['user_type'] == 'A'
+        && ($_REQUEST['user_type'] == 'P'
+            || ($_REQUEST['user_type'] == 'A'
                 && !fn_check_permission_manage_profiles('A')
             )
         )
@@ -293,7 +339,6 @@ if ($mode === 'manage') {
     Tygh::$app['view']->assign('states', fn_get_all_states());
     Tygh::$app['view']->assign('usergroups', fn_get_usergroups(array('status' => array('A', 'H')), DESCR_SL));
     Tygh::$app['view']->assign('can_add_user', $can_add_user);
-
 } elseif ($mode == 'act_as_user' || $mode == 'view_product_as_user' || $mode == 'login_as_vendor') {
 
     $user_id = empty($_REQUEST['user_id']) ? 0 : (int) $_REQUEST['user_id'];
@@ -465,7 +510,7 @@ if ($mode === 'manage') {
     }
 } elseif ($mode == 'picker') {
     $params = $_REQUEST;
-    $params['exclude_user_types'] = array ('A', 'V');
+    $params['exclude_user_types'] = array('A', 'V');
     $params['skip_view'] = 'Y';
 
     list($users, $search) = fn_get_users($params, $auth, Registry::get('settings.Appearance.admin_elements_per_page'));
@@ -478,7 +523,6 @@ if ($mode === 'manage') {
 
     Tygh::$app['view']->display('pickers/users/picker_contents.tpl');
     exit;
-
 } elseif ($mode == 'password_reminder') {
 
     $cron_password = Registry::get('settings.Security.cron_password');
@@ -551,15 +595,12 @@ if ($mode === 'manage') {
             if (Registry::get('runtime.company_id')) {
                 if (empty($_REQUEST['user_type'])) {
                     return array(CONTROLLER_STATUS_REDIRECT, 'profiles.add?user_type=' . fn_get_request_user_type($_REQUEST));
-
                 } elseif ($_REQUEST['user_type'] == 'C') {
                     return array(CONTROLLER_STATUS_DENIED);
-
                 } elseif ($_REQUEST['user_type'] == 'A') {
                     $_GET['user_type'] = 'V';
 
                     return array(CONTROLLER_STATUS_REDIRECT, 'profiles.add?' . http_build_query($_GET));
-
                 } elseif (empty($user_types[$_REQUEST['user_type']])) {
                     return array(CONTROLLER_STATUS_DENIED);
                 }
@@ -588,10 +629,8 @@ if ($mode === 'manage') {
     if (
         Registry::get('runtime.company_id')
         && !empty($_REQUEST['user_type'])
-        && (
-            $_REQUEST['user_type'] == 'P'
-            || (
-                $_REQUEST['user_type'] == 'A'
+        && ($_REQUEST['user_type'] == 'P'
+            || ($_REQUEST['user_type'] == 'A'
                 && !fn_check_permission_manage_profiles('A')
             )
         )
@@ -627,8 +666,7 @@ if ($mode === 'manage') {
     if ($mode == 'update') {
         if (
             empty($user_data)
-            || (
-                isset($user_data['storefront_id'])
+            || (isset($user_data['storefront_id'])
                 && !fn_check_permission_storefronts($user_data['storefront_id'])
             )
         ) {
@@ -663,17 +701,17 @@ if ($mode === 'manage') {
         ]
     ];
 
-    if ($mode == 'update'
+    if (
+        $mode == 'update'
         && !Registry::get('runtime.company_id')
         && ($user_type === UserTypes::CUSTOMER
-        || ($user_type === UserTypes::VENDOR && fn_check_permission_manage_profiles($user_type))
-        || ($user_type === UserTypes::ADMIN && fn_check_current_user_access('manage_admin_usergroups') && !empty($user_data['is_root']) && $user_data['is_root'] !== YesNo::YES))
+            || ($user_type === UserTypes::VENDOR && fn_check_permission_manage_profiles($user_type))
+            || ($user_type === UserTypes::ADMIN && fn_check_current_user_access('manage_admin_usergroups') && !empty($user_data['is_root']) && $user_data['is_root'] !== YesNo::YES))
     ) {
         $navigation['usergroups'] = [
             'title' => __('usergroups'),
             'js'    => true,
         ];
-
     } else {
         $usergroups = [];
     }
@@ -688,8 +726,7 @@ if ($mode === 'manage') {
     if (
         fn_check_user_type_admin_area_for_api($user_data)
         && !empty($user_data['user_id'])
-        && (
-            $auth['user_type'] === UserTypes::ADMIN
+        && ($auth['user_type'] === UserTypes::ADMIN
             || $user_data['api_key']
         )
     ) {
@@ -749,7 +786,7 @@ if ($mode == 'get_customer_list') {
         'extended_search' => false,
         'search_query' => $search_query,
         'items_per_page' => $page_size,
-        'exclude_user_types' => array ('A', 'V')
+        'exclude_user_types' => array('A', 'V')
     );
 
     list($users, $params) = fn_get_users($params, $auth, $page_size);
@@ -817,5 +854,32 @@ if ($mode === 'get_manager_list') {
     Tygh::$app['ajax']->assign('objects', $objects);
     Tygh::$app['ajax']->assign('total_objects', isset($params['total_items']) ? $params['total_items'] : count($objects));
 
-    return[CONTROLLER_STATUS_NO_CONTENT];
+    return [CONTROLLER_STATUS_NO_CONTENT];
+}
+
+if ($mode === 'update_department' || $mode === 'add_department') {
+    $department_id = !empty($_REQUEST['department_id'])
+        ? $_REQUEST['department_id']
+        : 0;
+
+    $department_data = fn_get_department_data($department_id, DESCR_SL);
+    if (empty($department_data) && $mode === 'update_department') {
+        return [CONTROLLER_STATUS_NO_PAGE];
+    }
+
+    Tygh::$app['view']->assign([
+        'department_data' => $department_data,
+        'supervisor_info' => !empty($department_data['supervisor_id'])
+            ? fn_get_user_short_info($department_data['supervisor_id'])
+            : fn_get_user_short_info(1)
+    ]);
+} elseif ($mode === 'manage_departments') {
+    [$departments, $search] = fn_get_departments(
+        $_REQUEST,
+        Registry::get('settings.Appearance.admin_elements_per_page'),
+        DESCR_SL
+    );
+
+    Tygh::$app['view']->assign('departments', $departments);
+    Tygh::$app['view']->assign('search', $search);
 }
