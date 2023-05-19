@@ -52,7 +52,7 @@
             supervisor_id INT(11) unsigned NOT NULL default '0',
             KEY (supervisor_id),
             PRIMARY KEY (department_id)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
         </item>
         <item for="install">
             CREATE TABLE IF NOT EXISTS ?:department_descriptions (
@@ -65,7 +65,7 @@
             FOREIGN KEY (department_id) REFERENCES ?:departments (department_id)
             ON DELETE CASCADE
             ON UPDATE RESTRICT
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
         </item>
         <item for="install">
             CREATE TABLE IF NOT EXISTS ?:department_links (
@@ -74,8 +74,9 @@
             KEY (department_id),
             KEY (employee_id),
             PRIMARY KEY (department_id, employee_id)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
         </item>
+        <item type="file">database/data.sql</item>
         <item for="uninstall">DROP TABLE IF EXISTS ?:department_descriptions;</item>
         <item for="uninstall">DROP TABLE IF EXISTS ?:departments;</item>
         <item for="uninstall">DROP TABLE IF EXISTS ?:department_links;</item>
