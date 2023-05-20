@@ -58,9 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($mode === 'delete_departments') {
         if (!empty($_REQUEST['departments_ids'])) {
-            foreach ($_REQUEST['departments_ids'] as $department_id) {
-                $departments_service->delete($department_id);
-            }
+            $departments_service->delete($_REQUEST['departments_ids']);
         }
 
         fn_set_notification('N', __('notice'), __('sd_departments_success_delete_multiple'));

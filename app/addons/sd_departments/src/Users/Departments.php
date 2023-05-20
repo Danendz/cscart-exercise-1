@@ -366,23 +366,24 @@ class Departments
     /**
      * Remove department by id
      *
-     * @param int $department_id Id of the department
+     * @param int|array $department_id Id or ids of the department
      *
      * @return void
      */
     public function delete($department_id)
     {
         if (!empty($department_id)) {
-            $this->db->query(
-                'DELETE FROM ?:departments WHERE department_id = ?i',
-                $department_id
-            );
-
-            fn_delete_image_pairs(
-                $department_id,
-                'department',
-                ImagePairTypes::MAIN
-            );
+            if (is_array($department_id)) {
+                $this->db->query(
+                    'DELETE FROM ?:departments WHERE department_id IN (?n)',
+                    $department_id
+                );
+            } else {
+                $this->db->query(
+                    'DELETE FROM ?:departments WHERE department_id = ?i',
+                    $department_id
+                );
+            }
 
             $this->deleteLinks($department_id);
         }
@@ -434,17 +435,24 @@ class Departments
     /**
      * Remove department links by id
      *
-     * @param int $department_id Id of the department
+     * @param int|array $department_id Id or ids of the department
      *
      * @return void
      */
     protected function deleteLinks($department_id)
     {
         if (!empty($department_id)) {
-            $this->db->query(
-                'DELETE FROM ?:department_links WHERE department_id = ?i',
-                $department_id
-            );
+            if (is_array($department_id)) {
+                $this->db->query(
+                    'DELETE FROM ?:department_links WHERE department_id IN (?n)',
+                    $department_id
+                );
+            } else {
+                $this->db->query(
+                    'DELETE FROM ?:department_links WHERE department_id = ?i',
+                    $department_id
+                );
+            }
         }
     }
 
