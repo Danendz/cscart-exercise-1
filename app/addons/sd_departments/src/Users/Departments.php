@@ -233,24 +233,28 @@ class Departments
      */
     public function get($department_id = 0)
     {
-        $department = [];
-        if (!empty($department_id)) {
-            [$departments] = $this->getList([
-                'department_id' => $department_id
-            ]);
-
-            if (!empty($departments)) {
-                $department = reset($departments);
-                $department['employee_ids'] = $this->getLinks($department['department_id']);
-            }
+        if (empty($department_id)) {
+            return [];
         }
+
+        $department = [];
+
+        [$departments] = $this->getList([
+            'department_id' => $department_id
+        ]);
+
+        if (!empty($departments)) {
+            $department = reset($departments);
+            $department['employee_ids'] = $this->getLinks($department['department_id']);
+        }
+
         return $department;
     }
 
     /**
      * Update department/Add department by id
      *
-     * @param array $data New department data
+     * @param mixed[] $data New department data
      *
      * @param int $department_id Id of the department
      *
@@ -264,11 +268,6 @@ class Departments
         $is_supervisor_empty = empty($data['supervisor_id']);
 
         if ($is_department_empty || $is_supervisor_empty) {
-            fn_set_notification(
-                'E',
-                __('error'),
-                __('text_fill_the_mandatory_fields')
-            );
             return false;
         }
 
@@ -346,46 +345,61 @@ class Departments
     }
 
     /**
-     * Deletes all images pairs
-     *
-     * @return void
-     */
-    public function deleteAllImagePairs()
-    {
-        $department_ids = $this->getAllIds();
-
-        foreach ($department_ids as $department_id) {
-            fn_delete_image_pairs(
-                $department_id,
-                'department',
-                ImagePairTypes::MAIN
-            );
-        }
-    }
-
-    /**
      * Remove department by id
      *
-     * @param int|array $department_id Id or ids of the department
+     * @param int|int[] $department_id Id or ids of the department
      *
      * @return void
      */
     public function delete($department_id)
     {
-        if (!empty($department_id)) {
-            if (is_array($department_id)) {
-                $this->db->query(
-                    'DELETE FROM ?:departments WHERE department_id IN (?n)',
-                    $department_id
-                );
-            } else {
-                $this->db->query(
-                    'DELETE FROM ?:departments WHERE department_id = ?i',
-                    $department_id
+        if (empty($department_id)) {
+            return;
+        }
+
+        if (is_array($department_id)) {
+            $this->db->query(
+                'DELETE FROM ?:departments WHERE department_id IN (?n)',
+                $department_id
+            );
+        } else {
+            $this->db->query(
+                'DELETE FROM ?:departments WHERE department_id = ?i',
+                $department_id
+            );
+        }
+
+        $this->deleteImagePairs($department_id);
+        $this->deleteLinks($department_id);
+    }
+
+    /**
+     * Deletes image pair by id or ids
+     *
+     * @param int|int[] $department_id Id or ids of department
+     *
+     * @return void
+     */
+    public function deleteImagePairs($department_id)
+    {
+        if (empty($department_id)) {
+            return;
+        }
+
+        if (is_array($department_id)) {
+            foreach ($department_id as $id) {
+                fn_delete_image_pairs(
+                    $id,
+                    'department',
+                    ImagePairTypes::MAIN
                 );
             }
-
-            $this->deleteLinks($department_id);
+        } else {
+            fn_delete_image_pairs(
+                $department_id,
+                'department',
+                ImagePairTypes::MAIN
+            );
         }
     }
 
@@ -398,10 +412,14 @@ class Departments
      */
     protected function getLinks($department_id)
     {
-        return !empty($department_id) ? $this->db->getColumn(
+        if (empty($department_id)) {
+            return [];
+        }
+
+        return $this->db->getColumn(
             'SELECT employee_id FROM ?:department_links WHERE department_id = ?i',
             $department_id
-        ) : [];
+        );
     }
 
     /**
@@ -417,51 +435,56 @@ class Departments
      */
     protected function addLinks($department_id, $supervisor_id, $employee_ids)
     {
-        if (!empty($employee_ids)) {
-            $employee_ids = explode(',', $employee_ids);
-            $department_links = [];
-            foreach ($employee_ids as $employee_id) {
-                if ($employee_id !== $supervisor_id) {
-                    $department_links[] = [
-                        'department_id' => $department_id,
-                        'employee_id' => $employee_id
-                    ];
-                }
-            }
-            $this->db->replaceInto('department_links', $department_links, true);
+        if (empty($employee_ids)) {
+            return;
         }
+
+        $employee_ids = explode(',', $employee_ids);
+        $department_links = [];
+        foreach ($employee_ids as $employee_id) {
+            if ($employee_id !== $supervisor_id) {
+                $department_links[] = [
+                    'department_id' => $department_id,
+                    'employee_id' => $employee_id
+                ];
+            }
+        }
+
+        $this->db->replaceInto('department_links', $department_links, true);
     }
 
     /**
      * Remove department links by id
      *
-     * @param int|array $department_id Id or ids of the department
+     * @param int|int[] $department_id Id or ids of the department
      *
      * @return void
      */
     protected function deleteLinks($department_id)
     {
-        if (!empty($department_id)) {
-            if (is_array($department_id)) {
-                $this->db->query(
-                    'DELETE FROM ?:department_links WHERE department_id IN (?n)',
-                    $department_id
-                );
-            } else {
-                $this->db->query(
-                    'DELETE FROM ?:department_links WHERE department_id = ?i',
-                    $department_id
-                );
-            }
+        if (empty($department_id)) {
+            return;
+        }
+
+        if (is_array($department_id)) {
+            $this->db->query(
+                'DELETE FROM ?:department_links WHERE department_id IN (?n)',
+                $department_id
+            );
+        } else {
+            $this->db->query(
+                'DELETE FROM ?:department_links WHERE department_id = ?i',
+                $department_id
+            );
         }
     }
 
     /**
      * Gets all department ids
      *
-     * @return array ids
+     * @return int[] ids of departments
      */
-    protected function getAllIds()
+    public function getAllIds()
     {
         return $this->db->getColumn('SELECT department_id FROM ?:departments WHERE 1');
     }

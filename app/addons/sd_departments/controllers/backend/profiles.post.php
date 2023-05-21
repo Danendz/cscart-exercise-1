@@ -16,6 +16,7 @@
 use Tygh\Registry;
 use Tygh\Tygh;
 use Tygh\Addons\SdDepartments\ServiceProvider;
+use Tygh\Enum\NotificationSeverity;
 
 defined('BOOTSTRAP') or die('Access denied');
 
@@ -36,6 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $url = 'profiles.';
 
         if ($res === false) {
+            fn_set_notification(
+                NotificationSeverity::ERROR,
+                __('error'),
+                __('text_fill_the_mandatory_fields')
+            );
+
             $url .= empty($department_id)
                 ? 'add_department'
                 : "update_department&department_id=$department_id";
@@ -52,16 +59,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             : 0;
 
         $departments_service->delete($department_id);
-        fn_set_notification('N', __('notice'), __('sd_departments_success_delete_one'));
+
+        fn_set_notification(
+            NotificationSeverity::NOTICE,
+            __('notice'),
+            __('sd_departments_success_delete_one')
+        );
+
         return [CONTROLLER_STATUS_OK, 'profiles.manage_departments'];
     }
 
     if ($mode === 'delete_departments') {
         if (!empty($_REQUEST['departments_ids'])) {
             $departments_service->delete($_REQUEST['departments_ids']);
+            fn_set_notification(
+                NotificationSeverity::NOTICE,
+                __('notice'),
+                __('sd_departments_success_delete_multiple')
+            );
         }
-
-        fn_set_notification('N', __('notice'), __('sd_departments_success_delete_multiple'));
         return [CONTROLLER_STATUS_OK, 'profiles.manage_departments'];
     }
 }
@@ -77,12 +93,7 @@ if ($mode === 'update_department' || $mode === 'add_department') {
         return [CONTROLLER_STATUS_NO_PAGE];
     }
 
-    Tygh::$app['view']->assign([
-        'department_data' => $department_data,
-        'supervisor_info' => !empty($department_data['supervisor_id'])
-            ? fn_get_user_short_info($department_data['supervisor_id'])
-            : 0
-    ]);
+    Tygh::$app['view']->assign('department_data', $department_data);
 } elseif ($mode === 'manage_departments') {
     $params = $_REQUEST;
     $params['items_per_page'] = $_REQUEST['items_per_page'] ??

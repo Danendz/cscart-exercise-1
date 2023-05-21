@@ -53,6 +53,9 @@ class Installer implements InstallerInterface
     public function onUninstall()
     {
         // We have to delete all images because they will still be available after reinstallation
-        ServiceProvider::getDepartmentsService()->deleteAllImagePairs();
+        $department_service = ServiceProvider::getDepartmentsService();
+        $department_ids = $department_service->getAllIds();
+
+        $department_service->deleteImagePairs($department_ids);
     }
 }

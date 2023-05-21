@@ -96,7 +96,7 @@
 		            placement="right"
 		            display="radio"
 		            view_mode="single_button"
-		            user_info=$supervisor_info
+		            user_info=$department_data.supervisor_id|fn_get_user_short_info
 	            }
 	
 		    </div>
