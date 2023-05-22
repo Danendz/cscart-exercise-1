@@ -195,6 +195,10 @@ class Departments
                 $sorting,
                 $limit
             );
+
+            if (!empty($departments)) {
+                Registry::set($cache_key, $departments);
+            }
         }
 
         $department_image_ids = array_keys($departments);
