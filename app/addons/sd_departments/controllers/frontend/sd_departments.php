@@ -36,21 +36,24 @@ if ($mode === 'view') {
 
     [$users] = $departments_service->getUsers($params, $supervisor_ids);
 
-    // Sorting departments array because users will be sorted by user_id and departments by department name
-    // So we need to get the same order
-    // But without mutating original departments array
-    $departments_sorted_by_supervisor = fn_sort_array_by_key($departments, 'supervisor_id', 'desc');
+    $users_with_keys_as_id = [];
 
-    $i = 0;
-    foreach ($departments_sorted_by_supervisor as $sorted_department) {
-        // Getting department from original departments array by sorted department_id
-        $department = &$departments[$sorted_department['department_id']];
+    // Iterate over users array and make
+    // new array as [
+    //  3 => [
+    //     'user_id' => 3,
+    //     ...
+    //  ]
+    //]
+    foreach ($users as $user) {
+        $users_with_keys_as_id[$user['user_id']] = $user;
+    }
 
-        // Setting supervisor info so we don't need to query it in tpl foreach loop
-        // for all departments
-        $department['supervisor_info'] = $users[$i] ?? [];
-
-        $i++;
+    //Add property 'supervisor_info' to departments
+    //by getting user info with supervisor id
+    foreach ($departments as &$department) {
+        $supervisor_id = $department['supervisor_id'];
+        $department['supervisor_info'] = $users_with_keys_as_id[$supervisor_id] ?? 'Неизвестный руководитель';
     }
 
     Tygh::$app['view']->assign([

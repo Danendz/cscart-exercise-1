@@ -86,93 +86,93 @@ class Departments
 
         $cache = Registry::get($cache_key);
 
+        $fields = [
+            'id' => '?:departments.department_id',
+            'status' => '?:departments.status',
+            'timestamp' => '?:departments.timestamp',
+            'supervisor_id' => '?:departments.supervisor_id',
+            'name' => '?:department_descriptions.department',
+            'description' => '?:department_descriptions.description'
+        ];
+
+        $sortings = [
+            'timestamp' => '?:departments.timestamp',
+            'name' => '?:department_descriptions.department',
+            'status' => '?:departments.status',
+        ];
+
+        $condition = [];
+        $limit = '';
+        $join = '';
+
+        if (!empty($params['limit'])) {
+            $limit = $this->db->quote(' LIMIT 0, ?i', $params['limit']);
+        }
+
+        if (!empty($params['item_ids'])) {
+            $condition['item_ids'] = $this->db->quote(
+                'AND ?:departments.department_id IN (?n)',
+                explode(',', $params['item_ids'])
+            );
+        }
+
+        if (!empty($params['department_id'])) {
+            $condition['department_id'] = $this->db->quote(
+                'AND ?:departments.department_id = ?i',
+                $params['department_id']
+            );
+        }
+
+        if ($this->area === SiteArea::STOREFRONT) {
+            $condition['status'] = $this->db->quote(
+                'AND ?:departments.status = ?s',
+                ObjectStatuses::ACTIVE
+            );
+        } elseif (!empty($params['status'])) {
+            $condition['status'] = $this->db->quote(
+                'AND ?:departments.status = ?s',
+                $params['status']
+            );
+        }
+
+        if (!empty($params['department_name'])) {
+            $condition['department_name'] = $this->db->quote(
+                'AND ?:department_descriptions.department LIKE ?l',
+                '%' . $params['department_name'] . '%'
+            );
+        }
+
+        if (!empty($params['supervisor_id'])) {
+            $condition['supervisor_id'] = $this->db->quote(
+                'AND ?:departments.supervisor_id = ?s',
+                $params['supervisor_id']
+            );
+        }
+
+        $join .= $this->db->quote(
+            ' LEFT JOIN ?:department_descriptions' .
+                ' ON ?:department_descriptions.department_id = ?:departments.department_id' .
+                ' AND ?:department_descriptions.lang_code = ?s',
+            $this->lang_code
+        );
+
+        if (!empty($params['items_per_page'])) {
+            $params['total_items'] = $this->db->getField(
+                'SELECT COUNT(*) FROM ?:departments ?p WHERE 1 ?p',
+                $join,
+                implode(' ', $condition)
+            );
+
+            $limit = db_paginate(
+                $params['page'],
+                $params['items_per_page'],
+                $params['total_items']
+            );
+        }
+
         if (!empty($cache)) {
             $departments = $cache;
         } else {
-            $fields = [
-                'id' => '?:departments.department_id',
-                'status' => '?:departments.status',
-                'timestamp' => '?:departments.timestamp',
-                'supervisor_id' => '?:departments.supervisor_id',
-                'name' => '?:department_descriptions.department',
-                'description' => '?:department_descriptions.description'
-            ];
-
-            $sortings = [
-                'timestamp' => '?:departments.timestamp',
-                'name' => '?:department_descriptions.department',
-                'status' => '?:departments.status',
-            ];
-
-            $condition = [];
-            $limit = '';
-            $join = '';
-
-            if (!empty($params['limit'])) {
-                $limit = $this->db->quote(' LIMIT 0, ?i', $params['limit']);
-            }
-
-            if (!empty($params['item_ids'])) {
-                $condition['item_ids'] = $this->db->quote(
-                    'AND ?:departments.department_id IN (?n)',
-                    explode(',', $params['item_ids'])
-                );
-            }
-
-            if (!empty($params['department_id'])) {
-                $condition['department_id'] = $this->db->quote(
-                    'AND ?:departments.department_id = ?i',
-                    $params['department_id']
-                );
-            }
-
-            if ($this->area === SiteArea::STOREFRONT) {
-                $condition['status'] = $this->db->quote(
-                    'AND ?:departments.status = ?s',
-                    ObjectStatuses::ACTIVE
-                );
-            } elseif (!empty($params['status'])) {
-                $condition['status'] = $this->db->quote(
-                    'AND ?:departments.status = ?s',
-                    $params['status']
-                );
-            }
-
-            if (!empty($params['department_name'])) {
-                $condition['department_name'] = $this->db->quote(
-                    'AND ?:department_descriptions.department LIKE ?l',
-                    '%' . $params['department_name'] . '%'
-                );
-            }
-
-            if (!empty($params['supervisor_id'])) {
-                $condition['supervisor_id'] = $this->db->quote(
-                    'AND ?:departments.supervisor_id = ?s',
-                    $params['supervisor_id']
-                );
-            }
-
-            $join .= $this->db->quote(
-                ' LEFT JOIN ?:department_descriptions' .
-                    ' ON ?:department_descriptions.department_id = ?:departments.department_id' .
-                    ' AND ?:department_descriptions.lang_code = ?s',
-                $this->lang_code
-            );
-
-            if (!empty($params['items_per_page'])) {
-                $params['total_items'] = $this->db->getField(
-                    'SELECT COUNT(*) FROM ?:departments ?p WHERE 1 ?p',
-                    $join,
-                    implode(' ', $condition)
-                );
-
-                $limit = db_paginate(
-                    $params['page'],
-                    $params['items_per_page'],
-                    $params['total_items']
-                );
-            }
-
             /**
              * Prepare params for getting departments query
              *
