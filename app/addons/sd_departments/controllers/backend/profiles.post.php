@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $url .= empty($department_id)
                 ? 'add_department'
-                : "update_department&department_id=$department_id";
+                : 'update_department&department_id=' . $department_id;
         } else {
             $url .= 'manage_departments';
         }
@@ -65,8 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             __('notice'),
             __('sd_departments_success_delete_one')
         );
-
-        return [CONTROLLER_STATUS_OK, 'profiles.manage_departments'];
     }
 
     if ($mode === 'delete_departments') {
@@ -78,8 +76,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 __('sd_departments_success_delete_multiple')
             );
         }
-        return [CONTROLLER_STATUS_OK, 'profiles.manage_departments'];
     }
+
+    if ($mode === 'departments_update_statuses') {
+        $status_to = $_REQUEST['status'] ?? '';
+        $department_ids = $_REQUEST['departments_ids'] ?? [];
+
+        $result = $departments_service->updateStatuses($status_to, $department_ids);
+
+        if ($result) {
+            fn_set_notification(
+                NotificationSeverity::NOTICE,
+                __('notice'),
+                __('status_changed')
+            );
+        } else {
+            fn_set_notification(
+                NotificationSeverity::ERROR,
+                __('error'),
+                __('error_status_not_changed')
+            );
+        }
+
+        if (defined('AJAX_REQUEST')) {
+            $redirect_url = $_REQUEST['redirect_url'] ?? fn_url('profiles.manage_departments');
+            Tygh::$app['ajax']->assign('force_redirection', $redirect_url);
+            Tygh::$app['ajax']->assign('non_ajax_notifications', true);
+            return [CONTROLLER_STATUS_NO_CONTENT];
+        }
+    }
+    return [CONTROLLER_STATUS_OK, 'profiles.manage_departments'];
 }
 
 if ($mode === 'update_department' || $mode === 'add_department') {

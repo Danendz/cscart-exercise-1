@@ -291,7 +291,7 @@ class Departments
             );
         } else {
             $data['timestamp'] = time();
-            $department_id = $data['department_id'] = $this->db->replaceInto(
+            $department_id = $this->db->replaceInto(
                 'departments',
                 $data
             );
@@ -299,7 +299,7 @@ class Departments
             $data_with_languages = [];
             foreach (Languages::getAll() as $lang_code => $_v) {
                 $data_with_languages[] = [
-                    'department_id' => $data['department_id'],
+                    'department_id' => $department_id,
                     'department' => $data['department'],
                     'description' => $data['description'],
                     'lang_code' => $lang_code
@@ -361,17 +361,12 @@ class Departments
             return;
         }
 
-        if (is_array($department_id)) {
-            $this->db->query(
-                'DELETE FROM ?:departments WHERE department_id IN (?n)',
-                $department_id
-            );
-        } else {
-            $this->db->query(
-                'DELETE FROM ?:departments WHERE department_id = ?i',
-                $department_id
-            );
-        }
+        $this->castToArray($department_id);
+
+        $this->db->query(
+            'DELETE FROM ?:departments WHERE department_id IN (?n)',
+            $department_id
+        );
 
         $this->deleteImagePairs($department_id);
         $this->deleteLinks($department_id);
@@ -390,21 +385,48 @@ class Departments
             return;
         }
 
-        if (is_array($department_id)) {
-            foreach ($department_id as $id) {
-                fn_delete_image_pairs(
-                    $id,
-                    'department',
-                    ImagePairTypes::MAIN
-                );
-            }
-        } else {
+        $this->castToArray($department_id);
+
+        foreach ($department_id as $id) {
             fn_delete_image_pairs(
-                $department_id,
+                $id,
                 'department',
                 ImagePairTypes::MAIN
             );
         }
+    }
+
+    /**
+     * Update departments status
+     *
+     * @param string $status_to Update status to
+     * @param int[] $department_ids Ids of departments
+     *
+     * @return bool
+     */
+    public function updateStatuses($status_to, $department_ids)
+    {
+        if (empty($department_ids) || empty($status_to)) {
+            return false;
+        }
+
+        return db_query(
+            'UPDATE ?:departments SET status = ?s WHERE department_id IN (?n)',
+            $status_to,
+            $department_ids
+        );
+    }
+
+    /**
+     * Casts value to array if it's not already array
+     *
+     * @param mixed $value Value to cast
+     *
+     * @return void
+     */
+    protected function castToArray(&$value)
+    {
+        $value = is_array($value) ? $value : [$value];
     }
 
     /**
@@ -439,7 +461,7 @@ class Departments
      */
     protected function addLinks($department_id, $supervisor_id, $employee_ids)
     {
-        if (empty($employee_ids)) {
+        if (empty($employee_ids) || empty($department_id)) {
             return;
         }
 
@@ -470,17 +492,12 @@ class Departments
             return;
         }
 
-        if (is_array($department_id)) {
-            $this->db->query(
-                'DELETE FROM ?:department_links WHERE department_id IN (?n)',
-                $department_id
-            );
-        } else {
-            $this->db->query(
-                'DELETE FROM ?:department_links WHERE department_id = ?i',
-                $department_id
-            );
-        }
+        $this->castToArray($department_id);
+
+        $this->db->query(
+            'DELETE FROM ?:department_links WHERE department_id IN (?n)',
+            $department_id
+        );
     }
 
     /**

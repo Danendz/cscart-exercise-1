@@ -49,20 +49,24 @@
     {capture name="departments_table"}
     <div class="table-responsive-wrapper longtap-selection">
         <table class="table table-middle table--relative table-responsive">
-            <thead data-ca-bulkedit-default-object="true" data-ca-bulkedit-component="defaultObject">
+            <thead
+                data-ca-bulkedit-default-object="true"
+                data-ca-bulkedit-component="defaultObject"
+            >
                 <tr>
                     <th width="6%" class="left mobile-hide">
-                        {include
-	                        "common/check_items.tpl" 
+                        {include "common/check_items.tpl" 
 	                        is_check_disabled=!$has_permission 
 	                        check_statuses=($has_permission) 
 	                        ? $department_statuses 
                             : '' 
                         }
 
-                        <input type="checkbox" class="bulkedit-toggler hide"
+                        <input type="checkbox"
+                            class="bulkedit-toggler hide"
                             data-ca-bulkedit-disable="[data-ca-bulkedit-default-object=true]"
-                            data-ca-bulkedit-enable="[data-ca-bulkedit-expanded-object=true]" />
+                            data-ca-bulkedit-enable="[data-ca-bulkedit-expanded-object=true]"
+                        />
                     </th>
 
                     <th width="15%">
@@ -203,10 +207,10 @@
     {include 
         "common/context_menu_wrapper.tpl"
         form="departments_form"
-    	object="departments"
+    	object="sd_departments"
     	items=$smarty.capture.departments_table
-    	has_permissions=$has_permission
     }
+
     {else}
         <p class="no-items">{__("no_data")}</p>
     {/if}
@@ -215,20 +219,6 @@
         "common/pagination.tpl" 
         div_id="pagination_contents_departments"
     }
-
-    {if $departments}
-    {capture name="buttons"}
-        {capture name="tools_list"}
-                <li>
-                    {btn 
-                    type="delete_selected" 
-                    dispatch="dispatch[profiles.delete_departments]" 
-                    form="departments_form"}
-                </li>
-        {/capture}
-            {dropdown content=$smarty.capture.tools_list}
-    {/capture}
-    {/if}
 
     {capture name="adv_buttons"}
         {include 
@@ -245,8 +235,6 @@
 {/capture}
 
 {capture name="sidebar"}
-    {hook name="profiles:manage_sidebar"}
-
     {include 
 	    "common/saved_search.tpl" 
 	    dispatch="profiles.manage_departments" 
@@ -257,13 +245,11 @@
 	    "addons/sd_departments/views/profiles/components/departments_search_form.tpl" 
 	    dispatch="profiles.manage_departments"
     }
-
-    {/hook}
 {/capture}
 
 {hook name="departments:manage_mainbox_params"}
-{$page_title = __("sd_departments_departments")}
-{$select_languages = true}
+    {$page_title = __("sd_departments_departments")}
+    {$select_languages = true}
 {/hook}
 
 {include 

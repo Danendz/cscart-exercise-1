@@ -34,26 +34,24 @@ if ($mode === 'view') {
 
     $supervisor_ids = array_column($departments, 'supervisor_id');
 
-    [$users] = $departments_service->getUsers($params, $supervisor_ids);
+    [$supervisors] = $departments_service->getUsers($params, $supervisor_ids);
 
-    $users_with_keys_as_id = [];
+    $supervisors_with_keys_as_id = [];
 
-    // Iterate over users array and make
+    // Iterate over supervisors array and make
     // new array as [
     //  3 => [
     //     'user_id' => 3,
     //     ...
     //  ]
     //]
-    foreach ($users as $user) {
-        $users_with_keys_as_id[$user['user_id']] = $user;
+    foreach ($supervisors as $supervisor) {
+        $supervisors_with_keys_as_id[$supervisor['user_id']] = $supervisor;
     }
 
-    //Add property 'supervisor_info' to departments
-    //by getting user info with supervisor id
     foreach ($departments as &$department) {
         $supervisor_id = $department['supervisor_id'];
-        $department['supervisor_info'] = $users_with_keys_as_id[$supervisor_id] ?? 'Неизвестный руководитель';
+        $department['supervisor_info'] = $supervisors_with_keys_as_id[$supervisor_id] ?? 'Неизвестный руководитель';
     }
 
     Tygh::$app['view']->assign([
