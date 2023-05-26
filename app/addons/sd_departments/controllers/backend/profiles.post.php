@@ -23,6 +23,7 @@ defined('BOOTSTRAP') or die('Access denied');
 $departments_service = ServiceProvider::getDepartmentsService();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $suffix = '';
     if ($mode === 'update_department') {
         $department_id = !empty($_REQUEST['department_id'])
             ? $_REQUEST['department_id']
@@ -34,8 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $res = $departments_service->upsert($data, $department_id);
 
-        $url = 'profiles.';
-
         if ($res === false) {
             fn_set_notification(
                 NotificationSeverity::ERROR,
@@ -43,14 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 __('text_fill_the_mandatory_fields')
             );
 
-            $url .= empty($department_id)
-                ? 'add_department'
-                : 'update_department&department_id=' . $department_id;
+            $suffix .= empty($department_id)
+                ? '.add_department'
+                : '.update_department&department_id=' . $department_id;
         } else {
-            $url .= 'manage_departments';
+            $suffix .= '.manage_departments';
         }
-
-        return [CONTROLLER_STATUS_OK, $url];
     }
 
     if ($mode === 'delete_department') {
@@ -98,14 +95,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
         }
 
+        $redirect_url = $_REQUEST['redirect_url'] ?? 'profiles.manage_departments';
+
         if (defined('AJAX_REQUEST')) {
-            $redirect_url = $_REQUEST['redirect_url'] ?? fn_url('profiles.manage_departments');
             Tygh::$app['ajax']->assign('force_redirection', $redirect_url);
             Tygh::$app['ajax']->assign('non_ajax_notifications', true);
+
             return [CONTROLLER_STATUS_NO_CONTENT];
         }
+
+        return [CONTROLLER_STATUS_OK, $redirect_url];
     }
-    return [CONTROLLER_STATUS_OK, 'profiles.manage_departments'];
+
+    return [CONTROLLER_STATUS_OK, 'profiles' . ($suffix ?: '.manage_departments')];
 }
 
 if ($mode === 'update_department' || $mode === 'add_department') {
