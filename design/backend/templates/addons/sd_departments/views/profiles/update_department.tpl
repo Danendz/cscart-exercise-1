@@ -39,7 +39,7 @@
 	            {include 
                     "common/attach_images.tpl"
 	                image_name="department"
-	                image_object_type="promo"
+	                image_object_type="department"
 	                image_pair=$department_data.main_pair
 	                image_object_id=$id
 	                no_detailed=true
