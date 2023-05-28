@@ -131,7 +131,9 @@
                         type="checkbox" 
                         name="departments_ids[]" 
                         value="{$department.department_id}"
-                        class="cm-item {$no_hide_input} cm-item-status-{$department.status|lower} hide" />
+                        class="cm-item {$no_hide_input} cm-item-status-{$department.status|lower} hide" 
+                        autocomplete="off"
+                        />
                     </td>
 
                     <td 
