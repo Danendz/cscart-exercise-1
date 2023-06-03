@@ -107,6 +107,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return [CONTROLLER_STATUS_OK, $redirect_url];
     }
 
+    if ($mode === 'departments_store_selection') {
+        if (!empty($_REQUEST['departments_ids']) && !empty($_REQUEST['selected_fields'])) {
+            Tygh::$app['session']['departments_ids'] = $_REQUEST['departments_ids'];
+            Tygh::$app['session']['selected_fields'] = $_REQUEST['selected_fields'];
+
+            unset($_REQUEST['redirect_url']);
+            $suffix = '.m_update_departments';
+        } else {
+            $suffix = '.manage_departments';
+        }
+    }
+
+    if ($mode === 'm_update_departments') {
+        if (!$_REQUEST['department_data']) {
+            return [CONTROLLER_STATUS_OK];
+        }
+
+        foreach ($_REQUEST['department_data'] as $department_id => $department_data) {
+            $departments_service->upsert($department_data, $department_id);
+        }
+
+        unset(Tygh::$app['session']['departments_ids']);
+        unset(Tygh::$app['session']['selected_fields']);
+    }
+
     return [CONTROLLER_STATUS_OK, 'profiles' . ($suffix ?: '.manage_departments')];
 }
 
@@ -133,4 +158,65 @@ if ($mode === 'update_department' || $mode === 'add_department') {
         'departments' => $departments,
         'search' => $search
     ]);
+} elseif ($mode === 'm_update_departments') {
+    $departments_ids = Tygh::$app['session']['departments_ids'];
+    $selected_fields = Tygh::$app['session']['selected_fields'];
+    $is_empty_session_params = empty($departments_ids) || empty($selected_fields);
+    $is_object_not_department = empty($selected_fields['object']) || $selected_fields['object'] !== 'department';
+
+    if ($is_empty_session_params || $is_object_not_department) {
+        return [CONTROLLER_STATUS_REDIRECT, 'profiles.manage_departments'];
+    }
+
+    $field_groups = [
+        'A' => [ //inputs
+            'department' => 'department_data',
+        ],
+    ];
+
+    $fields2update = $selected_fields['data'];
+
+    $data_search_fields = implode(', ', $fields2update);
+
+    if (!empty($data_search_fields)) {
+        $data_search_fields = ', ' . $data_search_fields;
+    }
+
+    $filled_groups = [];
+    $field_names = [];
+    foreach ($fields2update as $field) {
+        switch ($field) {
+            case 'supervisor':
+                $desc = 'sd_departments_supervisor';
+                break;
+            case 'employee':
+                $desc = 'sd_departments_employees';
+                break;
+            case 'department':
+                $desc = 'name';
+                break;
+        }
+
+        if (!empty($field_groups['A'][$field])) {
+            $filled_groups['A'][$field] = __($desc);
+            continue;
+        }
+
+        $field_names[$field] = __($desc);
+    }
+
+    ksort($filled_groups, SORT_STRING);
+
+    $params = [];
+    $params['item_ids'] = $departments_ids;
+
+    [$department_data] = $departments_service->getList($params);
+
+    Tygh::$app['view']->assign('field_groups', $field_groups);
+    Tygh::$app['view']->assign('filled_groups', $filled_groups);
+
+    Tygh::$app['view']->assign('fields2update', $fields2update);
+    Tygh::$app['view']->assign('field_names', $field_names);
+
+    Tygh::$app['view']->assign('department_data', $department_data);
 }

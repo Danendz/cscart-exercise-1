@@ -232,9 +232,34 @@
 	        icon="icon-plus"
         }
     {/capture}
+    {capture name="select_fields_to_edit"}
+        <p>{__("text_select_fields2edit_note")}</p>
+        {include 
+            "addons/sd_departments/views/profiles/components/departments_select_fields.tpl" 
+        }
+
+        <div class="buttons-container">
+            <a class="cm-dialog-closer cm-inline-dialog-closer tool-link btn bulkedit-unchanged">{__("cancel")}</a>
+
+            {include "buttons/button.tpl" 
+                but_text=__("modify_selected") 
+                but_name="dispatch[profiles.departments_store_selection]"
+                but_role="submit-button"
+                but_target_form="departments_form"
+            }
+        </div>
+    {/capture}
+    {include 
+        "common/popupbox.tpl" 
+        id="select_fields_to_edit" 
+        text=__("select_fields_to_edit") 
+        content=$smarty.capture.select_fields_to_edit
+    }
 </form>
 
 {/capture}
+
+
 
 {capture name="sidebar"}
     {include 

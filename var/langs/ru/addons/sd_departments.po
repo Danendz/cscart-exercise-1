@@ -72,6 +72,10 @@ msgctxt "Languages::sd_departments_success_delete_multiple"
 msgid "Departments has been successfully deleted"
 msgstr "Отделы были успешно удалены"
 
+msgctxt "Languages::sd_departments_update_departments"
+msgid "Update departments"
+msgstr "Обновить отделы"
+
 msgctxt "SettingsOptions::sd_departments::department_columns"
 msgid "Number of departments in a row"
 msgstr "Количество отделов в ряду"

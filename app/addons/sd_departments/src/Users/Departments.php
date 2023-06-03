@@ -54,7 +54,7 @@ class Departments
     /**
      * Get all departments matching parameters
      *
-     * @param array $params query params
+     * @param array<mixed> $params query params
      *
      * @return array Department data
      */
@@ -112,7 +112,7 @@ class Departments
         if (!empty($params['item_ids'])) {
             $condition['item_ids'] = $this->db->quote(
                 'AND ?:departments.department_id IN (?n)',
-                explode(',', $params['item_ids'])
+                $params['item_ids']
             );
         }
 
@@ -215,6 +215,7 @@ class Departments
             $departments[$department_id]['main_pair'] = !empty($images[$department_id])
                 ? reset($images[$department_id])
                 : [];
+            $departments[$department_id]['employee_ids'] = $this->getLinks($department_id) ?? [];
         }
 
         /**

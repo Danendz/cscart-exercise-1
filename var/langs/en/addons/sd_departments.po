@@ -64,6 +64,10 @@ msgctxt "Languages::sd_departments_text_no_departments"
 msgid "There is no departments here"
 msgstr "There is no departments here"
 
+msgctxt "Languages::sd_departments_update_departments"
+msgid "Update departments"
+msgstr "Update departments"
+
 msgctxt "Languages::sd_departments_success_delete_one"
 msgid "Department has been successfully deleted"
 msgstr "Department has been successfully deleted"

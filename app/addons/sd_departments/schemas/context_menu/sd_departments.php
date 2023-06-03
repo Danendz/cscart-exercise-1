@@ -14,6 +14,7 @@
  ****************************************************************************/
 
 use Tygh\ContextMenu\Items\GroupItem;
+use Tygh\ContextMenu\Items\ComponentItem;
 
 defined('BOOTSTRAP') or die('Access denied!');
 
@@ -27,6 +28,11 @@ $schema = [
             'type'     => GroupItem::class,
             'items'    => [],
             'position' => 20,
+        ],
+        'edit_selected' => [
+            'type'                => ComponentItem::class,
+            'template'            => 'addons/sd_departments/views/profiles/components/context_menu/edit_selected.tpl',
+            'position'            => 30,
         ],
         'actions' => [
             'name'     => ['template' => 'actions'],
