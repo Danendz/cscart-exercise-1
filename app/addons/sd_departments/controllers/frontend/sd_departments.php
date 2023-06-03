@@ -32,27 +32,7 @@ if ($mode === 'view') {
 
     [$departments, $search] = $departments_service->getList($params);
 
-    $supervisor_ids = array_column($departments, 'supervisor_id');
-
-    [$supervisors] = $departments_service->getUsers($params, $supervisor_ids);
-
-    $supervisors_with_keys_as_id = [];
-
-    // Iterate over supervisors array and make
-    // new array as [
-    //  3 => [
-    //     'user_id' => 3,
-    //     ...
-    //  ]
-    //]
-    foreach ($supervisors as $supervisor) {
-        $supervisors_with_keys_as_id[$supervisor['user_id']] = $supervisor;
-    }
-
-    foreach ($departments as &$department) {
-        $supervisor_id = $department['supervisor_id'];
-        $department['supervisor_info'] = $supervisors_with_keys_as_id[$supervisor_id] ?? 'Неизвестный руководитель';
-    }
+    $departments_service->setSupervisorInfo($departments, $params);
 
     Tygh::$app['view']->assign([
         'departments' => $departments,

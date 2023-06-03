@@ -211,11 +211,13 @@ if ($mode === 'update_department' || $mode === 'add_department') {
 
     [$department_data] = $departments_service->getList($params);
 
-    Tygh::$app['view']->assign('field_groups', $field_groups);
-    Tygh::$app['view']->assign('filled_groups', $filled_groups);
+    $departments_service->setSupervisorInfo($department_data);
 
-    Tygh::$app['view']->assign('fields2update', $fields2update);
-    Tygh::$app['view']->assign('field_names', $field_names);
-
-    Tygh::$app['view']->assign('department_data', $department_data);
+    Tygh::$app['view']->assign([
+        'field_groups' => $field_groups,
+        'filled_groups' => $filled_groups,
+        'fields2update' => $fields2update,
+        'field_names' => $field_names,
+        'department_data' => $department_data
+    ]);
 }

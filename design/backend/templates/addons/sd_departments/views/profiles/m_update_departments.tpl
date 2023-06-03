@@ -83,7 +83,7 @@
                             placement="right"
                             display="radio"
                             view_mode="single_button"
-                            user_info=$department.supervisor_id|fn_get_user_short_info
+                            user_info=$department.supervisor_info
                         }
                     {elseif $field === 'employee_ids'}
                         {include 

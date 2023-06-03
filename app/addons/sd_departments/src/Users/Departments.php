@@ -384,8 +384,6 @@ class Departments
         $this->deleteLinks(array_keys($department_data));
 
         $this->addMultipleLinks($department_data);
-
-        Registry::cleanup();
     }
 
     /**
@@ -471,6 +469,42 @@ class Departments
             $status_to,
             $department_ids
         );
+    }
+
+    /**
+     * Get and set supervisor info to departments by reference
+     *
+     * @param array<mixed[]> $departments Reference to departments array
+     *
+     * @param mixed[] $params Optional. Parameters to user query
+     *
+     * @return void departments will be modified by reference
+     */
+    public function setSupervisorInfo(&$departments, $params = [])
+    {
+        $supervisor_ids = array_column($departments, 'supervisor_id');
+        [$supervisors] = $this->getUsers($params, $supervisor_ids);
+
+        $supervisors_with_keys_as_id = [];
+
+        foreach ($supervisors as $supervisor) {
+            $supervisors_with_keys_as_id[$supervisor['user_id']] = $supervisor;
+        }
+
+        foreach ($departments as &$department) {
+            $supervisor_id = $department['supervisor_id'];
+            $department['supervisor_info'] = $supervisors_with_keys_as_id[$supervisor_id] ?? 'Неизвестный руководитель';
+        }
+    }
+
+    /**
+     * Gets all department ids
+     *
+     * @return int[] ids of departments
+     */
+    public function getAllIds()
+    {
+        return $this->db->getColumn('SELECT department_id FROM ?:departments WHERE 1');
     }
 
     /**
@@ -601,15 +635,5 @@ class Departments
             'DELETE FROM ?:department_links WHERE department_id IN (?n)',
             $department_id
         );
-    }
-
-    /**
-     * Gets all department ids
-     *
-     * @return int[] ids of departments
-     */
-    public function getAllIds()
-    {
-        return $this->db->getColumn('SELECT department_id FROM ?:departments WHERE 1');
     }
 }
