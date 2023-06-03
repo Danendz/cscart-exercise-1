@@ -213,15 +213,17 @@ class Departments
             $this->lang_code
         );
 
+        if (!empty($params['employees']) && $params['employees'] === true) {
+            $employee_ids = $this->getLinks(array_keys($departments));
+            foreach ($departments as $department_id => $_department) {
+                $departments[$department_id]['employee_ids'] = $employee_ids[$department_id];
+            }
+        }
 
         foreach ($departments as $department_id => $_department) {
             $departments[$department_id]['main_pair'] = !empty($images[$department_id])
                 ? reset($images[$department_id])
                 : [];
-
-            if (!empty($params['employees']) && $params['employees'] === true) {
-                $departments[$department_id]['employee_ids'] = $this->getLinks($department_id) ?? [];
-            }
         }
 
         /**
@@ -251,12 +253,12 @@ class Departments
         $department = [];
 
         [$departments] = $this->getList([
-            'department_id' => $department_id
+            'department_id' => $department_id,
+            'employees' => true
         ]);
 
         if (!empty($departments)) {
             $department = reset($departments);
-            $department['employee_ids'] = $this->getLinks($department['department_id']);
         }
 
         return $department;
@@ -342,8 +344,8 @@ class Departments
     /**
      * Update multiple departments by data
      *
-     * @param mixed[] $department_data Array of arrays with department id as key
-     * and department data as value
+     * @param mixed[] $department_data Array of arrays with department id as a key
+     * and department data as a value
      *
      * @return void|false false if something goes wrong
      */
@@ -484,22 +486,32 @@ class Departments
     }
 
     /**
-     * Get department links by id
+     * Get multiple department links by department ids
      *
-     * @param int $department_id Id of the department
+     * @param int[] $departments_ids Ids of departments
      *
-     * @return array Department links
+     * @return array<int[]> Array of arrays with departments id as key
+     * and employees as values
      */
-    protected function getLinks($department_id)
+    protected function getLinks($department_ids)
     {
-        if (empty($department_id)) {
+        if (empty($department_ids)) {
             return [];
         }
 
-        return $this->db->getColumn(
-            'SELECT employee_id FROM ?:department_links WHERE department_id = ?i',
-            $department_id
-        );
+        $queries = [];
+
+        foreach ($department_ids as $id) {
+            $queries[$id] = [
+                MultiQueryTypes::COLUMN,
+                $this->db->quote(
+                    'SELECT employee_id FROM ?:department_links WHERE department_id = ?i',
+                    $id
+                )
+            ];
+        }
+
+        return $this->db->multiQuery($queries);
     }
 
     /**
@@ -536,8 +548,8 @@ class Departments
     /**
      * Add multiple department links by data
      *
-     * @param mixed[] $department_data Array of arrays with department id as key
-     * and department data as value
+     * @param mixed[] $department_data Array of arrays with department id as a key
+     * and department data as a value
      *
      * @return void
      */
@@ -565,6 +577,7 @@ class Departments
                 }
             }
         }
+
 
         $this->db->replaceInto('department_links', $department_links, true);
     }
