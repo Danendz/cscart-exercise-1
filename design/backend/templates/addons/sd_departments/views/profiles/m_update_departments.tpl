@@ -32,9 +32,6 @@
             <div id="scrolled_div" class="scroll-x scroll-border">
             <table width="100%" class="table-fixed table--relative">
             <tr>
-                {foreach from=$filled_groups item=v}
-                    <th>&nbsp;</th>
-                {/foreach}
                 {foreach from=$field_names item="field_name" key=field_key}
                     <th>
                         {if $field_name|is_array}
@@ -47,29 +44,6 @@
             </tr>
             {foreach from=$department_data item="department"}
             <tr>
-                {foreach from=$filled_groups item=v key=type}
-                <td valign="top" class="pad">
-                    <table>
-                    {foreach from=$field_groups.$type item=name key=field}
-
-                    {if $v.$field}
-                    <tr valign="top">
-                        <td class="nowrap strong">{$v.$field}:&nbsp;</td>
-                        <td>
-                            <input
-                                type="text" 
-                                value="{$department.$field}" 
-                                class="input-text" 
-                                name="{$name}[{$department.department_id}][{$field}]" 
-                            />
-                        </td>
-                    </tr>
-                    {/if}
-                    {/foreach}
-                    </table>
-                </td>
-                {/foreach}
-
                 {foreach $field_names as $field => $v}
                 <td valign="top" class="pad">
                     {if $field === "supervisor_id"}
@@ -95,6 +69,13 @@
                             item_ids=$department.employee_ids
                             placement="right"
                         }
+                    {elseif $field === 'department'}
+                        <input
+                            type="text" 
+                            value="{$department.$field}" 
+                            class="input-text" 
+                            name="department_data[{$department.department_id}][{$field}]" 
+                        />
                     {/if}
                 </td>
                 {/foreach}

@@ -166,12 +166,6 @@ if ($mode === 'update_department' || $mode === 'add_department') {
         return [CONTROLLER_STATUS_REDIRECT, 'profiles.manage_departments'];
     }
 
-    $field_groups = [
-        'A' => [ //inputs
-            'department' => 'department_data',
-        ],
-    ];
-
     $fields2update = $selected_fields['data'];
 
     $data_search_fields = implode(', ', $fields2update);
@@ -180,14 +174,13 @@ if ($mode === 'update_department' || $mode === 'add_department') {
         $data_search_fields = ', ' . $data_search_fields;
     }
 
-    $filled_groups = [];
     $field_names = [];
     foreach ($fields2update as $field) {
         switch ($field) {
-            case 'supervisor':
+            case 'supervisor_id':
                 $desc = 'sd_departments_supervisor';
                 break;
-            case 'employee':
+            case 'employee_ids':
                 $desc = 'sd_departments_employees';
                 break;
             case 'department':
@@ -195,15 +188,8 @@ if ($mode === 'update_department' || $mode === 'add_department') {
                 break;
         }
 
-        if (!empty($field_groups['A'][$field])) {
-            $filled_groups['A'][$field] = __($desc);
-            continue;
-        }
-
         $field_names[$field] = __($desc);
     }
-
-    ksort($filled_groups, SORT_STRING);
 
     $params = [];
     $params['item_ids'] = $departments_ids;
@@ -214,8 +200,6 @@ if ($mode === 'update_department' || $mode === 'add_department') {
     $departments_service->setSupervisorInfo($department_data);
 
     Tygh::$app['view']->assign([
-        'field_groups' => $field_groups,
-        'filled_groups' => $filled_groups,
         'fields2update' => $fields2update,
         'field_names' => $field_names,
         'department_data' => $department_data

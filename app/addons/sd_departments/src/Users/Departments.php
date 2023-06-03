@@ -384,6 +384,8 @@ class Departments
         $this->deleteLinks(array_keys($department_data));
 
         $this->addMultipleLinks($department_data);
+
+        Registry::cleanup();
     }
 
     /**
