@@ -18,6 +18,7 @@ namespace Tygh\Addons\SdDepartments\Users;
 use Tygh\Application;
 use Tygh\Database\Connection;
 use Tygh\Enum\ImagePairTypes;
+use Tygh\Enum\MultiQueryTypes;
 use Tygh\Enum\ObjectStatuses;
 use Tygh\Enum\SiteArea;
 use Tygh\Languages\Languages;
@@ -83,6 +84,7 @@ class Departments
             Registry::cacheLevel('locale_auth'),
             true
         );
+
 
         $cache = Registry::get($cache_key);
 
@@ -211,11 +213,15 @@ class Departments
             $this->lang_code
         );
 
+
         foreach ($departments as $department_id => $_department) {
             $departments[$department_id]['main_pair'] = !empty($images[$department_id])
                 ? reset($images[$department_id])
                 : [];
-            $departments[$department_id]['employee_ids'] = $this->getLinks($department_id) ?? [];
+
+            if (!empty($params['employees']) && $params['employees'] === true) {
+                $departments[$department_id]['employee_ids'] = $this->getLinks($department_id) ?? [];
+            }
         }
 
         /**
@@ -331,6 +337,53 @@ class Departments
             $employee_ids
         );
         return $department_id;
+    }
+
+    /**
+     * Update multiple departments by data
+     *
+     * @param mixed[] $department_data Array of arrays with department id as key
+     * and department data as value
+     *
+     * @return void|false false if something goes wrong
+     */
+    public function updateMultiple($department_data)
+    {
+        if (empty($department_data)) {
+            return false;
+        }
+
+        $queries = [];
+
+        foreach ($department_data as $id => $data) {
+            $queries[] = [
+                MultiQueryTypes::QUERY,
+                $this->db->quote(
+                    'UPDATE ?:departments SET ?u WHERE department_id = ?i',
+                    $data,
+                    $id
+                )
+            ];
+
+            $queries[] = [
+                MultiQueryTypes::QUERY,
+                $this->db->quote(
+                    'UPDATE ?:department_descriptions SET ?u WHERE department_id = ?i ' .
+                        'AND lang_code = ?s',
+                    $data,
+                    $id,
+                    $this->lang_code
+                )
+            ];
+        }
+
+        $this->db->multiQuery($queries);
+
+        $this->deleteLinks(array_keys($department_data));
+
+        $this->addMultipleLinks($department_data);
+
+        Registry::cleanup();
     }
 
     /**
@@ -474,6 +527,42 @@ class Departments
                     'department_id' => $department_id,
                     'employee_id' => $employee_id
                 ];
+            }
+        }
+
+        $this->db->replaceInto('department_links', $department_links, true);
+    }
+
+    /**
+     * Add multiple department links by data
+     *
+     * @param mixed[] $department_data Array of arrays with department id as key
+     * and department data as value
+     *
+     * @return void
+     */
+    protected function addMultipleLinks($department_data)
+    {
+        if (empty($department_data)) {
+            return;
+        }
+
+        $department_links = [];
+
+        foreach ($department_data as $id => $data) {
+            if (empty($data['employee_ids'])) {
+                continue;
+            }
+
+            $employee_ids = explode(',', $data['employee_ids']);
+
+            foreach ($employee_ids as $employee_id) {
+                if ($employee_id !== $data['supervisor_id'] ?? '') {
+                    $department_links[] = [
+                        'department_id' => $id,
+                        'employee_id' => $employee_id
+                    ];
+                }
             }
         }
 

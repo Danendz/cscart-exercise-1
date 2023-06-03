@@ -120,13 +120,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($mode === 'm_update_departments') {
-        if (!$_REQUEST['department_data']) {
+        if (empty($_REQUEST['department_data'])) {
             return [CONTROLLER_STATUS_OK];
         }
 
-        foreach ($_REQUEST['department_data'] as $department_id => $department_data) {
-            $departments_service->upsert($department_data, $department_id);
-        }
+        $departments_service->updateMultiple($_REQUEST['department_data']);
 
         unset(Tygh::$app['session']['departments_ids']);
         unset(Tygh::$app['session']['selected_fields']);
@@ -209,6 +207,7 @@ if ($mode === 'update_department' || $mode === 'add_department') {
 
     $params = [];
     $params['item_ids'] = $departments_ids;
+    $params['employees'] = true;
 
     [$department_data] = $departments_service->getList($params);
 
