@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<addon scheme="4.0">
+    <id>sd_departments</id>
+    <version>1.0</version>
+    <priority>1500</priority>
+    <status>active</status>
+    <default_language>en</default_language>
+    <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
+
+    <autoload>
+        <psr4 prefix="Tygh\Addons\SdDepartments\">src</psr4>
+    </autoload>
+
+    <bootstrap>\Tygh\Addons\SdDepartments\Bootstrap</bootstrap>
+    <installer>\Tygh\Addons\SdDepartments\Installer</installer>
+
+    <settings edition_type="ROOT,ULT:VENDOR">
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="department_columns">
+                        <type>input</type>
+                        <default_value>3</default_value>
+                    </item>
+                    <item id="department_per_page">
+                        <type>input</type>
+                        <default_value>3</default_value>
+                    </item>
+                    <item id="employee_columns">
+                        <type>input</type>
+                        <default_value>3</default_value>
+                    </item>
+                    <item id="employee_per_page">
+                        <type>input</type>
+                        <default_value>3</default_value>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+
+    <queries>
+        <item for="install">DROP TABLE IF EXISTS ?:department_descriptions;</item>
+        <item for="install">DROP TABLE IF EXISTS ?:departments;</item>
+        <item for="install">DROP TABLE IF EXISTS ?:department_links;</item>
+
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS ?:departments (
+            department_id INT(11) unsigned NOT NULL auto_increment,
+            status varchar(1) NOT NULL default 'A',
+            timestamp INT(11) unsigned NOT NULL default '0',
+            supervisor_id INT(11) unsigned NOT NULL default '0',
+            KEY (supervisor_id),
+            PRIMARY KEY (department_id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS ?:department_descriptions (
+            department_id INT(11) unsigned NOT NULL default '0',
+            lang_code char(2) NOT NULL default '',
+            department varchar(255) NOT NULL default '',
+            description text null,
+            PRIMARY KEY (department_id, lang_code),
+            CONSTRAINT `department id`
+            FOREIGN KEY (department_id) REFERENCES ?:departments (department_id)
+            ON DELETE CASCADE
+            ON UPDATE RESTRICT
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS ?:department_links (
+            department_id INT(11) unsigned NOT NULL default '0',
+            employee_id INT(11) unsigned NOT NULL default '0',
+            KEY (department_id),
+            KEY (employee_id),
+            PRIMARY KEY (department_id, employee_id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+        </item>
+        <item type="file">database/data.sql</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:department_descriptions;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:departments;</item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:department_links;</item>
+    </queries>
+</addon>

@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html 
+    lang="ru"
+    dir="ltr"
+    class="bp-panel-active "
+>
+<head>
+<title>Отделы :: Тестовый отдел</title>
+<base href="http://cscartex.devel/" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" data-ca-mode="ultimate" />
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+<meta name="description" content="" />
+
+<meta name="keywords" content="" />
+<meta name="format-detection" content="telephone=no">
+
+            
+
+
+    <link href="http://cscartex.devel/images/logos/8/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+
+<link rel="preload" crossorigin="anonymous" as="font" href="//fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UT8E0i7KZn-EPnyo3HZu7kw.woff" type="font/woff" />
+<link type="text/css" rel="stylesheet" href="http://cscartex.devel/var/cache/misc/assets/design/themes/bright_theme/css/standalone.a6e4e9fe01f458d13fe4780650880158.css?1684235467" /><script data-no-defer>
+window.jsErrors = [];
+window.onerror = function(message, source, lineno, colno, error) {
+    var verboseMessage = message;
+    if (source) {
+        verboseMessage = source + '@' + lineno + ':' + colno + "\n\n" + message;
+    }
+
+    console.error(verboseMessage);
+
+    if (error && error.stack) {
+        console.log(error.stack);
+    }
+
+    document.write('<pre data-ca-debug="1" style="border: 2px solid red; margin: 2px;">'
+        + verboseMessage + "\n\n"
+        + (error && error.stack ? error.stack : '')
+        + '</pre>'
+    );
+};
+</script>
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.9/es5-shim.min.js"></script><![endif]-->
+
+    <script 
+        data-no-defer
+        type="text/javascript"
+        src="http://cscartex.devel/var/files/gdpr/klaro/config.js">
+    </script>
+    <script 
+        data-no-defer
+        data-klaro-config="klaroConfig"
+        data-config="klaroConfig"
+        type="text/javascript"
+        src="http://cscartex.devel/js/addons/gdpr/lib/klaro.js">
+    </script>
+</head>
+
+<body>
+                        
+
+    
+
+
+    
+
+
+
+
+
+
+
+<div class="bp__container">
+    <div id="bp_bottom_panel"
+        class="bp-panel bp-panel--store bp-panel--customer"
+        data-ca-bottom-pannel="true"
+        data-bp-mode="demo"
+        data-bp-is-bottom-panel-open="true"
+        data-bp-nav-active=customer
+        data-bp-modes-active="preview">
+        <a href="http://cscartex.devel/"
+            class="bp-logo"
+            data-bp-tooltip="true">
+            <img src="http://cscartex.devel/images/logos/8/cart.png" width="205" height="35" alt="" title="" class="bp-logo-img--no-color" />
+            <div class="bp-tooltip bp-tooltip--left">
+                            Перейти на домашнюю страницу
+                        </div>
+        </a>
+        <div class="bp-nav">
+                        <a href="http://cscartex.devel/admin.php?dispatch=bottom_panel.redirect&amp;url=index.php%3Fdispatch%3Dsd_departments.department%26department_id%3D2&amp;area=C&amp;to_area=C"
+                class="bp-nav__item cm-no-ajax
+                                    bp-nav__item--active
+                "
+                data-bp-nav-item="customer">
+                <span class="bp-nav__item-text">Витрина</span>
+            </a>
+                            <a href="http://cscartex.devel/index.php?dispatch=bottom_panel.login_as_admin&amp;url=index.php%3Fdispatch%3Dsd_departments.department%26department_id%3D2&amp;area=C&amp;user_id=1" class="bp-nav__item cm-no-ajax cm-post
+                    "
+                    data-bp-nav-item="admin">
+                    <span class="bp-nav__item-text">Панель администратора</span>
+                </a>
+                                    <div id="bp-nav__active" class="bp-nav__active
+                                    bp-nav__active--activated
+                "></div>
+        </div>
+
+                                    <div class="bp-modes">
+                    <a
+                                                    href="http://cscartex.devel/"
+                                                id="settings_block_manager"
+                        class="cm-no-ajax bp-modes__item bp-modes__item--preview
+                        bp-modes__item--active"
+                            data-bp-modes-item="preview"
+                            data-bp-tooltip="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+    class="bp-modes__item-icon">
+    <path
+        d="M28.841 16.011C28.618 15.704 23.296 8 16.5 8 9.703 8 4.382 15.704 4.159 16.01a.833.833 0 0 0 0 .979C4.382 17.296 9.703 25 16.499 25c6.797 0 12.119-7.704 12.342-8.01a.832.832 0 0 0 0-.979zm-2.605.994a23.583 23.583 0 0 1-2.338 2.452c-2.433 2.198-4.96 3.481-7.398 3.481-2.438 0-4.966-1.283-7.398-3.481A23.578 23.578 0 0 1 6.357 16.5a23.58 23.58 0 0 1 2.745-2.957c2.433-2.198 4.96-3.481 7.398-3.481 2.437 0 4.965 1.283 7.398 3.481a23.58 23.58 0 0 1 2.745 2.957c-.126.162-.262.33-.407.505z" />
+    <path
+        d="M16.5 20a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zm0-1.6a1.9 1.9 0 1 1 0-3.8 1.9 1.9 0 0 1 0 3.8z" />
+</svg>                        <div class="bp-tooltip">Предпросмотр</div>
+                    </a>
+                                            <a href="http://cscartex.devel/index.php?dispatch=customization.update_mode&amp;type=live_editor&amp;status=enable&amp;return_url=http%3A%2F%2Fcscartex.devel%2Findex.php%3Fdispatch%3Dsd_departments.department%26department_id%3D2"
+                            id="settings_live_editor"
+                            class="cm-no-ajax bp-modes__item bp-modes__item--text
+                            "
+                            data-bp-modes-item="text"
+                            data-bp-tooltip="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+    class="bp-modes__item-icon">
+    <path
+        d="M24.998 8.495A.502.502 0 0 0 24.495 8H8.503A.502.502 0 0 0 8 8.5v3.004c0 .276.225.5.503.5h1.637a.503.503 0 0 0 .393-.188l.855-1.813h3.603v13.496c0 .277.225.501.503.501h2.013a.502.502 0 0 0 .503-.5V10.002h4.098l.86 1.814c.095.119.24.187.392.187h1.137A.505.505 0 0 0 25 11.5l-.002-3.006z" />
+</svg>                            <div class="bp-tooltip">Редактировать тексты</div>
+                        </a>
+                                                                <a href="http://cscartex.devel/index.php?dispatch=customization.update_mode&amp;type=theme_editor&amp;status=enable&amp;return_url=http%3A%2F%2Fcscartex.devel%2Findex.php%3Fdispatch%3Dsd_departments.department%26department_id%3D2"
+                            id="settings_theme_editor"
+                            class="cm-no-ajax bp-modes__item bp-modes__item--theme
+                                                        "
+                            data-bp-modes-item="theme"
+                            data-bp-tooltip="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+    class="bp-modes__item-icon">
+    <path
+        d="M22.09 11.076c-.07-.095-.363-.411-.436-.502a9.429 9.429 0 0 0-7.304-3.537c-2.692 0-5.268 1.208-7.068 3.314-1.79 2.096-2.584 4.823-2.178 7.484.034.222.077.447.127.668.662 2.925 2.352 5.15 4.638 6.105a4.375 4.375 0 0 0 1.689.354c1.384 0 2.593-.743 3.317-2.04a4.424 4.424 0 0 0 .528-1.516c.044-.302.014-.605-.015-.898-.03-.302-.059-.587-.014-.874.066-.411.269-.72.574-.892.183-.104.403-.159.651-.159.016 0 .226.053.63.159 3.29-5.046 4.91-7.601 4.861-7.666zm-3.015 1.54a1.296 1.296 0 0 1-1.796.41 1.3 1.3 0 0 1-.577-.817 1.304 1.304 0 0 1 .168-.987 1.296 1.296 0 0 1 1.797-.41c.294.187.5.477.576.818.077.34.018.69-.168.987zm-9.873 2.362a1.3 1.3 0 0 1-1.27-1.018 1.304 1.304 0 0 1 .169-.987 1.296 1.296 0 0 1 1.796-.41c.608.385.791 1.194.409 1.804-.24.383-.653.611-1.104.611zM7.836 17.86a1.296 1.296 0 0 1 1.797-.41c.294.186.499.477.576.817.077.341.017.692-.168.987a1.296 1.296 0 0 1-1.797.41 1.3 1.3 0 0 1-.576-.817 1.305 1.305 0 0 1 .168-.987zm4.172-7.77a1.296 1.296 0 0 1 1.797-.41c.608.385.791 1.194.408 1.804a1.296 1.296 0 0 1-1.796.41 1.3 1.3 0 0 1-.576-.817 1.304 1.304 0 0 1 .167-.987zm12.859 3.465a54.906 54.906 0 0 1-1.443 2.24c-1.195 1.768-2.437 3.41-3.498 4.624-.48.549-1.492 1.748-1.976 2.071-.058.039-.35.003-.52-.16-.162-.155-.205-.435-.2-.5.031-.445.728-1.245 1.044-1.866.734-1.441 1.796-3.209 2.992-4.977a59.1 59.1 0 0 1 1.811-2.535C24 13 24 13 24.867 13.555zm1.219-.694c.663-.182 1.235-.701 1.57-1.426.49-1.059.454-2.419-.101-3.83a.306.306 0 0 0-.533-.066c-.386.544-.893.725-1.48.935-.473.17-.962.344-1.491.725-.651.47-.995 1.088-.96 1.7.005.09 2.986 1.979 2.995 1.962z" />
+</svg>                            <div class="bp-tooltip">
+                                Редактировать стиль
+                                                            </div>
+                        </a>
+                                                                <a href="#"
+                            id="settings_block_manager"
+                            class="cm-no-ajax bp-modes__item bp-modes__item--build
+                                                        bp-modes__item--disabled"
+                            data-bp-modes-item="build"
+                            data-bp-tooltip="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+    class="bp-modes__item-icon">
+    <path d="M5 8h22v10.75l-2-1.25V10H7v11h9.75l.25 2H5" />
+    <path
+        d="M25.883 26.237L23.59 22.27l2.543-.372a.478.478 0 0 0 .189-.875l-6.834-4.38a.478.478 0 0 0-.735.425l.377 8.104a.478.478 0 0 0 .853.275l1.594-2.015 2.291 3.966a.478.478 0 0 0 .653.175l1.186-.684a.478.478 0 0 0 .175-.652z" />
+</svg>                            <div class="bp-tooltip">
+                                Редактировать структуру
+                                                                    <div class="bp-tooltip__secondary">
+                                        Доступно на следующих типах страниц: Домашняя страница, товар, категория, заказ.
+                                    </div>
+                                                            </div>
+                        </a>
+                                        <div id="bp-modes__active" class="bp-modes__active
+                                                    bp-modes__active--preview
+                        "
+                    ></div>
+                </div>
+                    
+                
+        <div class="bp-actions ">
+                            <div class="bp-dropdown bp-actions__item">
+                    <button class="bp-dropdown-button bp-dropdown-button--animation" data-bp-toggle="dropdown"
+                        data-bp-tooltip="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bp-dropdown-button-icon--settings">
+    <path
+        d="M19.9 10.613a.328.328 0 0 0-.219-.13l-1.904-.292a6.27 6.27 0 0 0-.427-1.02c.125-.173.312-.417.562-.733.25-.316.427-.546.53-.692a.4.4 0 0 0 .084-.24.335.335 0 0 0-.073-.228c-.25-.354-.822-.944-1.717-1.77a.401.401 0 0 0-.26-.103.338.338 0 0 0-.25.093L14.75 6.612a6.432 6.432 0 0 0-.937-.385l-.29-1.915a.309.309 0 0 0-.12-.224.393.393 0 0 0-.256-.088h-2.31c-.2 0-.326.097-.374.291-.09.347-.191.992-.302 1.936a5.954 5.954 0 0 0-.947.395L7.777 5.51a.443.443 0 0 0-.27-.104c-.153 0-.48.248-.984.744-.503.496-.844.869-1.025 1.118a.438.438 0 0 0-.093.24.39.39 0 0 0 .104.25c.465.561.836 1.04 1.113 1.435a5.19 5.19 0 0 0-.405.958l-1.936.291a.314.314 0 0 0-.198.135.4.4 0 0 0-.083.24v2.31c0 .09.028.171.083.244a.328.328 0 0 0 .219.13l1.904.281c.097.34.24.683.427 1.03a21.53 21.53 0 0 1-.562.734c-.25.316-.427.546-.53.692a.402.402 0 0 0-.011.478c.27.375.842.958 1.717 1.749a.359.359 0 0 0 .26.114c.104 0 .19-.031.26-.093l1.467-1.114c.285.146.597.274.937.385l.291 1.915a.31.31 0 0 0 .12.224.393.393 0 0 0 .255.088h2.31c.201 0 .326-.097.375-.292.09-.346.19-.991.301-1.935.326-.104.642-.236.947-.395l1.436 1.124a.508.508 0 0 0 .27.093c.153 0 .48-.246.979-.739.5-.492.843-.867 1.03-1.124a.347.347 0 0 0 .093-.239.4.4 0 0 0-.104-.26c-.5-.61-.87-1.089-1.113-1.436.139-.257.274-.572.406-.947l1.925-.291a.317.317 0 0 0 .208-.135.402.402 0 0 0 .083-.24v-2.31a.391.391 0 0 0-.083-.244zm-6.025 3.262c-.52.52-1.148.78-1.883.78-.736 0-1.364-.26-1.884-.78a2.566 2.566 0 0 1-.78-1.884c0-.735.26-1.363.78-1.883s1.148-.78 1.884-.78c.735 0 1.363.26 1.883.78s.78 1.148.78 1.883c0 .736-.26 1.364-.78 1.884z" />
+</svg>                        <span class="bp-tooltip">Настройки</span>
+                    </button>
+                    <div class="bp-dropdown-menu">
+                                                <div class="bp-dropdown-menu__group">
+                <span class="bp-dropdown-menu__item-text bp-dropdown-menu__item-text--head">Брендирование</span>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=themes.manage&amp;show_all_logos" title="Логотип">Логотип</a>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=settings.manage&amp;section_id=Company" title="Компания и контакты">Компания и контакты</a>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=customization.update_mode&amp;type=theme_editor&amp;status=enable" title="Цвета и шрифты темы">Цвета и шрифты темы</a>
+                            </div>
+                    <div class="bp-dropdown-menu__group">
+                <span class="bp-dropdown-menu__item-text bp-dropdown-menu__item-text--head">Юридические документы</span>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=languages.translations&amp;q=terms_and_conditions_content" title="Условия для покупателей">Условия для покупателей</a>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=pages.update&amp;page_id=3" title="Политика конфиденциальности">Политика конфиденциальности</a>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=addons.manage&amp;q=gdpr" title="Согласие на обработку данных (GDPR)">Согласие на обработку данных (GDPR)</a>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=pages.update&amp;page_id=21" title="Политика возврата товаров">Политика возврата товаров</a>
+                            </div>
+                    <div class="bp-dropdown-menu__group">
+                <span class="bp-dropdown-menu__item-text bp-dropdown-menu__item-text--head">Оформление заказа</span>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=customization.update_mode&amp;type=block_manager&amp;status=enable&amp;frontend_url=customization.edit_checkout" title="Структура и поля">Структура и поля</a>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=profile_fields.manage" title="Дополнительные поля">Дополнительные поля</a>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=payments.manage" title="Способы оплаты">Способы оплаты</a>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=shippings.manage" title="Способы доставки">Способы доставки</a>
+                                    <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=taxes.manage" title="Налоги">Налоги</a>
+                            </div>
+                        <div class="bp-dropdown-menu__group">
+                        <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=themes.manage" title="Изменить тему">Изменить тему</a>
+                <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=block_manager.manage&amp;selected_location=1&amp;redirect_to_block_manager=1" title="Редактировать макет">Редактировать макет</a>
+                <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=templates.manage" title="Редактировать шаблон">Редактировать шаблон</a>
+                <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=languages.translations" title="Редактировать переводы">Редактировать переводы</a>
+    
+        </div>
+                <div class="bp-dropdown-menu__group">
+                        <a class="bp-dropdown-menu__item cm-no-ajax" href="http://cscartex.devel/admin.php?dispatch=menus.manage" title="Редактировать меню">Редактировать меню</a>
+        
+        </div>
+            
+
+                    </div>
+                </div>
+                                        <div class="bp-dropdown bp-actions__item">
+                    <button class="bp-dropdown-button" data-bp-toggle="dropdown" data-bp-tooltip="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
+    <path
+        d="M18.911 7.98a7.958 7.958 0 0 0-2.908-2.908A7.817 7.817 0 0 0 11.992 4c-1.45 0-2.787.357-4.012 1.072A7.956 7.956 0 0 0 5.072 7.98 7.817 7.817 0 0 0 4 11.992c0 1.45.357 2.786 1.072 4.01a7.958 7.958 0 0 0 2.908 2.91 7.818 7.818 0 0 0 4.012 1.071 7.81 7.81 0 0 0 4.011-1.072 7.956 7.956 0 0 0 2.908-2.908 7.818 7.818 0 0 0 1.072-4.011c0-1.45-.357-2.788-1.072-4.012zm-5.587 9.006a.324.324 0 0 1-.094.24.323.323 0 0 1-.239.093h-1.998a.324.324 0 0 1-.24-.094.324.324 0 0 1-.093-.239v-1.998c0-.097.031-.177.094-.24a.325.325 0 0 1 .239-.093h1.998c.097 0 .177.032.239.094a.324.324 0 0 1 .094.24v1.997zm2.533-6.15a2.751 2.751 0 0 1-.29.63c-.108.163-.263.33-.464.5-.2.17-.36.29-.479.364-.118.073-.288.172-.51.296a1.753 1.753 0 0 0-.566.515c-.15.212-.224.384-.224.515a.324.324 0 0 1-.094.24.323.323 0 0 1-.239.093h-1.998a.324.324 0 0 1-.24-.093.324.324 0 0 1-.093-.24v-.374c0-.465.182-.9.546-1.306a3.564 3.564 0 0 1 1.202-.9c.333-.153.569-.31.708-.469.139-.16.208-.371.208-.634 0-.23-.13-.434-.39-.615-.26-.18-.557-.27-.89-.27-.36 0-.66.083-.895.25-.229.166-.527.485-.895.957a.307.307 0 0 1-.26.125.294.294 0 0 1-.198-.062l-1.373-1.04c-.16-.126-.187-.271-.084-.438.889-1.477 2.175-2.216 3.86-2.216.605 0 1.194.142 1.77.426a3.941 3.941 0 0 1 1.441 1.208c.385.52.578 1.085.578 1.696 0 .305-.044.586-.13.842z" />
+</svg>                        <span class="bp-tooltip">Помощь</span>
+                    </button>
+                    <div class="bp-dropdown-menu">
+                        <div class="bp-dropdown-menu__group">
+                            <a class="bp-dropdown-menu__item cm-no-ajax" target="_blank" href="https://docs.cs-cart.ru/4.16.x/?utm_source=cs_cart&amp;utm_medium=store">Документация</a>
+                            <a class="bp-dropdown-menu__item cm-no-ajax" target="_blank" href="https://forum.cs-cart.ru?utm_source=cs_cart&amp;utm_medium=store">Форум сообщества</a>
+                            <a class="bp-dropdown-menu__item cm-no-ajax" target="_blank" href="https://www.cs-cart.ru/videos/admin?utm_source=cs_cart&amp;utm_medium=store">Видеоуроки</a>
+                            <a class="bp-dropdown-menu__item cm-no-ajax" target="_blank" href="https://www.cs-cart.ru/vopros-otvet.html?utm_source=cs_cart&amp;utm_medium=store">Вопросы и ответы</a>
+                        </div>
+                        <div class="bp-dropdown-menu__group">
+                            <a class="bp-dropdown-menu__item cm-no-ajax" target="_blank" href="https://helpdesk.cs-cart.com/helpdesk?utm_source=cs_cart&amp;utm_medium=store">Связаться с техподдержкой</a>
+                            <a class="bp-dropdown-menu__item cm-no-ajax" target="_blank" href="https://marketplace.cs-cart.com/developers-catalog.html?utm_source=cs_cart&amp;utm_medium=store">Нанять разработчика</a>
+                        </div>
+                                                
+                    </div>
+                </div>
+                    </div>
+        <button id="bp_off_bottom_panel" class="bp-close"
+            data-bp-tooltip="true"
+            data-bp-save-state="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+    class="bp-close__icon">
+    <path
+        d="M16.644 8.966l-3.025 3.024 3.025 3.025a1.152 1.152 0 0 1-1.629 1.629l-3.025-3.025-3.024 3.025a1.148 1.148 0 0 1-1.628 0 1.152 1.152 0 0 1 0-1.63l3.024-3.024-3.025-3.024a1.152 1.152 0 0 1 1.629-1.629l3.024 3.025 3.025-3.025a1.152 1.152 0 0 1 1.629 1.629z" />
+</svg>            <span class="bp-tooltip bp-tooltip--right">Скрыть меню администратора</span>
+        </button>
+    </div>
+    <div id="bp_bottom_buttons" class="bp-bottom-buttons
+        ">
+        <button id="bp_on_bottom_panel"
+            class="bp-bottom-button bp-bottom-button--logo
+                            bp-bottom-button--disabled bp-bottom-button--disabled-panel
+            "
+            data-bp-bottom-buttons="panel"
+            data-bp-tooltip="true">
+            <img src="http://cscartex.devel/images/logos/8/cart.png" width="205" height="35" alt="" title="" class="bp-logo-img bp-bottom-button-img" />
+            <span class="bp-tooltip bp-tooltip--left">Показать меню администратора</span>
+        </button>
+                
+    </div>
+</div>
+
+<!-- Inline script moved to the bottom of the page -->
+        
+        <div class="ty-tygh  " data-ca-element="mainContainer" id="tygh_container">
+
+        <div id="ajax_overlay" class="ty-ajax-overlay"></div>
+<div id="ajax_loading_box" class="ty-ajax-loading-box"></div>
+        <div class="cm-notification-container notification-container">
+</div>
+        <div class="ty-helper-container bp-tygh-main-container"
+                    id="tygh_main_container">
+                                             
+<div class="tygh-top-panel clearfix">
+                <div class="container-fluid  top-grid">
+                                                
+            <div class="row-fluid">                        <div class="span3  top-links-grid ty-top-grid_float" >
+                                    <div class="top-currencies ty-float-left">
+                <div id="currencies_2">
+                                            <div class="ty-select-wrapper">
+    
+    <a class="ty-select-block__a cm-combination" id="sw_select_RUB_wrap_currency_64636752dd1de">
+                <span class="ty-select-block__a-item "> (₽)</span>
+        <span 
+        class="ty-icon ty-icon-down-micro ty-select-block__arrow"
+                                    ></span>
+    </a>
+
+    <div id="select_RUB_wrap_currency_64636752dd1de" class="ty-select-block cm-popup-box hidden">
+        <ul class="cm-select-list ty-select-block__list ty-flags">
+                            <li class="ty-select-block__list-item">
+                    <a rel="nofollow" href="http://cscartex.devel/index.php?dispatch=sd_departments.department&amp;department_id=2&amp;currency=USD" class="ty-select-block__list-a  "  data-ca-name="USD">
+                                         ($)                    </a>
+                </li>
+                            <li class="ty-select-block__list-item">
+                    <a rel="nofollow" href="http://cscartex.devel/index.php?dispatch=sd_departments.department&amp;department_id=2&amp;currency=RUB" class="ty-select-block__list-a is-active "  data-ca-name="RUB">
+                                         (₽)                    </a>
+                </li>
+                            <li class="ty-select-block__list-item">
+                    <a rel="nofollow" href="http://cscartex.devel/index.php?dispatch=sd_departments.department&amp;department_id=2&amp;currency=EUR" class="ty-select-block__list-a  "  data-ca-name="EUR">
+                                         (€)                    </a>
+                </li>
+                            <li class="ty-select-block__list-item">
+                    <a rel="nofollow" href="http://cscartex.devel/index.php?dispatch=sd_departments.department&amp;department_id=2&amp;currency=GBP" class="ty-select-block__list-a  "  data-ca-name="GBP">
+                                         (£)                    </a>
+                </li>
+                    </ul>
+    </div>
+</div>
+    <!--currencies_2--></div>
+
+                    </div>
+                            </div>
+                                                
+                                    <div class="span8  top-links-grid" >
+                                    <div class="top-quick-links ty-float-left">
+                    
+
+        <div class="ty-text-links-wrapper">
+        <span id="sw_text_links_3" class="ty-text-links-btn cm-combination visible-phone">
+            <span 
+        class="ty-icon ty-icon-short-list"
+                                    ></span>
+            <span 
+        class="ty-icon ty-icon-down-micro ty-text-links-btn__arrow"
+                                    ></span>
+        </span>
+    
+        <ul id="text_links_3" class="ty-text-links  cm-popup-box ty-text-links_show_inline"><li class="ty-text-links__item ty-level-0  ty-text-links__item--inline ty-quick-menu-item__points"><a class="ty-text-links__a ty-text-links__a--level-0  ty-text-links__a--inline" href="http://cscartex.devel/bonusnye-bally/">Бонусные баллы</a></li><li class="ty-text-links__item ty-level-0  ty-text-links__item--inline ty-quick-menu__delivery"><a class="ty-text-links__a ty-text-links__a--level-0  ty-text-links__a--inline" href="http://cscartex.devel/oplata-i-dostavka/">Доставка и оплата</a></li><li class="ty-text-links__item ty-level-0  ty-text-links__item--inline ty-quick-menu__pickup"><a class="ty-text-links__a ty-text-links__a--level-0  ty-text-links__a--inline" href="http://cscartex.devel/index.php?dispatch=store_locator.search">Пункты самовывоза</a></li><li class="ty-text-links__item ty-level-0  ty-text-links__subitems ty-text-links__item--inline ty-quick-menu-item__place-order"><a class="ty-text-links__a ty-text-links__a--level-0  ty-text-links__a--subitems ty-text-links__a--inline">Информация</a>    
+
+    
+        <ul  class="ty-text-links "><li class="ty-text-links__item ty-level-1  ty-text-links__item--submenu ty-quick-menu__contacts"><a class="ty-text-links__a ty-text-links__a--level-1  ty-text-links__a--submenu" href="http://cscartex.devel/kontakty/">Контакты</a></li><li class="ty-text-links__item ty-level-1  ty-text-links__item--submenu ty-quick-menu-item__gift"><a class="ty-text-links__a ty-text-links__a--level-1  ty-text-links__a--submenu" href="http://cscartex.devel/podarochnye-sertifikaty/">Подарочные сертификаты</a></li><li class="ty-text-links__item ty-level-1  ty-text-links__item--submenu"><a class="ty-text-links__a ty-text-links__a--level-1  ty-text-links__a--submenu" href="http://cscartex.devel/vozvrat/">Возврат</a></li></ul>
+
+    </li></ul>
+
+        </div>
+    
+                    </div>
+                            </div>
+                                                
+                                    <div class="span3  top-links-grid" >
+                                    <div class=" ty-float-right">
+                        <div class="ty-geo-maps__geolocation"
+         data-ca-geo-map-location-is-location-detected="true"
+         data-ca-geo-map-location-element="location_block"
+         id="geo_maps_location_block_4"
+    >
+        
+        
+
+    
+    
+
+    <a id="opener_geo_maps_location_dialog_4"
+        class="cm-dialog-opener cm-dialog-auto-size ty-geo-maps__geolocation__opener"
+        href="http://cscartex.devel/index.php?dispatch=geo_maps.customer_geolocation"         data-ca-target-id="content_geo_maps_location_dialog_4"
+                data-ca-dialog-title="Местоположение покупателя"        
+        rel="nofollow"
+    >
+        <span 
+        class="ty-icon ty-icon-location-arrow"
+                                    ></span>        <span class="ty-geo-maps__geolocation__opener-text">            <span data-ca-geo-map-location-element="location" class="ty-geo-maps__geolocation__location">Ульяновск</span>
+        </span>
+            </a>
+
+
+<div class="hidden" id="content_geo_maps_location_dialog_4" title="Выберите ваш город">
+    
+</div>
+    <!--geo_maps_location_block_4--></div>
+
+                    </div>
+                            </div>
+                                                
+                                    <div class="span2  top-links-grid" >
+                                    <div class="ty-dropdown-box  top-my-account ty-float-right">
+        <div id="sw_dropdown_5" class="ty-dropdown-box__title cm-combination logged">
+                                                        <a class="ty-account-info__title" href="http://cscartex.devel/profiles-update/">
+                    <span 
+        class="ty-icon ty-icon-moon-user"
+                                    ></span>
+                    <span class="hidden-phone" >Мой профиль</span>
+                    <span 
+        class="ty-icon ty-icon-down-micro ty-account-info__user-arrow"
+                                    ></span>
+                </a>
+            
+                        
+        </div>
+        <div id="dropdown_5" class="cm-popup-box ty-dropdown-box__content hidden">
+            
+<div id="account_info_5">
+        <ul class="ty-account-info">
+                                                                    <li class="ty-account-info__item  ty-account-info__name ty-dropdown-box__item">Администратор Главный</li>
+                                <li class="ty-account-info__item ty-dropdown-box__item"><a class="ty-account-info__a underlined" href="http://cscartex.devel/profiles-update/" rel="nofollow" >Учетная запись</a></li>
+                                        <li class="ty-account-info__item ty-dropdown-box__item"><a class="ty-account-info__a underlined" href="http://cscartex.devel/orders/" rel="nofollow">Заказы</a></li>
+                                            <li class="ty-account-info__item ty-dropdown-box__item"><a class="ty-account-info__a underlined" href="http://cscartex.devel/compare/" rel="nofollow">Список сравнения</a></li>
+                    
+
+    <li class="ty-account-info__item ty-dropdown-box__item"><a class="ty-account-info__a underlined" href="http://cscartex.devel/index.php?dispatch=vendor_communication.threads" rel="nofollow" >Сообщения</a></li>
+<li class="ty-account-info__item ty-dropdown-box__item">
+    <a class="ty-account-info__a underlined" href="http://cscartex.devel/index.php?dispatch=sd_departments.view" rel="nofollow">
+        Отделы
+    </a>
+</li><li class="ty-account-info__item ty-dropdown-box__item"><a class="ty-account-info__a" href="http://cscartex.devel/index.php?dispatch=reward_points.userlog" rel="nofollow">Мои баллы&nbsp;<span class="ty-reward-points-count">(0)</span></a></li>
+<li class="ty-account-info__item ty-dropdown-box__item"><a class="ty-account-info__a" href="http://cscartex.devel/wishlist/" rel="nofollow">Отложенные товары</a></li>    </ul>
+
+            <div class="ty-account-info__orders updates-wrapper track-orders" id="track_orders_block_5">
+            <form action="http://cscartex.devel/" method="POST" class="cm-ajax cm-post cm-ajax-full-render" name="track_order_quick">
+                <input type="hidden" name="result_ids" value="track_orders_block_*" />
+                <input type="hidden" name="return_url" value="index.php?dispatch=sd_departments.department&amp;department_id=2" />
+
+                <div class="ty-account-info__orders-txt">Отслеживание заказа</div>
+
+                <div class="ty-account-info__orders-input ty-control-group ty-input-append">
+                    <label for="track_order_item5" class="cm-required hidden">Отслеживание заказа</label>
+                    <input type="text" size="20" class="ty-input-text cm-hint" id="track_order_item5" name="track_data" value="Номер заказа" />
+                    <button title="Выполнить" class="ty-btn-go" type="submit"><span 
+        class="ty-icon ty-icon-right-dir ty-btn-go__icon"
+                                    ></span></button>
+<input type="hidden" name="dispatch" value="orders.track_request" />
+                                    </div>
+            <input type="hidden" name="security_hash" class="cm-no-hide-input" value="4ca1e11ca4efb7183c9cb348df9035ad" /></form>
+        <!--track_orders_block_5--></div>
+    
+    <div class="ty-account-info__buttons buttons-container">
+                                            <a href="http://cscartex.devel/index.php?dispatch=auth.logout&amp;redirect_url=index.php%3Fdispatch%3Dsd_departments.department%26department_id%3D2" rel="nofollow" class="ty-btn ty-btn__primary">Выйти</a>
+            </div>
+<!--account_info_5--></div>
+
+        </div>
+    </div>
+                            </div>
+        </div>    
+        </div>
+    
+
+</div>
+
+<div class="tygh-header clearfix">
+                <div class="container-fluid  header-grid">
+                                                
+            <div class="row-fluid">                        <div class="span3  top-logo-grid" >
+                                    <div class="top-logo ">
+                <div class="ty-logo-container">
+    
+            <a href="http://cscartex.devel/" title="">
+        <img class="ty-pict  ty-logo-container__image   cm-image" width="205" height="35" alt="" title="" id="det_img_621454669" src="http://cscartex.devel/images/logos/8/cart.png" />
+
+    
+            </a>
+    </div>
+
+                    </div>
+                            </div>
+                                                
+                                    <div class="span5  ty-cr-content-grid" >
+                                    <div class="ty-cr-phone-number-link">
+    <div class="ty-cr-phone"><span><bdi><span class="ty-cr-phone-prefix"></span></bdi></span><span class="ty-cr-work">Пн-Пт: 9:00-18:00</span></div>
+    <div class="ty-cr-link">
+                
+                            
+        
+
+
+    
+
+    <a id="opener_call_request_block7"
+        class="cm-dialog-opener cm-dialog-auto-size "
+        href="http://cscartex.devel/index.php?dispatch=call_requests.request&amp;obj_prefix=block&amp;obj_id=7"         data-ca-target-id="content_call_request_block7"
+                data-ca-dialog-title="Заказать обратный звонок"        
+        rel="nofollow"
+    >
+                <span >Заказать обратный звонок</span>
+            </a>
+
+
+<div class="hidden" id="content_call_request_block7" title="">
+    
+</div>
+    </div>
+</div>
+                            </div>
+                                                
+                                    <div class="span8  " >
+                                    <div class="row-fluid">                        <div class="span8  search-block-grid" >
+                                    <div class="top-search ">
+                <div class="ty-search-block">
+    <form action="http://cscartex.devel/" name="search_form" method="get">
+        <input type="hidden" name="match" value="all" />
+        <input type="hidden" name="subcats" value="Y" />
+        <input type="hidden" name="pcode_from_q" value="Y" />
+        <input type="hidden" name="pshort" value="Y" />
+        <input type="hidden" name="pfull" value="Y" />
+        <input type="hidden" name="pname" value="Y" />
+        <input type="hidden" name="pkeywords" value="Y" />
+        <input type="hidden" name="search_performed" value="Y" />
+
+        
+
+        <input type="text" name="q" value="" id="search_input" title="Искать товары" class="ty-search-block__input cm-hint" /><button title="Найти" class="ty-search-magnifier" type="submit"><span 
+        class="ty-icon ty-icon-search"
+                                    ></span></button>
+<input type="hidden" name="dispatch" value="products.search" />
+
+        
+    <input type="hidden" name="security_hash" class="cm-no-hide-input" value="4ca1e11ca4efb7183c9cb348df9035ad" /></form>
+</div>
+
+                    </div>
+                            </div>
+                                                
+                                    <div class="span8  cart-content-grid" >
+                                    <div class="top-cart-content ">
+                    <div class="ty-dropdown-box" id="cart_status_9">
+        <div id="sw_dropdown_9" class="ty-dropdown-box__title cm-combination">
+        <a href="http://cscartex.devel/cart/">
+                                    <span 
+        class="ty-icon ty-icon-moon-commerce ty-minicart__icon empty"
+                                    ></span>
+            <span class="ty-minicart-title empty-cart ty-hand">
+                <span class="ty-block ty-minicart-title__header ty-uppercase">Моя корзина</span>
+                <span class="ty-block">
+                                    Корзина пуста
+                                </span>
+            </span>
+            
+        </a>
+        </div>
+        <div id="dropdown_9" class="cm-popup-box ty-dropdown-box__content ty-dropdown-box__content--cart hidden">
+                            <div class="cm-cart-content cm-cart-content-thumb cm-cart-content-delete">
+                        <div class="ty-cart-items">
+                                                            <div class="ty-cart-items__empty ty-center">Корзина пуста</div>
+                                                    </div>
+
+                                                <div class="cm-cart-buttons ty-cart-content__buttons buttons-container hidden">
+                            <div class="ty-float-left">
+                                <a href="http://cscartex.devel/cart/" rel="nofollow" class="ty-btn ty-btn__secondary">Корзина</a>
+                            </div>
+                                                        <div class="ty-float-right">
+                                            
+ 
+    <a href="http://cscartex.devel/checkout/"  class="ty-btn ty-btn__primary " >Оформить заказ</a>
+                            </div>
+                                                    </div>
+                        
+                </div>
+            
+        </div>
+    <!--cart_status_9--></div>
+
+
+                    </div>
+                            </div>
+        </div>
+                            </div>
+        </div>                                        
+            <div class="row-fluid">                        <div class="span16  top-menu-grid" >
+                                    <div class="top-menu ">
+                
+    <ul class="ty-menu__items cm-responsive-menu">
+                    <li class="ty-menu__item ty-menu__menu-btn visible-phone cm-responsive-menu-toggle-main">
+                <a class="ty-menu__item-link">
+                    <span 
+        class="ty-icon ty-icon-short-list"
+                                    ></span>
+                    <span>Меню</span>
+                </a>
+            </li>
+
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu-item__products">
+                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                            <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                            <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                        </a>
+                                        <a  class="ty-menu__item-link" >
+                        Все товары
+                    </a>
+                
+                                            <div class="ty-menu__submenu" id="topmenu_10_d41d8cd98f00b204e9800998ecf8427e">
+                                                            <ul class="ty-menu__submenu-items cm-responsive-menu-submenu">
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/elektronika/" class="ty-menu__submenu-link" >Электроника</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/kompyutery/"                                                                        class="ty-menu__submenu-link" >Компьютеры</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/avtoelektronika/"                                                                        class="ty-menu__submenu-link" >Автоэлектроника</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/televizory-i-video/"                                                                        class="ty-menu__submenu-link" >Телевизоры и Видео</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/telefony/"                                                                        class="ty-menu__submenu-link" >Телефоны</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/mp3-pleery/"                                                                        class="ty-menu__submenu-link" >MP3 плееры</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/foto-video/"                                                                        class="ty-menu__submenu-link" >Фото видео</a>
+                                                            </li>
+                                                                                                                                                                            <li class="ty-menu__submenu-item ty-menu__submenu-alt-link">
+                                                                <a href="http://cscartex.devel/elektronika/"
+                                                                   class="ty-menu__submenu-link" >Больше <i class="text-arrow">&rarr;</i></a>
+                                                            </li>
+                                                                                                                
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/sport-i-otdyh/" class="ty-menu__submenu-link" >Спорт и отдых</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/velosipedy/"                                                                        class="ty-menu__submenu-link" >Велосипеды</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/golf/"                                                                        class="ty-menu__submenu-link" >Гольф</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/kemping/"                                                                        class="ty-menu__submenu-link" >Кемпинг</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/odezhda/" class="ty-menu__submenu-link" >Одежда</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/odezhda/muzhskaya-odezhda/"                                                                        class="ty-menu__submenu-link" >Мужская одежда</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/odezhda/zhenskaya-odezhda/"                                                                        class="ty-menu__submenu-link" >Женская одежда</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/odezhda/obuv/"                                                                        class="ty-menu__submenu-link" >Обувь</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/odezhda/chasy-i-dragocennosti/"                                                                        class="ty-menu__submenu-link" >Часы и драгоценности</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/kancelyarskie-tovary/" class="ty-menu__submenu-link" >Канцелярские товары</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/kancelyarskie-tovary/kalkulyatory/"                                                                        class="ty-menu__submenu-link" >Калькуляторы</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/kancelyarskie-tovary/prinadlezhnosti-na-stol/"                                                                        class="ty-menu__submenu-link" >Принадлежности на стол</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/kancelyarskie-tovary/seyfy/"                                                                        class="ty-menu__submenu-link" >Сейфы</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/multimedia/" class="ty-menu__submenu-link" >Мультимедиа</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/muzyka/"                                                                        class="ty-menu__submenu-link" >Музыка</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/filmy/"                                                                        class="ty-menu__submenu-link" >Фильмы</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/videoigry/"                                                                        class="ty-menu__submenu-link" >Видеоигры</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                                                        </ul>
+                            
+                        </div>
+                    
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu-item__apparel">
+                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                            <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                            <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                        </a>
+                                        <a  href="http://cscartex.devel/odezhda/" class="ty-menu__item-link" >
+                        Одежда
+                    </a>
+                
+                                                                <div class="ty-menu__submenu">
+                            <ul class="ty-menu__submenu-items ty-menu__submenu-items-simple cm-responsive-menu-submenu">
+                                
+                                                                                                        <li class="ty-menu__submenu-item">
+                                        <a class="ty-menu__submenu-link"  href="http://cscartex.devel/odezhda/muzhskaya-odezhda/" >Мужская одежда</a>
+                                    </li>
+                                                                                                        <li class="ty-menu__submenu-item">
+                                        <a class="ty-menu__submenu-link"  href="http://cscartex.devel/odezhda/zhenskaya-odezhda/" >Женская одежда</a>
+                                    </li>
+                                                                                                        <li class="ty-menu__submenu-item">
+                                        <a class="ty-menu__submenu-link"  href="http://cscartex.devel/odezhda/obuv/" >Обувь</a>
+                                    </li>
+                                                                                                        <li class="ty-menu__submenu-item">
+                                        <a class="ty-menu__submenu-link"  href="http://cscartex.devel/odezhda/chasy-i-dragocennosti/" >Часы и драгоценности</a>
+                                    </li>
+                                                                
+                                
+                            </ul>
+                        </div>
+                    
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu-item__electronics">
+                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                            <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                            <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                        </a>
+                                        <a  href="http://cscartex.devel/elektronika/" class="ty-menu__item-link" >
+                        Электроника
+                    </a>
+                
+                                            <div class="ty-menu__submenu" id="topmenu_10_5d74fb55ae5c5d9df4b3525018c599cf">
+                                                            <ul class="ty-menu__submenu-items cm-responsive-menu-submenu">
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/elektronika/kompyutery/" class="ty-menu__submenu-link" >Компьютеры</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/kompyutery/nastolnye-pk/"                                                                        class="ty-menu__submenu-link" >Настольные ПК</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/kompyutery/noutbuki/"                                                                        class="ty-menu__submenu-link" >Ноутбуки</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/kompyutery/planshety/"                                                                        class="ty-menu__submenu-link" >Планшеты</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/kompyutery/monitory/"                                                                        class="ty-menu__submenu-link" >Мониторы</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/kompyutery/setevoe-oborudovanie/"                                                                        class="ty-menu__submenu-link" >Сетевое оборудование</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/kompyutery/printery-i-skanery/"                                                                        class="ty-menu__submenu-link" >Принтеры и сканеры</a>
+                                                            </li>
+                                                                                                                                                                            <li class="ty-menu__submenu-item ty-menu__submenu-alt-link">
+                                                                <a href="http://cscartex.devel/elektronika/kompyutery/"
+                                                                   class="ty-menu__submenu-link" >Больше <i class="text-arrow">&rarr;</i></a>
+                                                            </li>
+                                                                                                                
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/elektronika/avtoelektronika/" class="ty-menu__submenu-link" >Автоэлектроника</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/avtoelektronika/gps-navigatory/"                                                                        class="ty-menu__submenu-link" >GPS навигаторы</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/avtoelektronika/avtomagnitoly/"                                                                        class="ty-menu__submenu-link" >Автомагнитолы</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/avtoelektronika/dinamiki/"                                                                        class="ty-menu__submenu-link" >Динамики</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/avtoelektronika/sabvufery/"                                                                        class="ty-menu__submenu-link" >Сабвуферы</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/avtoelektronika/usiliteli/"                                                                        class="ty-menu__submenu-link" >Усилители</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/avtoelektronika/avtotelevizory-i-dvd/"                                                                        class="ty-menu__submenu-link" >Автотелевизоры и DVD</a>
+                                                            </li>
+                                                                                                                                                                            <li class="ty-menu__submenu-item ty-menu__submenu-alt-link">
+                                                                <a href="http://cscartex.devel/elektronika/avtoelektronika/"
+                                                                   class="ty-menu__submenu-link" >Больше <i class="text-arrow">&rarr;</i></a>
+                                                            </li>
+                                                                                                                
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/elektronika/televizory-i-video/" class="ty-menu__submenu-link" >Телевизоры и Видео</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/televizory-i-video/led-televizory/"                                                                        class="ty-menu__submenu-link" >LED телевизоры</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/televizory-i-video/plazmennye-televizory/"                                                                        class="ty-menu__submenu-link" >Плазменные телевизоры</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/televizory-i-video/3d-televizory/"                                                                        class="ty-menu__submenu-link" >3D телевизоры</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/televizory-i-video/dvd-i-blu-ray-pleery/"                                                                        class="ty-menu__submenu-link" >DVD и Blu-ray плееры</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/televizory-i-video/domashnie-kinoteatry/"                                                                        class="ty-menu__submenu-link" >Домашние кинотеатры</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/elektronika/telefony/" class="ty-menu__submenu-link" >Телефоны</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/telefony/apple-iphone/"                                                                        class="ty-menu__submenu-link" >Apple iPhone</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/telefony/htc/"                                                                        class="ty-menu__submenu-link" >HTC</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/telefony/motorola/"                                                                        class="ty-menu__submenu-link" >Motorola</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/telefony/nokia/"                                                                        class="ty-menu__submenu-link" >Nokia</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/telefony/samsung/"                                                                        class="ty-menu__submenu-link" >Samsung</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/elektronika/mp3-pleery/" class="ty-menu__submenu-link" >MP3 плееры</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/mp3-pleery/ipod/"                                                                        class="ty-menu__submenu-link" >iPod</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/mp3-pleery/android/"                                                                        class="ty-menu__submenu-link" >Android</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/mp3-pleery/mp3-pleery/"                                                                        class="ty-menu__submenu-link" >MP3 плееры</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/mp3-pleery/audiosistemy-dlya-mp3/"                                                                        class="ty-menu__submenu-link" >Аудиосистемы для MP3</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/mp3-pleery/naushniki/"                                                                        class="ty-menu__submenu-link" >Наушники</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/elektronika/foto-video/" class="ty-menu__submenu-link" >Фото видео</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/foto-video/cifrovye-fotoapparaty/"                                                                        class="ty-menu__submenu-link" >Цифровые фотоаппараты</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/foto-video/zerkalnye-fotoapparaty/"                                                                        class="ty-menu__submenu-link" >Зеркальные фотоаппараты</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/foto-video/videokamery/"                                                                        class="ty-menu__submenu-link" >Видеокамеры</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/foto-video/obektivy/"                                                                        class="ty-menu__submenu-link" >Объективы</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/elektronika/igrovye-pristavki/" class="ty-menu__submenu-link" >Игровые приставки</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/igrovye-pristavki/aksessuary/"                                                                        class="ty-menu__submenu-link" >Аксессуары</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/elektronika/igrovye-pristavki/pristavki/"                                                                        class="ty-menu__submenu-link" >Приставки</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                                                        </ul>
+                            
+                        </div>
+                    
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu-item__sport">
+                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                            <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                            <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                        </a>
+                                        <a  href="http://cscartex.devel/sport-i-otdyh/" class="ty-menu__item-link" >
+                        Спорт и отдых
+                    </a>
+                
+                                            <div class="ty-menu__submenu" id="topmenu_10_e15215d8fc38a977711b05260a1b088b">
+                                                            <ul class="ty-menu__submenu-items cm-responsive-menu-submenu">
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/sport-i-otdyh/velosipedy/" class="ty-menu__submenu-link" >Велосипеды</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/velosipedy/komfort-i-kruizer/"                                                                        class="ty-menu__submenu-link" >Комфорт и круизер</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/velosipedy/shosseynye-velosipedy/"                                                                        class="ty-menu__submenu-link" >Шоссейные велосипеды</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/velosipedy/gornye-velosipedy/"                                                                        class="ty-menu__submenu-link" >Горные велосипеды</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/sport-i-otdyh/golf/" class="ty-menu__submenu-link" >Гольф</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/golf/klyushki-dlya-golfa/"                                                                        class="ty-menu__submenu-link" >Клюшки для гольфа</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/golf/shary-dlya-golfa/"                                                                        class="ty-menu__submenu-link" >Шары для гольфа</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/golf/sumki-dlya-golfa/"                                                                        class="ty-menu__submenu-link" >Сумки для гольфа</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/sport-i-otdyh/kemping/" class="ty-menu__submenu-link" >Кемпинг</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/kemping/ryukzaki/"                                                                        class="ty-menu__submenu-link" >Рюкзаки</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/kemping/spalniki/"                                                                        class="ty-menu__submenu-link" >Спальники</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/sport-i-otdyh/kemping/palatki/"                                                                        class="ty-menu__submenu-link" >Палатки</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                                                        </ul>
+                            
+                        </div>
+                    
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu-item__office">
+                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                            <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                            <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                        </a>
+                                        <a  href="http://cscartex.devel/kancelyarskie-tovary/" class="ty-menu__item-link" >
+                        Канцелярские товары
+                    </a>
+                
+                                                                <div class="ty-menu__submenu">
+                            <ul class="ty-menu__submenu-items ty-menu__submenu-items-simple cm-responsive-menu-submenu">
+                                
+                                                                                                        <li class="ty-menu__submenu-item">
+                                        <a class="ty-menu__submenu-link"  href="http://cscartex.devel/kancelyarskie-tovary/kalkulyatory/" >Калькуляторы</a>
+                                    </li>
+                                                                                                        <li class="ty-menu__submenu-item">
+                                        <a class="ty-menu__submenu-link"  href="http://cscartex.devel/kancelyarskie-tovary/prinadlezhnosti-na-stol/" >Принадлежности на стол</a>
+                                    </li>
+                                                                                                        <li class="ty-menu__submenu-item">
+                                        <a class="ty-menu__submenu-link"  href="http://cscartex.devel/kancelyarskie-tovary/seyfy/" >Сейфы</a>
+                                    </li>
+                                                                
+                                
+                            </ul>
+                        </div>
+                    
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu-item__media">
+                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                            <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                            <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                        </a>
+                                        <a  href="http://cscartex.devel/multimedia/" class="ty-menu__item-link" >
+                        Мультимедиа
+                    </a>
+                
+                                            <div class="ty-menu__submenu" id="topmenu_10_f55cf6b71677195ba2dc61136b185c0c">
+                                                            <ul class="ty-menu__submenu-items cm-responsive-menu-submenu">
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/multimedia/muzyka/" class="ty-menu__submenu-link" >Музыка</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/muzyka/blyuz/"                                                                        class="ty-menu__submenu-link" >Блюз</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/muzyka/klassicheskaya-muzyka/"                                                                        class="ty-menu__submenu-link" >Классическая музыка</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/muzyka/dzhaz/"                                                                        class="ty-menu__submenu-link" >Джаз</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/muzyka/rok/"                                                                        class="ty-menu__submenu-link" >Рок</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/multimedia/filmy/" class="ty-menu__submenu-link" >Фильмы</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/filmy/blu-ray-diski/"                                                                        class="ty-menu__submenu-link" >Blu-ray диски</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/filmy/video-filmy-dvd/"                                                                        class="ty-menu__submenu-link" >Видео фильмы (DVD)</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/filmy/serialy-dvd/"                                                                        class="ty-menu__submenu-link" >Сериалы (DVD)</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                            <li class="ty-top-mine__submenu-col">
+                                                                                        <div class="ty-menu__submenu-item-header">
+                                                <a href="http://cscartex.devel/multimedia/videoigry/" class="ty-menu__submenu-link" >Видеоигры</a>
+                                            </div>
+                                                                                            <a class="ty-menu__item-toggle visible-phone cm-responsive-menu-toggle">
+                                                    <span 
+        class="ty-icon ty-icon-down-open ty-menu__icon-open"
+                                    ></span>
+                                                    <span 
+        class="ty-icon ty-icon-up-open ty-menu__icon-hide"
+                                    ></span>
+                                                </a>
+                                                                                        <div class="ty-menu__submenu">
+                                                <ul class="ty-menu__submenu-list cm-responsive-menu-submenu">
+                                                                                                                                                                                                                                                                                            <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/videoigry/nintendo-wii/"                                                                        class="ty-menu__submenu-link" >Nintendo Wii</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/videoigry/playstation-3/"                                                                        class="ty-menu__submenu-link" >PlayStation 3</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/videoigry/playstation-vita/"                                                                        class="ty-menu__submenu-link" >PlayStation Vita</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/videoigry/xbox-360/"                                                                        class="ty-menu__submenu-link" >Xbox 360</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/videoigry/playstation-4/"                                                                        class="ty-menu__submenu-link" >PlayStation 4</a>
+                                                            </li>
+                                                                                                                                                                                <li class="ty-menu__submenu-item">
+                                                                <a href="http://cscartex.devel/multimedia/videoigry/x-box-one/"                                                                        class="ty-menu__submenu-link" >X-Box One</a>
+                                                            </li>
+                                                                                                                                                                        
+                                                                                                    </ul>
+                                            </div>
+                                        </li>
+                                                                                                        </ul>
+                            
+                        </div>
+                    
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu__item-nodrop ty-menu-item__brands">
+                                        <a  href="http://cscartex.devel/index.php?dispatch=product_features.view_all&amp;filter_id=10" class="ty-menu__item-link" >
+                        Бренды
+                    </a>
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu__item-nodrop ty-menu-item__newest">
+                                        <a  href="http://cscartex.devel/index.php?dispatch=products.newest" class="ty-menu__item-link" >
+                        Новинки
+                    </a>
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu__item-nodrop ty-menu-item__hits">
+                                        <a  href="http://cscartex.devel/index.php?dispatch=products.bestsellers" class="ty-menu__item-link" >
+                        Хиты продаж
+                    </a>
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu__item-nodrop ty-menu-item__sale">
+                                        <a  href="http://cscartex.devel/index.php?dispatch=products.on_sale" class="ty-menu__item-link" >
+                        Скидки
+                    </a>
+                            </li>
+                                            
+                        <li class="ty-menu__item cm-menu-item-responsive  ty-menu__item-nodrop ty-menu-item__promotions">
+                                        <a  href="http://cscartex.devel/promotions/" class="ty-menu__item-link" >
+                        Акции
+                    </a>
+                            </li>
+        
+        
+    </ul>
+
+
+                    </div>
+                            </div>
+        </div>    
+        </div>
+    
+
+</div>
+
+    <div class="tygh-content clearfix">
+                    <div class="container-fluid  content-grid">
+                                                
+            <div class="row-fluid">                        <div class="span16  breadcrumbs-grid" >
+                                    <div id="breadcrumbs_11">
+
+    <div class="ty-breadcrumbs clearfix">
+        <a href="http://cscartex.devel/" class="ty-breadcrumbs__a">Главная</a><span class="ty-breadcrumbs__slash">/</span><a href="http://cscartex.devel/index.php?dispatch=sd_departments.view" class="ty-breadcrumbs__a">Отделы</a><span class="ty-breadcrumbs__slash">/</span><span class="ty-breadcrumbs__current"><bdi>Тестовый отдел</bdi></span>    </div>
+<!--breadcrumbs_11--></div>
+                            </div>
+        </div>                                        
+            <div class="row-fluid">                        <div class="span16  main-content-grid" >
+                                    <div class="ty-mainbox-container clearfix">
+                                    <h1 class="ty-mainbox-title">
+                                                                	Название отдела: Тестовый отдел
+
+	<br />
+
+	Руководитель: Денис Петров
+
+                                        
+                </h1>
+            
+                <div class="ty-mainbox-body"><div id="product_features_12">
+    <div class="ty-feature">
+        <div class="ty-feature__image">
+            <span class="ty-no-image" style="height: 150px; width: 150px; "><span 
+        class="ty-icon ty-icon-image ty-no-image__icon"
+                 
+            title="Нет изображения"
+                            ></span></span>
+        </div>
+        <div class="ty-feature__description ty-wysiwyg-content">
+    		    			<p>Нет описания</p>
+    		        </div>
+    </div>
+    
+        	<!-- Inline script moved to the bottom of the page -->
+
+    
+    <div class="ty-pagination-container cm-pagination-container" id="pagination_contents">
+
+    
+    
+
+    
+    
+
+
+
+<!-- Inline script moved to the bottom of the page -->
+
+<div class="grid-list">
+    <h2>Сотрудники:</h2><div class="ty-column3"><div class="ty-grid-list__item ty-grid-promotions__item"><span class="ty-no-image" style="height: 150px; width: 150px; "><span 
+        class="ty-icon ty-icon-image ty-no-image__icon"
+                 
+            title="Нет изображения"
+                            ></span></span>
+<div class="ty-grid-promotions__content"><h2 class="ty-grid-promotions__header">&ZeroWidthSpace;Маслов Алексей</h2><div class="ty-wysiwyg-content ty-grid-promotions__description"><p>E-mail: user9@example.com</p><p>Телефон: +79032125622</p><p>Компания: CS-Cart</p></div></div></div></div><div class="ty-column3"><div class="ty-grid-list__item ty-grid-promotions__item"><span class="ty-no-image" style="height: 150px; width: 150px; "><span 
+        class="ty-icon ty-icon-image ty-no-image__icon"
+                 
+            title="Нет изображения"
+                            ></span></span>
+<div class="ty-grid-promotions__content"><h2 class="ty-grid-promotions__header">&ZeroWidthSpace;Петрова Анна</h2><div class="ty-wysiwyg-content ty-grid-promotions__description"><p>E-mail: user1@example.com</p><p>Телефон: +79278172311</p><p>Компания: CS-Cart</p></div></div></div></div><div class="ty-column3"></div></div>
+
+    
+
+
+    <!--pagination_contents--></div>
+    
+    </div>
+
+
+</div>
+    </div>
+                            </div>
+        </div>    
+        </div>
+    
+
+    </div>
+
+
+
+<div class="tygh-footer clearfix" id="tygh_footer">
+                <div class="container-fluid  ty-footer-grid">
+                                                
+            <div class="row-fluid">                        <div class="span16  ty-footer-grid__full-width footer-stay-connected" >
+                                    <div class="row-fluid">                        <div class="span10  ty-grid" >
+                                    <div class="ty-footer-form-block ty-footer-newsletters-block no-help">
+    <form action="http://cscartex.devel/" method="post" name="subscribe_form" class="cm-processing-personal-data">
+        <input type="hidden" name="redirect_url" value="index.php?dispatch=sd_departments.department&amp;department_id=2" />
+        <input type="hidden" name="newsletter_format" value="2" />
+        <h3 class="ty-footer-form-block__title">Оставайтесь на связи</h3>
+        <div class="ty-footer-form-block__form ty-control-group with-side">
+            <h3 class="ty-uppercase ty-social-link__title"><span 
+        class="ty-icon ty-icon-moon-mail"
+                                    ></span>Эксклюзивные скидки<span class="ty-block">Подпишитесь на наши новости и получите купон на скидку 10%!</span></h3>
+        </div>
+
+        
+        <div class="ty-footer-form-block__form ty-control-group">
+            <div class="ty-footer-form-block__input cm-block-add-subscribe">
+            <label class="cm-required cm-email hidden" for="subscr_email13">E-mail</label>
+                <input type="text" name="subscribe_email" id="subscr_email13" size="20" placeholder="E-mail" class="cm-hint ty-input-text-medium ty-valign-top" />
+            </div>
+            <div class="ty-footer-form-block__button">
+                
+     <button  class="ty-btn__subscribe ty-btn" type="submit" name="dispatch[newsletters.add_subscriber]" >Подписаться</button>
+
+            </div>
+        </div>
+                
+        
+    <div id="gdpr_tooltip_subscr_email13"
+    class="tooltip cm-gdpr-tooltip arrow-down ty-gdpr-tooltip ty-gdpr-tooltip--light center"
+    data-ce-gdpr-target-elem="subscr_email13">
+    <span class="tooltip-arrow"></span>
+    <button type="button" class="cm-gdpr-tooltip--close close ty-gdpr-tooltip--close">×</button>
+    <div class="ty-gdpr-tooltip-content">
+                <p>Когда Вы подписываетесь на рассылку, мы (CS-Cart) добавляем ваш адрес электронной почты в соответствующий список рассылки. Пока он хранится там, мы знаем, что сможем связаться с вами при случае.</p> <p>Вы всегда можете попросить нас удалить ваш адрес из списка. Есть несколько способов сделать это:</p><ul> <li>После регистрации учётной записи, войдите в неё и отмените подписку в настройках вашего профиля.</li> <li>Воспользуйтесь ссылкой "Отменить подписку" в письмах, которые Вы получаете.</li> <li>Отправить письмо по адресу dev@example.com.</li> </ul> <p>Мы можем использовать третьесторонние почтовые сервисы (MailChimp и/или Mad Mimi) для отправки рассылок. Некоторые сотрудники нашего магазина могут просматривать списки рассылок с адресами. Таким образом они смогут удалить Ваш адрес электронной почты из списка, если Вы потребуете сделать это.</p> <p>Пожалуйста, обратите внимание не связаны друг с другом. Если вы решите отказаться от всех рассылок, вам придётся удалить себя из каждого списка. Однако, даже, если вы сделаете это, вы всё равно будете получать письма с информацией о действиях в Вашей учётной записи (например, уведомления о статусе заказов, уведомления об изменении пароля и другие). Это необходимо для работы с интернет-магазином.</p> <p>Если Вы решите, что больше не хотите пользоваться услугами нашего магазина и хотите, чтобы Ваши данные были удалены из нашей базы данных (или хотите получить все персональные данные, связанные с вашей учётной записью), пожалуйста отправьте письмо на dev@example.com.</p> <p>Если Вы считаете, что Ваши персональные данные используются не по назначению, Вы имеете право обратиться с жалобой в надзорный орган. Согласно “Общему регламенту по защите данных” в ЕС мы обязаны сообщить Вам об этом праве, однако мы не планируем использовать Ваши данные не по назначению.</p>
+        
+    </div>
+</div>    <input type="hidden" name="security_hash" class="cm-no-hide-input" value="4ca1e11ca4efb7183c9cb348df9035ad" /></form>
+</div>
+                            </div>
+                                                
+                                    <div class="span6  ty-grid" >
+                                    <div class="ty-wysiwyg-content"  data-ca-live-editor-object-id="0" data-ca-live-editor-object-type=""><div class="ty-social-link-block"><h3 class="ty-social-link__title">Присоединяйтесь!</h3>
+
+<div class="ty-social-link facebook">
+    <a target="_blank" href="https://www.facebook.com/CSCartRu"><span class="ty-icon ty-icon-facebook ty-icon-moon-facebook"></span></a>
+</div>
+
+<div class="ty-social-link instagram">
+    <a target="_blank" href="https://www.instagram.com"><span class="ty-icon ty-icon-instagram ty-icon-moon-instagram"></span></a>
+</div>
+
+<div class="ty-social-link twitter">
+    <a  target="_blank" href="http://vk.com"><span class="ty-icon ty-icon-twitter ty-icon-moon-vk"></span></a>
+</div>
+
+<div class="ty-social-link youtube">
+    <a target="_blank" href="https://www.youtube.com/channel/UC5hI_lecNxdp1UfLR2GZ4iQ"><span class="ty-icon ty-icon-youtube ty-icon-moon-youtube"></span></a>
+</div></div></div>
+                            </div>
+        </div>
+                            </div>
+        </div>                                        
+            <div class="row-fluid">                        <div class="span16  ty-footer-grid__full-width ty-footer-menu" >
+                                    <div class="row-fluid">                        <div class="span4  my-account-grid" >
+                                    <div class="ty-footer ty-float-left">
+        <h2 class="ty-footer-general__header  cm-combination" id="sw_footer-general_15">
+                                        <span>Кабинет покупателя</span>
+                        
+        <span 
+        class="ty-icon ty-icon-down-open ty-footer-menu__icon-open"
+                                    ></span>
+        <span 
+        class="ty-icon ty-icon-up-open ty-footer-menu__icon-hide"
+                                    ></span>
+        </h2>
+        <div class="ty-footer-general__body" id="footer-general_15"><ul id="account_info_links_15" class="ty-account-info__links">
+    <li><a href="http://cscartex.devel/profiles-update/">Учетная запись</a></li>
+    <li><a href="http://cscartex.devel/orders/">Заказы</a></li>
+            <li><a href="http://cscartex.devel/wishlist/">Отложенные товары</a></li>
+            <li><a href="http://cscartex.devel/compare/">Список сравнения</a></li>
+    <!--account_info_links_15--></ul></div>
+    </div>
+                            </div>
+                                                
+                                    <div class="span4  footer-store-grid" >
+                                    <div class="ty-footer footer-menu-shop ty-float-left">
+        <h2 class="ty-footer-general__header  cm-combination" id="sw_footer-general_16">
+                                        <span>Магазин</span>
+                        
+        <span 
+        class="ty-icon ty-icon-down-open ty-footer-menu__icon-open"
+                                    ></span>
+        <span 
+        class="ty-icon ty-icon-up-open ty-footer-menu__icon-hide"
+                                    ></span>
+        </h2>
+        <div class="ty-footer-general__body" id="footer-general_16">
+
+    
+        <ul id="text_links_16" class="ty-text-links "><li class="ty-text-links__item ty-level-0 "><a class="ty-text-links__a ty-text-links__a--level-0 " href="http://cscartex.devel/o-kompanii/">О компании</a></li><li class="ty-text-links__item ty-level-0 "><a class="ty-text-links__a ty-text-links__a--level-0 " href="http://cscartex.devel/blog/">Блог магазина</a></li><li class="ty-text-links__item ty-level-0 "><a class="ty-text-links__a ty-text-links__a--level-0 " href="http://cscartex.devel/index.php?dispatch=discussion.view&amp;thread_id=26">Отзывы покупателей</a></li><li class="ty-text-links__item ty-level-0 "><a class="ty-text-links__a ty-text-links__a--level-0 " href="http://cscartex.devel/bonusnye-bally/">Бонусные баллы</a></li><li class="ty-text-links__item ty-level-0 "><a class="ty-text-links__a ty-text-links__a--level-0 " href="http://cscartex.devel/podarochnye-sertifikaty/">Подарочные сертификаты</a></li><li class="ty-text-links__item ty-level-0 "><a class="ty-text-links__a ty-text-links__a--level-0 " href="http://cscartex.devel/sitemap/">Карта сайта</a></li></ul>
+
+    </div>
+    </div>
+                            </div>
+                                                
+                                    <div class="span4  customer-service-grid" >
+                                    <div class="ty-footer footer-menu-create-orders ty-float-left">
+        <h2 class="ty-footer-general__header  cm-combination" id="sw_footer-general_17">
+                                        <span>Оформление заказа</span>
+                        
+        <span 
+        class="ty-icon ty-icon-down-open ty-footer-menu__icon-open"
+                                    ></span>
+        <span 
+        class="ty-icon ty-icon-up-open ty-footer-menu__icon-hide"
+                                    ></span>
+        </h2>
+        <div class="ty-footer-general__body" id="footer-general_17">
+
+    
+        <ul id="text_links_17" class="ty-text-links "><li class="ty-text-links__item ty-level-0 "><a class="ty-text-links__a ty-text-links__a--level-0 " href="http://cscartex.devel/oplata-i-dostavka/">Доставка и оплата</a></li><li class="ty-text-links__item ty-level-0 "><a class="ty-text-links__a ty-text-links__a--level-0 " href="http://cscartex.devel/vozvrat/">Возврат</a></li><li class="ty-text-links__item ty-level-0 "><a class="ty-text-links__a ty-text-links__a--level-0 " href="http://cscartex.devel/index.php?dispatch=store_locator.search">Store locator</a></li></ul>
+
+    </div>
+    </div>
+                            </div>
+                                                
+                                    <div class="span4  about-grid" >
+                                    <div class="ty-footer footer-no-wysiwyg footer-contacts ty-float-left">
+        <h2 class="ty-footer-general__header  cm-combination" id="sw_footer-general_18">
+                                        <span>Контакты</span>
+                        
+        <span 
+        class="ty-icon ty-icon-down-open ty-footer-menu__icon-open"
+                                    ></span>
+        <span 
+        class="ty-icon ty-icon-up-open ty-footer-menu__icon-hide"
+                                    ></span>
+        </h2>
+        <div class="ty-footer-general__body" id="footer-general_18"><div class="ty-wysiwyg-content"  data-ca-live-editor-object-id="0" data-ca-live-editor-object-type=""><ul>
+    <li>г. Москва, ул. 1-я Дубровская, д.1, офис 100</li>
+    <li><bdi>8-800-000-00-00</bdi> (звонок бесплатный)</li>
+    <li><bdi>Пн-Пт 9.00 - 18.00</bdi></li>
+    <li><a class="ty-exception__links-a greeny" href="mailto:sales@example.com">sales@example.com</a></li>
+
+    <li><a href="http://cscartex.devel/kontakty/" class="ty-exception__links-a">Посмотреть на карте</a></li>
+
+</ul>
+
+
+
+</div></div>
+    </div>
+                            </div>
+        </div>
+                            </div>
+        </div>                                        
+            <div class="row-fluid">                        <div class="span16  ty-footer-grid__full-width footer-copyright" >
+                                    <div class="row-fluid">                        <div class="span8  " >
+                                    <div class=" ty-float-left">
+                <p class="bottom-copyright">
+    &copy;
+            2004 -
+        
+    2023 CS-Cart. &nbsp;На базе <a class="bottom-copyright" href="https://www.cs-cart.ru?utm_source=Powered+by&amp;utm_medium=referral&amp;utm_campaign=footer&amp;utm_content=cscartex.devel" target="_blank">CS-Cart - Платформа для интернет-магазинов</a>
+</p>
+                    </div>
+                            </div>
+                                                
+                                    <div class="span8  " >
+                                    <div class=" ty-float-right">
+                <div class="ty-payment-icons ty-payment-rus-icons">
+        <span class="ty-payment-icons__item yandex">&nbsp;</span>
+    <span class="ty-payment-icons__item visa">&nbsp;</span>
+    <span class="ty-payment-icons__item mastercard">&nbsp;</span>
+    <span class="ty-payment-icons__item qiwi">&nbsp;</span>
+    <span class="ty-payment-icons__item paypal">&nbsp;</span>
+    
+</div>
+
+                    </div>
+                            </div>
+        </div>
+                            </div>
+        </div>    
+        </div>
+    
+
+</div>
+
+        
+
+            
+        <!--tygh_main_container--></div>
+
+        
+        <!--tygh_container--></div>
+
+        
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"
+            data-no-defer
+    ></script>
+    <script data-no-defer>
+        if (!window.jQuery) {
+            document.write('<script src="http://cscartex.devel/js/lib/jquery/jquery-3.5.1.min.js?ver=1684235502" ><\/script>');
+        }
+    </script>
+
+<script src="http://cscartex.devel/var/cache/misc/assets/js/tygh/scripts-b8d2bba476dc3b318e483aaa35af3646.js?1684235467"></script>
+<script>
+(function(_, $) {
+
+    _.tr({
+        cannot_buy: 'Невозможно купить этот товар с выбранными вариантами опций',
+        no_products_selected: 'Товары не выбраны',
+        error_no_items_selected: 'Нет выбранных элементов! Для выполнения этого действия должен быть выбран хотя бы один элемент.',
+        delete_confirmation: 'Вы уверены, что хотите удалить выбранные записи?',
+        text_out_of_stock: 'Нет в наличии',
+        items: 'шт.',
+        text_required_group_product: 'Пожалуйста, выберите товар для указанной группы [group_name]',
+        save: 'Сохранить',
+        close: 'Закрыть',
+        notice: 'Оповещение',
+        warning: 'Предупреждение',
+        error: 'Ошибка',
+        empty: 'Пусто',
+        text_are_you_sure_to_proceed: 'Вы уверены, что хотите продолжить?',
+        text_invalid_url: 'Вы ввели неправильную ссылку',
+        error_validator_email: 'Email в поле <b>[field]<\/b> неверен.',
+        error_validator_phone: 'Неверный номер телефона в поле <b>[field]<\/b>. Правильный формат: (555) 555-55-55.',
+        error_validator_phone_mask: 'Недопустимый номер телефона в поле <b>[field]<\/b>.',
+        error_validator_phone_mask_with_phone: 'Номер телефона <b>[phone]<\/b> не соответствует требованиям.',
+        error_validator_integer: 'Значение поля <b>[field]<\/b> неправильное. Значение должно быть целым числом.',
+        error_validator_multiple: 'Поле <b>[field]<\/b> не имеет выбранных параметров.',
+        error_validator_password: 'Пароли в полях <b>[field2]<\/b> и <b>[field]<\/b> не совпадают.',
+        error_validator_required: 'Поле <b>[field]<\/b> обязательное.',
+        error_validator_zipcode: 'Неверный почтовый индекс в поле <b>[field]<\/b>. Правильный формат: [extra].',
+        error_validator_message: 'Значение поля <b>[field]<\/b> - неправильно.',
+        text_page_loading: 'Загрузка... ваш запрос выполняется, пожалуйста, подождите.',
+        error_ajax: 'Ой, произошла ошибка ([error]). Пожалуйста, попробуйте еще раз.',
+        text_changes_not_saved: 'Сделанные изменения не были сохранены.',
+        text_data_changed: 'Сделанные изменения не были сохранены.Нажмите OK, чтобы продолжить, или Cancel, чтобы остаться на странице.',
+        placing_order: 'Идет размещение заказа',
+        order_was_not_placed: 'Заказ не был размещен',
+        file_browser: 'Найти файл',
+        browse: 'Найти...',
+        more: 'Еще',
+        text_no_products_found: 'Товары не найдены',
+        cookie_is_disabled: 'Для совершения покупок <a href=\"https://www.wikihow.com/Enable-Cookies-in-Your-Internet-Web-Browser\" target=\"_blank\">разрешите принимать файлы cookiee<\/a> в своём браузере',
+        insert_image: 'Добавить изображение',
+        image_url: 'URL изображения',
+        loading: 'Загрузка...',
+
+        text_editing_raw: 'Редактирование текста',
+        save_raw: 'Сохранить',
+        cancel_raw: 'Отменить'
+    });
+
+    $.extend(_, {
+        index_script: 'index.php',
+        changes_warning: /*'Y'*/'N',
+        currencies: {
+            'primary': {
+                'decimals_separator': '.',
+                'thousands_separator': '&nbsp;',
+                'decimals': '2'
+            },
+            'secondary': {
+                'decimals_separator': '.',
+                'thousands_separator': '&nbsp;',
+                'decimals': '2',
+                'coefficient': '1.00000'
+            }
+        },
+        default_editor: 'redactor2',
+        default_previewer: 'owl',
+        current_path: '',
+        current_location: 'http://cscartex.devel',
+        images_dir: 'http://cscartex.devel/design/themes/responsive/media/images',
+        notice_displaying_time: 5,
+        cart_language: 'ru',
+        language_direction: 'ltr',
+        default_language: 'ru',
+        cart_prices_w_taxes: false,
+        regexp: [],
+        current_url: 'http://cscartex.devel/index.php?dispatch=sd_departments.department&department_id=2',
+        current_host: 'cscartex.devel',
+        init_context: '',
+        phone_validation_mode: 'international_format',
+        hash_of_available_countries: 'bfdebee47398bea28d1506086baee9d7',
+        hash_of_phone_masks: '1684235467',
+        deferred_scripts: []
+    });
+
+    
+    
+        $(document).ready(function(){
+            turnOffPhoneSafariAutofill();
+
+            $.runCart('C');
+        });
+
+        $.ceEvent('on', 'ce.commoninit', function () {
+            turnOffPhoneSafariAutofill();
+        });
+
+        function turnOffPhoneSafariAutofill () {
+            if ($.browser.safari) {
+                $('[x-autocompletetype="tel"]').removeAttr('x-autocompletetype');
+                $('.cm-mask-phone-label:not(.autofill-on)').append('<span style="position: absolute; overflow: hidden; width: 1px; height: 1px;">search</span>');
+            }
+        }
+
+    
+            // CSRF form protection key
+        _.security_hash = '4ca1e11ca4efb7183c9cb348df9035ad';
+    }(Tygh, Tygh.$));
+</script>
+<script>
+    (function (_, $) {
+        _.tr({
+            "social_buttons.facebook_cookie_title": 'Facebook',
+            "social_buttons.facebook_cookie_description": 'Cookies от Facebook включают связанную с ним функциональность, например, кнопку Facebook на странице товара. Вот <a href=\"https://www.facebook.com/about/privacy/previous\" target=\"_blank\">политика конфиденциальности Facebook<\/a>.',
+            "social_buttons.pinterest_cookie_title": 'Pinterest',
+            "social_buttons.pinterest_cookie_description": 'Cookies от Pinterest включают связанную с ним функциональность, например, кнопку Pinterest на странице товара. Вот <a href=\"https://policy.pinterest.com/ru/privacy-policy\" target=\"_blank\">политика конфиденциальности Pinterest<\/a>.',
+            "social_buttons.twitter_cookie_title": 'Twitter',
+            "social_buttons.twitter_cookie_description": 'Cookies от Twitter включают связанную с ним функциональность, например, кнопку Twitter на странице товара. Вот <a href=\"https://twitter.com/ru/privacy\" target=\"_blank\">политика конфиденциальности Twitter<\/a>.',
+            "social_buttons.vkontakte_cookie_title": 'ВКонтакте',
+            "social_buttons.vkontakte_cookie_description": 'Cookies от ВКонтакте включают связанную с ним функциональность, например, кнопку ВК на странице товара. Вот <a href=\"https://m.vk.com/privacy\" target=\"_blank\">политика конфиденциальности ВКонтакте<\/a>.',
+            "social_buttons.yandex_cookie_title": 'Яндекс',
+            "social_buttons.yandex_cookie_description": 'Яндекс позволяет нам отображать кнопки разных социальных сетей (например, на страницах товаров). Вот <a href=\"https://yandex.ru/legal/confidential/\" target=\"_blank\">политика конфиденциальности Яндекса<\/a>.',
+        });
+    })(Tygh, Tygh.$);
+</script>
+<script>
+    (function (_, $) {
+        _.tr({
+            "rus_boxberry.boxberry_cookie_title": 'Boxberry',
+            "rus_boxberry.boxberry_cookie_description": 'Boxberry — это служба доставки. Она позволяет нам считать для вас корректную стоимость доставки, если вы выберете соответствующий способ доставки.',
+        });
+    })(Tygh, Tygh.$);
+</script>
+<script>
+    (function (_, $) {
+        _.tr({
+            "paypal.paypal_cookie_title": 'PayPal',
+            "paypal.paypal_cookie_description": 'PayPal — это платёжная система. Она позволяет нам принимать оплату, если вы выберете соответствующий способ оплаты. Вот <a href=\"https://www.paypal.com/us/webapps/mpp/ua/privacy-full\" target=\"_blank\">заявление PayPal о конфиденциальности<\/a>.',
+        });
+    })(Tygh, Tygh.$);
+</script>
+<script>
+    (function (_, $) {
+        _.geo_maps = {
+            provider: 'yandex',
+            api_key: '',
+            yandex_commercial: false,
+            language: "ru",
+        };
+
+        _.tr({
+            geo_maps_google_search_bar_placeholder: 'Найти',
+            geo_maps_cannot_select_location: 'По техническим причинам не удалось выбрать это местоположение. Если у вас возникнут сложности при размещении заказа, пожалуйста свяжитесь с нами.',
+        });
+    })(Tygh, Tygh.$);
+</script>
+<script>
+    (function (_, $) {
+        _.tr({
+            "geo_maps.google_maps_cookie_title": 'Google Карты',
+            "geo_maps.google_maps_cookie_description": 'Google Карты — это сервис, который позволяет нам показывать карты и различные объекты на них, а также автоматически определять ваше местоположение. Вот <a href=\"https://policies.google.com/privacy\" target=\"_blank\">политика конфиденциальности Google;<\/a> мы также рекомендуем краткую и понятную <a href=\"https://support.google.com/maps/answer/10400210\" target=\"_blank\">заметку от Google про персональные данные<\/a>.',
+            "geo_maps.yandex_maps_cookie_title": 'Яндекс Карты',
+            "geo_maps.yandex_maps_cookie_description": 'Яндекс Карты — это сервис, который позволяет нам показывать карты и различные объекты на них, а также автоматически определять ваше местоположение. Вот <a href=\"https://yandex.ru/legal/confidential/\" target=\"_blank\">политика конфиденциальности Яндекса<\/a>.',
+        });
+    })(Tygh, Tygh.$);
+</script>
+<script>
+</script>
+<script>
+    (function (_, $) {
+        $.ceEvent('on', 'ce.commoninit', function (context) {
+            if (!Modernizr.touchevents) {
+                var positionId = 3;
+                if ('ltr' === 'rtl') {
+                    positionId = $.ceImageZoom('translateFlyoutPositionToRtl', positionId);
+                }
+
+                $('.cm-previewer:not(.cm-previewer-only)', context).each(function (i, elm) {
+                    $.ceImageZoom('init', $(elm), positionId);
+                });
+            }
+        });
+    })(Tygh, Tygh.$);
+</script>
+<script>
+    (function (_, $) {
+        _.tr({
+            "gdpr.klaro_accept_all": 'Включить все',
+            "gdpr.klaro_accept_selected": 'Выбрать вручную',
+            "gdpr.klaro_close": 'Закрыть',
+            "gdpr.klaro_consent_modal_description": 'Здесь вы можете увидить сервисы, которые мы используем на сайте. Также вы можете выбрать, чьи cookies вы разрешаете использовать. Выбор за вами!',
+            "gdpr.klaro_consent_modal_title": 'Какие cookies мы хотели бы использовать',
+            "gdpr.klaro_consent_notice_change_description": 'С момента вашего последнего визита произошли изменения; пожалуйста, подтвердите своё согласие заново.',
+            "gdpr.klaro_consent_notice_title": 'Согласие на файлы cookie',
+            "gdpr.klaro_consent_notice_description": 'Здравствуйте! Можно нам включить несколько дополнительных сервисов, для которых нужны файлы cookie? Вы всегда сможете изменить это решение и выключить сервисы позже.',
+            "gdpr.klaro_consent_notice_learn_more": 'Хочу выбрать',
+            "gdpr.klaro_consent_notice_testing": 'Тестовый режим!',
+            "gdpr.klaro_contextual_consent_accept_always": 'Всегда',
+            "gdpr.klaro_contextual_consent_accept_once": '\'Да\'',
+            "gdpr.klaro_contextual_consent_description": 'Вы хотите загрузить стороннийконтент от {title}?',
+            "gdpr.klaro_decline": 'Я отказываюсь',
+            "gdpr.klaro_ok": 'Хорошо',
+            "gdpr.klaro_powered_by": 'Сделано с помощью Klaro!',
+            "gdpr.klaro_privacy_policy_title": 'Подробности есть в этом документе: {privacyPolicy}',
+            "gdpr.klaro_privacy_policy_name": 'Политика конфиденциальности',
+            "gdpr.klaro_service": 'сервис',
+            "gdpr.klaro_services": 'сервис(ов)',
+            "gdpr.strictly_necessary_cookies_title": 'Необходимые cookies',
+            "gdpr.strictly_necessary_cookies_description": 'Эти cookies обязательны для корректной работы сайта. Например, они позволяют вам разместить заказ, а сайту знать, что вы вошли в учётную запись. Поэтому через сайт отключить такие cookies нельзя. Вы можете настроить браузер, чтобы отключить даже их, но тогда важные части сайта не будут работать корректно.',
+            "gdpr.performance_cookies_title": 'Cookies для оценки работоспособности',
+            "gdpr.performance_cookies_description": 'Эти cookies позволяют нам увидеть, как работает сайт. Информация, которую они собирают, анонимна и обычно представлена в числах. Например, эти cookies позволяют нам узнать, как часто происходят ошибки, как много у нас уникальных посетителей, или как долго в среднем они смотрят те или иные страницы. Благодаря этим cookies мы можем улучшать для вас сайт.',
+            "gdpr.functional_cookies_title": 'Функциональные cookies',
+            "gdpr.functional_cookies_description": 'Эти cookies отвечают за дополнительную функциональность на сайте. Их ставят сторонние сервисы, которые мы добавили на сайт. Сервисы бывают разные: карты; геолокация для предварительной оценки стоимости доставки; возможность войти в магазин через учётную запись в социальной сети. Без функциональных cookies может не работать связанная с ними функциональность.',
+            "gdpr.marketing_cookies_title": 'Маркетинговые cookies',
+            "gdpr.marketing_cookies_description": 'Эти cookies используются нашими рекламными партнёрами. Они позволяют им измерять эффективность рекламы и делать так, чтобы показываемая реклама была вам полезной и меньше повторялась. Обычно для этого запоминаются браузер и устройство, которые видели рекламу. Выключение этих cookies не снизит количество рекламы в интернете, но сделает её менее персонализированной. ',
+            "gdpr.klaro_service_purpose": 'цель',
+            "gdpr.klaro_service_purposes": 'цели',
+            "gdpr.klaro_service_required_description": 'Этот сервис нужен всегда',
+            "gdpr.eway_cookies_title": 'eWAY',
+            "gdpr.eway_cookies_description": 'eWAY — это платёжная система. Она позволяет нам принимать платежи, если вы выберете соответствующий способ оплаты. Вот <a href=\"https://www.eway.com.au/privacy-policy/\" target=\"_blank\">политика конфиденциальности eWAY<\/a>.',
+            "save": 'Сохранить',
+            "gdpr.disable_all_description": 'Этот переключатель включит или выключит все сервисы разом.',
+            "gdpr.disable_all_title": 'Включить или выключить все сервисы',
+            "gdpr.opt_out_description": 'Этот сервис включен по умолчанию (но вы можете от него отказаться)',
+            "gdpr.opt_out_title": '(можно отказаться)',
+            "gdpr.klaro_service_required_title": '(всегда вкл.)',
+            "gdpr.uk_cookies_law": 'Для обеспечения высокого уровня обслуживания на этом сайте используются файлы cookie. Продолжая его использование, вы соглашаетесь с тем, что файлы cookie будут сохраняться на вашем компьютере. ',
+            "gdpr.site_functionality_cookies_title": 'Функциональность сайта',
+            "gdpr.site_functionality_cookies_description": 'Эти cookies необходимы для работы сайта. Например, они помогают сайту запомнить, что вы положили что-то в корзину или зашли в свою учётную запись.',
+        });
+    })(Tygh, Tygh.$);
+</script>
+
+
+<!-- Inline scripts -->
+<script src="http://cscartex.devel/js/tygh/bottom_panel.js?ver=1684235502" ></script>
+<script src="http://cscartex.devel/js/tygh/exceptions.js?ver=1684235502" ></script>
+<script src="http://cscartex.devel/js/tygh/product_image_gallery.js?ver=1684235502" ></script>
+
+                    
+</body>
+
+</html>

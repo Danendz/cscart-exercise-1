@@ -1,0 +1,41 @@
+Codeception PHP Testing Framework v4.2.2 https://helpukrainewin.org
+Powered by PHPUnit 8.5.28 #StandWithUkraine
+
+Acceptance Tests (1) -----------------------------------------------------------------------------------------------------------------------
+DepartmentsCest: Test
+Signature: DepartmentsCest:test
+Test: tests/acceptance/DepartmentsCest.php:test
+Scenario --
+ I am on page "/"
+ I click "Войти"
+ I fill field {"id":"login_main_login"},"dev@example.com"
+ I fill field {"id":"psw_main_login"},"root"
+ I click "form[name=main_login_form] button[type=submit]"
+ I click "Мой профиль"
+ I click "Отделы"
+ I see element {"class":"ty-pict"}
+ I see "Тестовый отдел"
+ I see "Денис Петров"
+ I click "Тестовый отдел"
+ I see "Тестовый отдел"
+ I see "Петрова Анна"
+ I see "Маслов Алексей"
+ I make html snapshot 
+ I click "Мой профиль"
+ I click "Выйти"
+ I click "Мой профиль"
+ I don't see "Администратор Главный"
+ PASSED 
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Functional Tests (0) -----------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Unit Tests (0) -----------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Time: 3.21 seconds, Memory: 18.66 MB
+
+OK (1 test, 7 assertions)
